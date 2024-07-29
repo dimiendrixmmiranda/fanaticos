@@ -13,6 +13,5 @@ export default function Cabecalho() {
             <Favoritos />
             <CarrinhoDeCompras />
         </header>
-
     )
 }

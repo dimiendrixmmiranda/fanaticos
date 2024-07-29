@@ -12,7 +12,8 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --vermelho-1: #D21312;
-  --fonte-titulo: 'RaceSport', sans-serif
+  --azul-1: #101C4C;
+  --fonte-titulo: 'RaceSport', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
