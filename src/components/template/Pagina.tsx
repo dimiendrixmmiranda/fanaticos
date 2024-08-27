@@ -1,5 +1,4 @@
 import CarrosselOfertas from "../ofertas/CarrosselOfertas";
-import Ofertas from "../ofertas/Ofertas";
 import Slider from "../slider/Slider";
 import Cabecalho from "./cabecalho/Cabecalho";
 import Main from "./principal/Main";
