@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'RaceSport';
+  src: url('../../public/fonts/RaceSport.ttf');
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -13,6 +18,7 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+    --cor-azul: #130a79;
   }
 }
 
@@ -26,8 +32,38 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: blue;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: skyblue;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.fonteTitulo{
+  font-family: 'RaceSport', sans-serif;
+  font-size: 1.6rem;
+}
+
+.corCabecalho{
+  background-color: #130a79;
+}
+
+.card-description{
+  display: grid;
+  grid-template-columns: auto 20%;
+}
+
+.p-carousel-prev, .p-carousel-next {
+  color: black;
 }
