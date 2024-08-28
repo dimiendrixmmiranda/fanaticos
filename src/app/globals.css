@@ -19,6 +19,8 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
     --cor-azul: #130a79;
+    --cor-azul-barra: #0f0949;
+    --cor-vermelho: #d21312;
   }
 }
 
@@ -37,11 +39,11 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background-color: blue;
+  background-color: var(--cor-vermelho);
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: skyblue;
+  background-color: var(--cor-azul-barra);
 }
 
 @layer utilities {
@@ -66,4 +68,36 @@ body::-webkit-scrollbar-thumb {
 
 .p-carousel-prev, .p-carousel-next {
   color: black;
+}
+
+@media screen and (min-width: 1440px){
+  .newsletter{
+    display: grid;
+    grid-template-columns: 40% 1fr;
+  }
+  .newsletter h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.8em;
+    line-height: 1em;
+    padding: .5em;
+  } 
+  .newsletter form{
+    padding: .5em;
+  }
+  .newsletter .preferencias{
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+  }
+  .newsletter .preferencias > div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .newsletter .preferencias > div div{
+    justify-content: center;
+    width: 100%;
+  }
 }
