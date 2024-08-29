@@ -11,11 +11,11 @@ export default function CardProduto() {
     ];
     return (
         <div className="bg-zinc-200 text-black p-2 overflow-hidden flex flex-col max-w-[240px]">
-            <div className="h-[140px] w-full overflow-hidden flex justify-center items-center">
+            <div className="w-full h-[210px] overflow-hidden flex justify-center items-center">
                 <img src="foto.jpg" alt="" className="object-contain" />
             </div>
             <div className="card-description w-full mt-2">
-                <h2 className="leading-4 font-bold uppercase col-[1/3]">Camisa Celtics 24/25</h2>
+                <h2 className="leading-4 font-bold uppercase col-[1/3] text-lg">Camisa Celtics 24/25</h2>
                 <p className="text-[.75em] leading-3 col-[1/3] mt-1">Camisa número 1 do Celtics para a temporada 24/25</p>
                 <div className="flex col-[1/3] my-2">
                     <FaStar />

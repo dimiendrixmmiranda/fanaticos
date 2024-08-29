@@ -4,6 +4,7 @@ import Slider from "../slider/Slider";
 import Cabecalho from "./cabecalho/Cabecalho";
 import Main from "./principal/Main";
 import Navbar from "./principal/Navbar";
+import Rodape from "./rodape/Rodape";
 
 export default function Pagina(props: any){
     return (
@@ -15,6 +16,7 @@ export default function Pagina(props: any){
                 <CarrosselOfertas></CarrosselOfertas>
                 <Newsletter></Newsletter>
             </Main>
+            <Rodape></Rodape>
         </div>
     )
 }

@@ -5,7 +5,16 @@
 @font-face {
   font-family: 'RaceSport';
   src: url('../../public/fonts/RaceSport.ttf');
-}
+};
+
+@font-face {
+  font-family: 'SourceSansPro-Bold';
+  src: url('../../public/fonts/SourceSansPro-Bold.ttf');
+};
+@font-face {
+  font-family: 'SourceSansPro-Regular';
+  src: url('../../public/fonts/SourceSansPro-Regular.ttf');
+};
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -21,6 +30,8 @@
     --cor-azul: #130a79;
     --cor-azul-barra: #0f0949;
     --cor-vermelho: #d21312;
+    --fonte-sourceSansPro-bold: 'SourceSansPro-Bold', sans-serif; 
+    --fonte-sourceSansPro-regular: 'SourceSansPro-Regular', sans-serif; 
   }
 }
 
@@ -68,6 +79,14 @@ body::-webkit-scrollbar-thumb {
 
 .p-carousel-prev, .p-carousel-next {
   color: black;
+}
+
+.fonte-bold{
+  font-family: var(--fonte-sourceSansPro-bold);
+  font-weight: bold;
+}
+.fonte-regular{
+  font-family: var(--fonte-sourceSansPro-regular);
 }
 
 @media screen and (min-width: 1440px){

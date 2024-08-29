@@ -11,15 +11,15 @@ export default function Newsletter() {
                 <div className="flex flex-col">
                     <fieldset className="flex flex-col">
                         <label htmlFor="nome">Nome</label>
-                        <input className="h-[32px] p-2 text-black font-medium mb-1" type="text" name="nome" id="nome" placeholder="Digite seu nome..." />
+                        <input className="h-[32px] p-2 text-black font-medium mb-1 rounded-md" type="text" name="nome" id="nome" placeholder="Digite seu nome..." />
                     </fieldset>
                     <fieldset className="flex flex-col">
                         <label htmlFor="email">Email</label>
-                        <input className="h-[32px] p-2 text-black font-medium mb-1" type="text" name="email" id="email" placeholder="Digite seu email..." />
+                        <input className="h-[32px] p-2 text-black font-medium mb-1 rounded-md" type="text" name="email" id="email" placeholder="Digite seu email..." />
                     </fieldset>
                     <fieldset className="flex flex-col">
                         <label htmlFor="telefone">Telefone</label>
-                        <InputMask value={value} onChange={(e: any) => setValue(e.target.value)} mask="(99) 9 9999-9999" placeholder="(99) 9 9999-9999" className="h-[32px] p-2 text-black font-medium mb-1"/>
+                        <InputMask value={value} onChange={(e: any) => setValue(e.target.value)} mask="(99) 9 9999-9999" placeholder="(99) 9 9999-9999" className="h-[32px] p-2 text-black font-medium mb-1 rounded-md"/>
                     </fieldset>
                     <fieldset className="flex flex-col mt-3 preferencias">
                         <label className="text-lg font-semibold">Prefere receber ofertas de produtos:</label>

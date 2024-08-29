@@ -11,9 +11,9 @@ import Link from 'next/link';
 
 export default function Slider() {
     const imgs: string[] = [
-        'https://static.vecteezy.com/ti/vetor-gratis/t2/9287681-vector-black-tecido-textura-fundo-vetor.jpg',
-        'https://imagens.usp.br/wp-content/uploads/Campus-15-Foto-Marcos-Santos20101220_066.jpg',
-        'https://static-cse.canva.com/blob/612127/bancodeimagensgratis1.png'
+        './wireframe-mobile.png',
+        './wireframe-mobile.png',
+        './wireframe-mobile.png',
     ];
 
     const [alturaSlider, setAlturaSlider] = useState(280);
