@@ -1,6 +1,7 @@
 import Newsletter from "../newsletter/Newsletter";
 import CarrosselOfertas from "../ofertas/CarrosselOfertas";
 import Slider from "../slider/Slider";
+import Surpreendame from "../surpreendame/Surpreendame";
 import Cabecalho from "./cabecalho/Cabecalho";
 import Main from "./principal/Main";
 import Navbar from "./principal/Navbar";
@@ -14,6 +15,7 @@ export default function Pagina(props: any){
                 <Navbar></Navbar>
                 <Slider></Slider>
                 <CarrosselOfertas></CarrosselOfertas>
+                <Surpreendame></Surpreendame>
                 <Newsletter></Newsletter>
             </Main>
             <Rodape></Rodape>
