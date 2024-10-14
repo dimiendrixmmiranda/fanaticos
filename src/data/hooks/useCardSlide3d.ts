@@ -13,7 +13,7 @@ export default function useCardSlide3d() {
             } else if (window.innerWidth < 1024) {
                 setQtdeSlide(4);
             } else if (window.innerWidth < 1440) {
-                setQtdeSlide(6);
+                setQtdeSlide(5);
             } else {
                 setQtdeSlide(7);
             }

@@ -12,7 +12,7 @@ interface CardProps {
 
 export default function Card({ produto, estilo, estiloImg}: CardProps) {
     return (
-        <li key={produto.id} className={`w-[150px] h-[300px] bg-[--secundaria] overflow-hidden rounded-md  p-1 flex flex-col gap-2 ${estilo}`}>
+        <li key={produto.id} className={`${estilo}`}>
             <Link href={'/'} className="flex-1 h-full flex flex-col gap-1 xl:gap-2">
                 <div className={`relative w-full h-[140px] overflow-hidden flex justify-center items-center rounded-md bg-orange-500 ${estiloImg}`} style={{boxShadow: '0 0 2px 0px black'}}>
                     <Image src={'/camisa.jpg'} alt={produto.nome} fill className="object-cover"></Image>
@@ -26,7 +26,7 @@ export default function Card({ produto, estilo, estiloImg}: CardProps) {
                     </div>
                 </div>
             </Link>
-            <div className="grid grid-cols-2 max-h-[40px] gap-2">
+            <div className="grid grid-cols-2 max-h-[40px] mt-2 gap-2">
                 <Favorito estilo="bg-red-500 rounded-md"></Favorito>
                 <Carrinho estilo="bg-green-500 rounded-md"></Carrinho>
             </div>

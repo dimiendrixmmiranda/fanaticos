@@ -28,14 +28,13 @@ export default function Slider3d() {
                 navigation={true}
                 modules={[Navigation, Autoplay, EffectCoverflow]}
                 className="mySwiper"
-                style={{ height: `300px` }}
             >
                 {
                     listaDeProdutos.map((produto, index) => {
                         return (
                             <div key={index}>
                                 <SwiperSlide className=''>
-                                    <Card estilo='w-[170px] h-full' estiloImg='h-[140px]' produto={produto} key={produto.id}></Card>
+                                    <Card estilo='w-[190px] h-[300px] h-full mx-auto p-2 flex flex-col bg-zinc-500 md:w-[175px] md:h-[315px]' estiloImg='h-[145px]' produto={produto} key={produto.id}></Card>
                                 </SwiperSlide>
                             </div>
                         )

@@ -16,11 +16,11 @@ export default function Home() {
 			<MaisVendidos></MaisVendidos>
 			<Vitrine></Vitrine>
 			<Newsletter></Newsletter>
-			<Beneficios></Beneficios>
 			<div className="flex flex-col gap-10 max-w-[95%] mx-auto mt-6 mb-8 lg:grid lg:grid-cols-2">
 				<Surpresa></Surpresa>
 				<Destaque></Destaque>
 			</div>
+			<Beneficios></Beneficios>
 		</Pagina>
 	)
 }

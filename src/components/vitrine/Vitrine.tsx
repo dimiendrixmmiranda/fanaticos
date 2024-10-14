@@ -74,7 +74,7 @@ export default function Vitrine() {
             {/* Formulário de filtros */}
             <div data-estilo="formulario" className="text-black flex flex-col">
                 <h3 className="w-full text-center uppercase font-bold bg-[--secundaria] text-white mb-3 text-xl py-1">Filtros:</h3>
-                <form onSubmit={aplicarFiltros}>
+                <form onSubmit={aplicarFiltros} className="flex flex-col gap-8">
                     <fieldset className="flex flex-col flex-wrap gap-2">
                         <h3>Tipo:</h3>
                         <div className="grid gap-2 grid-cols-2 md:grid-cols-4 lg:grid-cols-2 g:grid-cols-3">
@@ -103,7 +103,7 @@ export default function Vitrine() {
                             <ElementoFiltro id="inglaterra" filtro={filtros.inglaterra} onchange={handleFilterChange}></ElementoFiltro>
                         </div>
                     </fieldset>
-                    <button type="submit" className="w-full uppercase font-bold bg-[--primaria] text-white text-2xl py-1 mt-2">Buscar</button> {/* Botão que ativa os filtros */}
+                    <button type="submit" className="w-full uppercase font-bold bg-[--primaria] text-white text-2xl py-1">Buscar</button> {/* Botão que ativa os filtros */}
                 </form>
             </div>
 
@@ -111,7 +111,7 @@ export default function Vitrine() {
             <ul data-estilo="produtos" className="flex flex-wrap justify-center gap-1 max-w-[900px] xl:justify-start xl:gap-5">
                 {
                     produtosExibidos.length > 0 ? produtosExibidos.map(produto => (
-                        <Card produto={produto} key={produto.id} estilo="md:w-[175px] lg:w-[165px] g:w-[180px] xl:w-[200px] xl:h-[315px]" estiloImg="xl:h-[170px]"></Card>
+                        <Card produto={produto} key={produto.id} estilo="bg-[--primaria] flex flex-col p-2 w-[150px] sm:w-[190px] sm:h-[320px] lg:w-[220px] lg:h-[330px] xl:w-[205px]" estiloImg="sm:h-[170px] lg:h-[180px]"></Card>
                     )) :
                         <h1 className="text-black">Produto não encontrado</h1>
                 }
