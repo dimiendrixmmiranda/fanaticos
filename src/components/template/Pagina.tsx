@@ -8,7 +8,7 @@ interface PaginaProps{
 
 export default function Pagina({children}: PaginaProps){
     return (
-        <div>
+        <div className="flex flex-col">
             <Cabecalho></Cabecalho>
             <Principal>
                 {children}

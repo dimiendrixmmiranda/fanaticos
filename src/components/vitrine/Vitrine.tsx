@@ -67,8 +67,6 @@ export default function Vitrine() {
 
     const produtosExibidos = produtosFiltrados.slice(first, first + rows);
 
-    console.log(produtosExibidos)
-
     return (
         <div className={`${style.vitrine}`}>
             <h2 data-estilo="titulo" className="text-center w-full uppercase text-xl font-bold py-1 bg-[--primaria] lg:text-3xl">Nossa Vitrine Virtual</h2>

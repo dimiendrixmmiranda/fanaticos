@@ -1,7 +1,7 @@
 export default function Rodape() {
     return (
-        <div>
-            <h1>Aqui</h1>
+        <div className="w-full h-60 bg-[--primaria]">
+            <h1>Meu rodapé bem legal</h1>
         </div>
     )
 }
