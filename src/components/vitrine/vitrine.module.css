@@ -1,0 +1,36 @@
+.vitrine{
+    display: flex;
+    flex-direction: column;
+    max-width: 95%;
+    margin: 0 auto;
+    gap: 1em;
+}
+
+@media screen and (min-width: 1024px) {
+    .vitrine{
+        display: grid;
+        grid-template-columns: 27% 1fr;
+    }
+    .vitrine [data-estilo="titulo"]{
+        grid-column: 1/3;
+    }
+    .vitrine [data-estilo="formulario"]{
+        grid-column: 1/2;
+        height: fit-content;
+    }
+    .vitrine [data-estilo="produtos"]{
+        grid-column: 2/3;
+        height: fit-content;
+    }
+    .vitrine [data-estilo="paginacao"]{
+        grid-column: 2/3;
+        height: fit-content;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .vitrine{
+        display: grid;
+        grid-template-columns: 30% 1fr;
+    }
+}

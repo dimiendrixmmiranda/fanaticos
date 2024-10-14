@@ -2,9 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'RaceSport';
+  src: url('./fonts/RaceSport.ttf');
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primaria: #FF6500;
+  --secundaria: #0f1b5e;
+  --terciaria: #fa9551;
+  --quaternaria: #3a4cb4;
+  --default: #F5F7F8;
+  --cinza: #E4E4E7;
+  --teste-1: #130A79;
+  --teste-2: #D21312;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,4 +38,54 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+header{
+  font-family: 'RaceSport';
+}
+header div:nth-child(1) ul li a:hover ul{
+  display: block;
+  z-index: 2;
+}
+
+.rede a::before{
+  content: attr(data-rede);
+  font-size: .4em;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: -90%;
+  color: white;
+  background-color: black;
+  line-height: 14px;
+  padding: .4em;
+  border-radius: 6px;
+  display: none;
+}
+.rede a::after{
+  content: '';
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid black;
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translate(-50%);
+  display: none;
+}
+.rede a:hover{
+  transition: .5s ease;
+  scale: 1.2;
+}
+.rede a:hover::after,a:hover::before{
+  display: block;
+}
+
+.p-accordion-header-link{
+  background-color: var(--primaria);
+}
+.p-accordion-tab{
+  margin-bottom: .5em;
 }
