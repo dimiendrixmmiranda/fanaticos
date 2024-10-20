@@ -34,7 +34,7 @@ export default function Slider3d() {
                         return (
                             <div key={index}>
                                 <SwiperSlide className=''>
-                                    <Card estilo='w-[190px] h-[300px] h-full mx-auto p-2 flex flex-col md:w-[175px] md:h-[315px] border border-2 border-[--secundaria] text-black xl:h-[335px]' estiloImg='h-[145px]' produto={produto} key={produto.id}></Card>
+                                    <Card estilo='w-[190px] min-h-[300px] h-full mx-auto p-2 flex flex-col md:w-[175px] md:h-[315px] lg:min-h-[325px] border border-2 border-[--secundaria] text-black xl:h-[335px]' estiloImg='h-[145px]' produto={produto} key={produto.id}></Card>
                                 </SwiperSlide>
                             </div>
                         )

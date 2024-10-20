@@ -115,26 +115,93 @@ a:hover::before {
   border-top: 120px solid #F4F6F7;
 }
 
-.marcas{
+.marcas {
   height: 100%;
   max-height: 80px;
 }
-.marcas .swiper-wrapper{
+
+.marcas .swiper-wrapper {
   height: 100%;
 }
-.marcas .swiper-wrapper .swiper-slide{
+
+.marcas .swiper-wrapper .swiper-slide {
   display: flex;
   height: 80px;
   justify-content: center;
   align-items: center;
 }
-.marcas .swiper-wrapper .swiper-slide a:hover{
+
+.marcas .swiper-wrapper .swiper-slide a:hover {
   scale: 1.2;
   transition: .6s ease;
 }
-.marcas .swiper-wrapper .swiper-slide img{
+
+.marcas .swiper-wrapper .swiper-slide img {
   height: 60px;
   width: 100%;
+}
+
+/* AREÁ DA PAGINA DE PRODUTOS */
+.produtos {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.produtos .card .p-galleria-item-wrapper {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  height: 100%;
+  gap: .5em;
+}
+
+.produtos .card .p-galleria-item-wrapper .p-galleria-item-container {
+  grid-column: 2/3;
+}
+
+.produtos .card .p-galleria-item-wrapper .p-galleria-indicators {
+  width: 100%;
+  height: 100%;
+  grid-column: 1/2;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.produtos .card .p-galleria-item-wrapper .p-galleria-indicators .p-galleria-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.galleria {
+  max-width: 450px;
+  height: 20%;
+  overflow-y: hidden;
+  margin: 1.5em auto;
+}
+.galleria .miniatura{
+  opacity: .5;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.galleria .miniatura:hover{
+  opacity: 1;
+}
+
+@media screen and (min-width: 425px) {
+  .produtos .card .p-galleria-item-wrapper {
+    grid-template-columns: 90px 1fr;
+  }
+  .produtos .card .p-galleria-item-wrapper .p-galleria-indicators .p-galleria-indicator {
+    width: 90px;
+  }
+
 }
 
 @media screen and (min-width: 768px) {
@@ -148,11 +215,4 @@ a:hover::before {
   .container-personalizado {
     grid-template-columns: auto 1fr;
   }
-  /* .marcas{
-    height: 100%;
-    max-height: 110px;
-  }
-  .marcas .swiper-wrapper .swiper-slide{
-    height: 110px;
-  } */
 }
