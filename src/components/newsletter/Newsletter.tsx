@@ -1,15 +1,11 @@
-import Image from "next/image";
-
 export default function Newsletter() {
     return (
-        <div className="max-w-[95%] mx-auto my-4 p-2 bg-[--secundaria] flex flex-col gap-4 md:grid md:grid-cols-2 md:p-4 lg:max-w-[90%]">
-            <div className="flex flex-col justify-center">
+        <div className="flex flex-col bg-[--primaria] p-2 justify-center items-center gap-5 xl:flex-row xl:gap-4 xl:p-4">
+            <div className="flex flex-col justify-center gap-2 xl:max-w-[350px] xl:border-r-2 xl:border-[--secundaria]">
                 <h2 className="uppercase font-black text-xl text-center leading-5 md:self-center md:text-2xl xl:max-w-[85%] xl:mx-auto">Receba ofertas e descontos exclusivos se cadastrando na nossa Newsletter!</h2>
-                <div className="relative w-[170px] h-[170px] mx-auto xl:w-[200px] xl:h-[200px]">
-                    <Image src={'/envelope.png'} alt="Icone de envelope" fill className="object-cover"></Image>
-                </div>
+                <img src="/logo-fanaticos.png" alt="" className="w-[200px] mx-auto hidden xl:block"/>
             </div>
-            <form action="" className="flex flex-col gap-3">
+            <form action="" className="flex flex-col gap-3 w-full p-2 lg:w-full lg:max-w-[700px] xl:w-full self-center xl:gap-6">
                 <fieldset className="flex flex-col gap-1">
                     <label htmlFor="nome" className="font-semibold text-lg leading-5">Nome</label>
                     <input type="text" id="nome" className="h-[30px] rounded-md px-2" placeholder="Digite seu nome:" />
@@ -39,7 +35,7 @@ export default function Newsletter() {
                         </div>
                     </div>
                 </fieldset>
-                <button type="submit" className="uppercase font-bold text-xl bg-[--primaria] py-2">Cadastrar</button>
+                <button type="submit" className="uppercase font-bold text-xl bg-[--secundaria] py-2">Cadastrar</button>
             </form>
         </div>
     )

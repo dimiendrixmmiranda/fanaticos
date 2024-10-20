@@ -7,5 +7,5 @@ export interface Menu {
         link: string
         icone: React.ReactElement
     }
-    submenu: Submenu[] | null
+    submenu: Submenu[]
 }

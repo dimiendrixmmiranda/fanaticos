@@ -12,6 +12,10 @@ export default function Vitrine() {
     const [filtros, setFiltros] = useState(
         {
             clube: false,
+            camisa: false,
+            agasalho: false,
+            chaveiro: false,
+            box: false,
             selecao: false,
             nike: false,
             adidas: false,
@@ -46,8 +50,12 @@ export default function Vitrine() {
         e.preventDefault(); // Impede o comportamento padrão de envio do formulário
         // Aplica os filtros baseados no estado atual dos checkboxes
         const produtosFiltradosAtualizados = listaDeProdutos.filter(produto => {
-            if (filtros.clube && produto.tipo.toLowerCase() === 'clube') return true;
-            if (filtros.selecao && produto.tipo.toLowerCase() === 'selecao') return true;
+            if (filtros.camisa && produto.categoria.toLowerCase() === 'camisa') return true;
+            if (filtros.agasalho && produto.categoria.toLowerCase() === 'agasalho') return true;
+            if (filtros.chaveiro && produto.categoria.toLowerCase() === 'chaveiro') return true;
+            if (filtros.box && produto.categoria.toLowerCase() === 'box') return true;
+            if (filtros.clube && produto.tipoCamisa.toLowerCase() === 'clube') return true;
+            if (filtros.selecao && produto.tipoCamisa.toLowerCase() === 'selecao') return true;
             if (filtros.nike && produto.marca.toLowerCase() === 'nike') return true;
             if (filtros.puma && produto.marca.toLowerCase() === 'puma') return true;
             if (filtros.adidas && produto.marca.toLowerCase() === 'adidas') return true;
@@ -58,7 +66,7 @@ export default function Vitrine() {
             if (filtros.italia && produto.pais.toLowerCase() === 'italia') return true;
             if (filtros.franca && produto.pais.toLowerCase() === 'franca') return true;
             if (filtros.outros && produto.pais.toLowerCase() === 'outros') return true;
-            return !filtros.clube && !filtros.selecao && !filtros.nike && !filtros.puma && !filtros.adidas && !filtros.brasil && !filtros.inglaterra && !filtros.alemanha && !filtros.franca && !filtros.italia && !filtros.espanha && !filtros.outros // Se nenhum filtro estiver ativo, mostra todos os produtos
+            return !filtros.chaveiro && !filtros.agasalho && !filtros.box && !filtros.camisa && !filtros.clube && !filtros.selecao && !filtros.nike && !filtros.puma && !filtros.adidas && !filtros.brasil && !filtros.inglaterra && !filtros.alemanha && !filtros.franca && !filtros.italia && !filtros.espanha && !filtros.outros // Se nenhum filtro estiver ativo, mostra todos os produtos
         });
         // Atualiza o estado dos produtos filtrados
         setProdutosFiltrados(produtosFiltradosAtualizados);
@@ -76,7 +84,16 @@ export default function Vitrine() {
                 <h3 className="w-full text-center uppercase font-bold bg-[--secundaria] text-white mb-3 text-xl py-1">Filtros:</h3>
                 <form onSubmit={aplicarFiltros} className="flex flex-col gap-8">
                     <fieldset className="flex flex-col flex-wrap gap-2">
-                        <h3>Tipo:</h3>
+                        <h3>Tipo do Produto:</h3>
+                        <div className="grid gap-2 grid-cols-2 md:grid-cols-4 lg:grid-cols-2 g:grid-cols-3">
+                            <ElementoFiltro id="camisa" filtro={filtros.camisa} onchange={handleFilterChange}></ElementoFiltro>
+                            <ElementoFiltro id="agasalho" filtro={filtros.agasalho} onchange={handleFilterChange}></ElementoFiltro>
+                            <ElementoFiltro id="chaveiro" filtro={filtros.chaveiro} onchange={handleFilterChange}></ElementoFiltro>
+                            <ElementoFiltro id="box" filtro={filtros.box} onchange={handleFilterChange}></ElementoFiltro>
+                        </div>
+                    </fieldset>
+                    <fieldset className="flex flex-col flex-wrap gap-2">
+                        <h3>Tipo da Camisa:</h3>
                         <div className="grid gap-2 grid-cols-2 md:grid-cols-4 lg:grid-cols-2 g:grid-cols-3">
                             <ElementoFiltro id="selecao" filtro={filtros.selecao} onchange={handleFilterChange}></ElementoFiltro>
                             <ElementoFiltro id="clube" filtro={filtros.clube} onchange={handleFilterChange}></ElementoFiltro>
@@ -111,9 +128,9 @@ export default function Vitrine() {
             <ul data-estilo="produtos" className="flex flex-wrap justify-center gap-1 max-w-[900px] xl:justify-start xl:gap-5">
                 {
                     produtosExibidos.length > 0 ? produtosExibidos.map(produto => (
-                        <Card produto={produto} key={produto.id} estilo="bg-[--primaria] flex flex-col p-2 w-[150px] sm:w-[190px] sm:h-[320px] lg:w-[220px] lg:h-[330px] xl:w-[205px]" estiloImg="sm:h-[170px] lg:h-[180px]"></Card>
+                        <Card produto={produto} key={produto.id} estilo="border border-2 border-[--secundaria] text-black flex flex-col p-2 w-[150px] sm:w-[190px] sm:h-[330px] lg:w-[220px] lg:h-[340px] xl:w-[205px] xl:h-[345px]" estiloImg="sm:h-[170px] lg:h-[180px]"></Card>
                     )) :
-                        <h1 className="text-black">Produto não encontrado</h1>
+                        <h1 className="text-black text-4xl text-center mx-auto">Produto não encontrado</h1>
                 }
             </ul>
             {/* Paginação */}

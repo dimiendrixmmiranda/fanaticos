@@ -4,7 +4,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 1,
         marca: 'nike',
-        tipo: 'clube',
+        tipoCamisa: 'clube',
         categoria: "camisa",
         nome: "Camisa Real Madrid 2023",
         imagem: "/wireframe.png",
@@ -15,7 +15,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 2,
         marca: 'puma',
-        tipo: 'selecao',
+        tipoCamisa: 'selecao',
         categoria: "camisa",
         nome: "Camisa Barcelona 2023",
         imagem: "/wireframe.png",
@@ -26,7 +26,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 3,
         marca: 'puma',
-        tipo: 'clube',
+        tipoCamisa: 'clube',
         categoria: "camisa",
         nome: "Camisa Manchester United 2023",
         imagem: "/wireframe.png",
@@ -37,7 +37,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 4,
         marca: 'puma',
-        tipo: 'clube',
+        tipoCamisa: 'clube',
         categoria: "camisa",
         nome: "Camisa Juventus 2023",
         imagem: "/wireframe.png",
@@ -48,7 +48,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 5,
         marca: 'puma',
-        tipo: 'clube',
+        tipoCamisa: 'clube',
         categoria: "camisa",
         nome: "Camisa Paris Saint-Germain 2023",
         imagem: "/wireframe.png",
@@ -59,7 +59,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 6,
         marca: 'puma',
-        tipo: 'clube',
+        tipoCamisa: 'clube',
         categoria: "camisa",
         nome: "Camisa Bayern de Munique 2023",
         imagem: "/wireframe.png",
@@ -70,7 +70,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 7,
         marca: 'puma',
-        tipo: 'clube',
+        tipoCamisa: 'clube',
         categoria: "camisa",
         nome: "Camisa Arsenal 2023",
         imagem: "/wireframe.png",
@@ -81,7 +81,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 8,
         marca: 'puma',
-        tipo: 'clube',
+        tipoCamisa: 'clube',
         categoria: "camisa",
         nome: "Camisa Milan 2023",
         imagem: "/wireframe.png",
@@ -92,7 +92,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 9,
         marca: 'puma',
-        tipo: 'clube',
+        tipoCamisa: 'clube',
         categoria: "camisa",
         nome: "Camisa Corinthians 2023",
         imagem: "/wireframe.png",
@@ -103,7 +103,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 10,
         marca: 'puma',
-        tipo: 'clube',
+        tipoCamisa: 'clube',
         categoria: "camisa",
         nome: "Camisa Flamengo 2023",
         imagem: "/wireframe.png",
@@ -114,7 +114,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 11,
         marca: 'nike',
-        tipo: 'selecao',
+        tipoCamisa: 'selecao',
         categoria: "camisa",
         nome: "Camisa Seleção Brasil 2023",
         imagem: "/wireframe.png",
@@ -125,7 +125,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 12,
         marca: 'adidas',
-        tipo: 'selecao',
+        tipoCamisa: 'selecao',
         categoria: "camisa",
         nome: "Camisa Seleção Alemanha 2023",
         imagem: "/wireframe.png",
@@ -136,7 +136,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 13,
         marca: 'nike',
-        tipo: 'clube',
+        tipoCamisa: 'clube',
         categoria: "camisa",
         nome: "Camisa Chelsea 2023",
         imagem: "/wireframe.png",
@@ -147,7 +147,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 14,
         marca: 'puma',
-        tipo: 'selecao',
+        tipoCamisa: 'selecao',
         categoria: "camisa",
         nome: "Camisa Seleção Itália 2023",
         imagem: "/wireframe.png",
@@ -158,7 +158,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 15,
         marca: 'adidas',
-        tipo: 'clube',
+        tipoCamisa: 'clube',
         categoria: "camisa",
         nome: "Camisa Real Sociedad 2023",
         imagem: "/wireframe.png",
@@ -169,7 +169,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 16,
         marca: 'nike',
-        tipo: 'selecao',
+        tipoCamisa: 'selecao',
         categoria: "camisa",
         nome: "Camisa Seleção França 2023",
         imagem: "/wireframe.png",
@@ -180,7 +180,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 17,
         marca: 'adidas',
-        tipo: 'clube',
+        tipoCamisa: 'clube',
         categoria: "camisa",
         nome: "Camisa Ajax 2023",
         imagem: "/wireframe.png",
@@ -191,7 +191,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 18,
         marca: 'umbro',
-        tipo: 'clube',
+        tipoCamisa: 'clube',
         categoria: "camisa",
         nome: "Camisa West Ham 2023",
         imagem: "/wireframe.png",
@@ -202,7 +202,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 19,
         marca: 'new balance',
-        tipo: 'clube',
+        tipoCamisa: 'clube',
         categoria: "camisa",
         nome: "Camisa Porto 2023",
         imagem: "/wireframe.png",
@@ -213,7 +213,7 @@ export const listaDeProdutos: Produto[] = [
     {
         id: 20,
         marca: 'adidas',
-        tipo: 'selecao',
+        tipoCamisa: 'selecao',
         categoria: "camisa",
         nome: "Camisa Seleção Argentina 2023",
         imagem: "/wireframe.png",

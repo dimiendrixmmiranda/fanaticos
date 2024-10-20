@@ -1,6 +1,7 @@
 import Beneficios from "@/components/beneficios/Beneficios";
-import Destaque from "@/components/destaque/Destaque";
-import MaisVendidos from "@/components/maisVendidos/MaisVendidos";
+import EsporteFavorito from "@/components/esporteFavorito/EsporteFavorito";
+import Mvv from "@/components/mvv/Mvv";
+import NavegacaoMarcas from "@/components/navegacaoMarcas/NavegacaoMarcas";
 import Newsletter from "@/components/newsletter/Newsletter";
 import Slider from "@/components/slider/Slider";
 import Slider3d from "@/components/slider3d/Slider3d";
@@ -13,13 +14,14 @@ export default function Home() {
 		<Pagina>
 			<Slider></Slider>
 			<Slider3d></Slider3d>
-			<MaisVendidos></MaisVendidos>
 			<Vitrine></Vitrine>
-			<Newsletter></Newsletter>
-			<div className="flex flex-col gap-10 max-w-[95%] mx-auto mt-6 mb-8 lg:grid lg:grid-cols-2">
+			<NavegacaoMarcas></NavegacaoMarcas>
+			<EsporteFavorito></EsporteFavorito>
+			<div className="max-w-[95%] mx-auto gap-y-4 grid grid-cols-1 md:gap-4 container-personalizado">
 				<Surpresa></Surpresa>
-				<Destaque></Destaque>
+				<Newsletter></Newsletter>
 			</div>
+			<Mvv></Mvv>
 			<Beneficios></Beneficios>
 		</Pagina>
 	)

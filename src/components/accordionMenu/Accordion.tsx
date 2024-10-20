@@ -32,7 +32,7 @@ export default function AccordionMenu({ arrayDeMenus }: AccordionMenuProps) {
                                                         {
                                                             item.icone != '' ?
                                                                 <div>
-                                                                    <Image src={item.icone} alt={item.texto} width={20} height={20}></Image>
+                                                                    <Image src={`${item.icone}`} alt={item.texto} width={20} height={20}></Image>
                                                                 </div> : ''
 
                                                         }
