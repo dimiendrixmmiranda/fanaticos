@@ -4,7 +4,7 @@ import { FaRegCreditCard } from "react-icons/fa";
 
 export default function Beneficios() {
     return (
-        <footer className="bg-[--cor-secundaria] mt-8">
+        <footer className="bg-[--cor-secundaria] mt-8 mb-4">
             <ul className="flex flex-col gap-4 md:flex-row p-4 xl:p-6 xl:gap-6 bg-zinc-300 text-black">
                 <li className="flex flex-col py-4 w-full gap-2 items-center md:flex-1">
                     <FaTruckFast className="text-[3em]"/>
