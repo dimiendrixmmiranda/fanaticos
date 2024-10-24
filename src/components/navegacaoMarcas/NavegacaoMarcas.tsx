@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { listaDeMarcas } from '@/core/constants/listaDeMarcas';
 import { useEffect, useState } from 'react';
+import { createSlugWithId } from '@/utils/createSlug';
 
 export default function NavegacaoMarcas() {
     const [qtdeSlide, setQtdeSlide] = useState(2);
@@ -59,7 +60,7 @@ export default function NavegacaoMarcas() {
                         return (
                             <div key={index} className='flex justify-center items-center'>
                                 <SwiperSlide>
-                                    <Link href={'/'} className='flex justify-center items-center h-full'>
+                                    <Link href={`/marca/${createSlugWithId(marca.nome)}`} className='flex justify-center items-center h-full'>
                                         <Image src={`${marca.imagem}`} alt='adidas' width={100} height={50}></Image>
                                     </Link>
                                 </SwiperSlide>

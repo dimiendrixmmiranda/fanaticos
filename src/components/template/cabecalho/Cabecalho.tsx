@@ -1,39 +1,27 @@
 'use client';
+
 import { useState, useEffect } from "react";
 import MenuSidebar from "@/components/menuSidebar/MenuSidebar";
 import { listaDeMenus } from "@/core/constants";
 import Image from "next/image";
 import Link from "next/link";
 import Cadastrar from "@/components/cadastrar/Cadastrar";
-import { Submenu } from "@/core/menu/submenu";
 import { FaCartShopping, FaMagnifyingGlass } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
 import RedesSocias from "@/components/sociais/Sociais";
+import { renderizarSubmenu } from "@/utils/renderizarMenu";
+import useHandlePesquisar from "@/utils/handlePesquisar";
 
-export default function Cabecalho() {
+const Cabecalho = () => {
     const [isClient, setIsClient] = useState(false);
+    const { searchQuery, setSearchQuery, handlePesquisar } = useHandlePesquisar(); // Adicione handlePesquisar aqui
 
-    // Ativando o client-side apenas quando montado
     useEffect(() => {
-        setIsClient(true);
+        setIsClient(true)
     }, []);
 
-    // Função para renderizar os submenus
-    function renderizarSubmenu(submenu: Submenu[]) {
-        return submenu?.map((submenuItem, i) => (
-            <li key={i} className="p-1 lg:px-2">
-                <Link href={'/'} className="gap-2 items-center py-1" style={{ display: 'grid', gridTemplateColumns: '20px 1fr' }}>
-                    <div className="relative h-3">
-                        {submenuItem.icone != '' ? <Image alt={submenuItem.texto} src={`${submenuItem.icone}`} fill className="object-cover"></Image> : ''}
-                    </div>
-                    <p className="text-[.7em] leading-4 lg:text-[.9em] lg:leading-6">{submenuItem.texto}</p>
-                </Link>
-            </li>
-        ));
-    }
-
     if (!isClient) {
-        return null;
+        return null
     }
 
     return (
@@ -64,19 +52,31 @@ export default function Cabecalho() {
                 <Cadastrar estilo="hidden lg:block"></Cadastrar>
                 <MenuSidebar></MenuSidebar>
             </div>
-            <div className="hidden md:flex bg-[--secundaria] p-2 font-sans xl:pt-4">
-                <div className="relative w-full flex-1 xl:max-w-[900px] xl:h-[50px] xl:mx-auto xl:flex">
-                    <input type="text" name="buscar" id="buscar" className="h-full rounded-xl px-2 w-full lg:px-4 lg:text-xl" placeholder="O que está buscando??" />
-                    <button className="absolute top-[50%] right-0 bg-[--primaria] h-full px-3 lg:text-2xl" style={{ transform: 'translate(0,-50%)', borderRadius: '0 12px 12px 0' }}>
+            <div className="hidden md:flex bg-[--secundaria] p-2 font-sans xl:py-4">
+                <form className="relative w-full flex-1 text-black xl:max-w-[900px] xl:h-[50px] xl:mx-auto xl:flex" onSubmit={(e) => handlePesquisar(e)}>
+                    <input
+                        type="text"
+                        name="buscar"
+                        id="buscar"
+                        className="h-full rounded-xl px-2 w-full lg:px-4 lg:text-xl"
+                        placeholder="O que está buscando??"
+                        value={searchQuery} // Valor controlado pelo estado
+                        onChange={(e) => setSearchQuery(e.target.value)} // Atualiza o estado ao digitar
+                    />
+                    <button
+                        className="absolute top-[50%] right-0 bg-[--primaria] h-full px-3  text-black lg:text-2xl"
+                        style={{ transform: 'translate(0,-50%)', borderRadius: '0 12px 12px 0' }}
+                        type="submit"
+                    >
                         <FaMagnifyingGlass />
                     </button>
-                </div>
-                <div className="w-full h-full max-w-[70px] text-3xl xl:text-4xl flex justify-center items-center xl:py-1">
+                </form>
+                <div className="w-full h-full max-w-[70px] text-3xl flex justify-center items-center xl:py-1">
                     <Link href={'/'} className="w-full h-full flex justify-center items-center py-1 rounded-md">
                         <FaHeart />
                     </Link>
                 </div>
-                <div className="w-full h-full max-w-[70px] text-3xl xl:text-4xl flex justify-center items-center xl:py-1">
+                <div className="w-full h-full max-w-[70px] text-3xl flex justify-center items-center xl:py-1">
                     <Link href={'/'} className="w-full h-full flex justify-center items-center py-1 rounded-md">
                         <FaCartShopping />
                     </Link>
@@ -87,3 +87,6 @@ export default function Cabecalho() {
         </header>
     );
 }
+
+
+export default Cabecalho

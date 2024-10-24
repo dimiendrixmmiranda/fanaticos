@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { Paginator, PaginatorPageChangeEvent  } from 'primereact/paginator';
 import { listaDeProdutos } from "@/core/constants";
 import Card from "../card/Card";
-import ElementoFiltro from "../filtro/ElementoFiltro";
 import style from './vitrine.module.css'
+import ElementoFiltro from "../elementoFiltro/ElementoFiltro";
 
 export default function Vitrine() {
     const [first, setFirst] = useState(0);

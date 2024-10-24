@@ -22,20 +22,20 @@ export default function Page() {
 
     const arrayImagens = [
         {
-            itemImageSrc: '/camisa.jpg',
-            alt: 'Alemanha'
+            itemImageSrc: '/camisaPadrao/imagem-1.jpg',
+            alt: 'img-1'
         },
         {
-            itemImageSrc: '/camisa.png',
-            alt: 'Alemanha'
+            itemImageSrc: '/camisaPadrao/imagem-2.jpg',
+            alt: 'img-2'
         },
         {
-            itemImageSrc: '/camisa.jpg',
-            alt: 'Alemanha'
+            itemImageSrc: '/camisaPadrao/imagem-3.jpg',
+            alt: 'img-3'
         },
         {
-            itemImageSrc: '/camisa.jpg',
-            alt: 'Alemanha'
+            itemImageSrc: '/camisaPadrao/imagem-4.jpg',
+            alt: 'img-4'
         },
     ];
 
@@ -104,15 +104,15 @@ export default function Page() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-3 text-[--secundaria] my-3 justify-between md:flex-row md:justify-center lg:grid lg:grid-cols-2 xl:my-6">
-                        <div className="flex flex-col mx-auto md:mx-0">
+                    <div className="flex flex-col gap-3 text-[--secundaria] my-3 justify-between md:grid md:grid-cols-2 xl:my-6">
+                        <div className="flex flex-col w-full mx-auto md:mx-0">
                             <h2>Personalizar item?</h2>
                             <div className="flex gap-2">
                                 <div>
-                                    <input type="text" name="nome" id="nome" placeholder="Nome..." className="border border-[--secundaria] w-full max-w-[140px] rounded-md px-2" />
+                                    <input type="text" name="nome" id="nome" placeholder="Nome..." className="border border-[--secundaria] w-full rounded-md px-2" />
                                     <p className="text-center text-[.7em]">+R$10,00</p>
                                 </div>
-                                <div className="w-[90px]">
+                                <div>
                                     <input type="number" name="numero" id="numero" placeholder="Número..." className="border border-[--secundaria] rounded-md w-full px-2" />
                                     <p className="text-center text-[.7em]">+R$10,00</p>
                                 </div>
@@ -120,8 +120,8 @@ export default function Page() {
                             <button className="text-white bg-[--secundaria] py-1 mt-1 w-full lg:text-[.8em]">Adicionar Personalização</button>
                         </div>
                         <div className="text-[--secundaria] flex flex-col gap-1 justify-center">
-                            <p className="font-semibold text-md line-through xl:text-xl">de R$189,90</p>
-                            <p className="font-black text-2xl leading-4 xl:text-4xl">Por R$144,90</p>
+                            <p className="font-semibold text-md leading-4 line-through xl:text-xl">de R$189,90</p>
+                            <p className="font-black text-2xl leading-4 md:text-3xl md:leading-6 lg:text-2xl xl:text-4xl">Por R$144,90</p>
                             <p className="font-semibold leading-4 text-sm">Ou R$149,90 em até 3x sem juros</p>
                         </div>
                     </div>

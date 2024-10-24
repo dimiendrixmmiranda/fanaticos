@@ -6,7 +6,7 @@ interface PrincipalProps {
 
 export default function Principal(props: PrincipalProps) {
     return (
-        <main className="min-h-[100vh] bg-[--default]">
+        <main className="bg-[--default]">
             {props.children}
         </main>
     );
