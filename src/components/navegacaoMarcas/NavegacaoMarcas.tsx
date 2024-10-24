@@ -37,7 +37,6 @@ export default function NavegacaoMarcas() {
             window.removeEventListener('resize', renderHeight);
         };
     }, []);
-    // 
     return (
         <div className='my-7 max-w-[95%] mx-auto'>
             <h2 className='font-black text-xl uppercase w-full flex justify-center items-center bg-[--secundaria] py-2 mb-4'>Navegue por marcas</h2>

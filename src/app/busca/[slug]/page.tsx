@@ -45,7 +45,7 @@ export default function Page() {
                         })}
                     </ul>
                 ) : (
-                    <p className="text-black uppercase text-2xl text-center font-bold leading-6">Nenhum produto encontrado para "{slug}"</p>
+                    <p className="text-black uppercase text-2xl text-center font-bold leading-6">Nenhum produto encontrado para {slug}</p>
                 )}
             </div>
         </Pagina>
