@@ -17,7 +17,7 @@ export default function MenuSidebar() {
         <div className={`flex justify-content-center relative md:hidden`}>
             <Sidebar visible={visibleRight} position="right" onHide={() => setVisibleRight(false)} className='bg-[--secundaria] text-white'>
                 <div className='h-full flex flex-col gap-2'>
-                    <form className="relative w-full" onSubmit={(e) => handlePesquisar(e)}>
+                    <form className="relative w-full text-black" onSubmit={(e) => handlePesquisar(e)}>
                         <input
                             type="text"
                             name="buscar"

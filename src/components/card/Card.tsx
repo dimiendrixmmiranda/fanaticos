@@ -13,7 +13,7 @@ interface CardProps {
 
 export default function Card({ produto, estilo, estiloImg}: CardProps) {
     return (
-        <li key={produto.id} className={`${estilo}`}>
+        <li key={produto.id} className={`${estilo}`} style={{margin: '0'}}>
             <Link href={`/produtos/${createSlugWithId(produto.nome, produto.id)}`} className="flex-1 h-full flex flex-col gap-1 xl:gap-2">
                 <div className={`relative w-full h-[140px] overflow-hidden flex justify-center items-center bg-orange-500 ${estiloImg}`} style={{boxShadow: '0 0 1px 1px black'}}>
                     <Image src={'/camisa.jpg'} alt={produto.nome} fill className="object-cover"></Image>
