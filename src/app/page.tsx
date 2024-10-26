@@ -1,5 +1,5 @@
 import Beneficios from "@/components/beneficios/Beneficios";
-import EsporteFavorito from "@/components/esporteFavorito/EsporteFavorito";
+import Esporte from "@/components/esporteFavorito/Esporte";
 import Mvv from "@/components/mvv/Mvv";
 import NavegacaoMarcas from "@/components/navegacaoMarcas/NavegacaoMarcas";
 import Newsletter from "@/components/newsletter/Newsletter";
@@ -16,8 +16,8 @@ export default function Home() {
 			<Slider3d></Slider3d>
 			<Vitrine></Vitrine>
 			<NavegacaoMarcas></NavegacaoMarcas>
-			<EsporteFavorito></EsporteFavorito>
-			<div className="max-w-[95%] mx-auto gap-y-4 grid grid-cols-1 md:gap-4 container-personalizado">
+			<Esporte></Esporte>
+			<div className="container-personalizado">
 				<Surpresa></Surpresa>
 				<Newsletter></Newsletter>
 			</div>

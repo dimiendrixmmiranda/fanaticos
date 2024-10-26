@@ -1,6 +1,6 @@
 export default function Newsletter() {
     return (
-        <div className="flex flex-col bg-[--primaria] p-2 justify-center items-center gap-5 xl:flex-row xl:gap-4 xl:p-4">
+        <div className="flex w-full flex-col bg-[--primaria] p-2 justify-center items-center gap-5 xl:flex-row xl:gap-4 xl:p-4">
             <div className="flex flex-col justify-center gap-2 xl:max-w-[350px] xl:border-r-2 xl:border-[--secundaria]">
                 <h2 className="uppercase font-black text-xl text-center leading-5 md:self-center md:text-2xl xl:max-w-[85%] xl:mx-auto">Receba ofertas e descontos exclusivos se cadastrando na nossa Newsletter!</h2>
                 <img src="/logo-fanaticos.png" alt="" className="w-[200px] mx-auto hidden xl:block"/>

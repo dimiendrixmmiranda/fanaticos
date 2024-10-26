@@ -62,7 +62,7 @@ export default function Rodape() {
                     <RedesSocias estilo='w-full flex'></RedesSocias>
                 </div>
             </div>
-            <div className="w-full col-start-1 col-end-4 text-center bg-[--secundaria] py-1">Desenvolvido e Idealizado por Dimi Endrix Martins Miranda</div>
+            <div className="w-full col-start-1 col-end-4 text-center bg-[--secundaria] py-1 font-semibold">Desenvolvido e Idealizado por <strong className="font-black">Dimi Endrix Martins Miranda</strong></div>
         </div>
     )
 }

@@ -10,7 +10,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primaria: #FF1E1E;
+  --primaria: #FF3B00;
   --secundaria: #0f1b5e;
   --terciaria: #fa9551;
   --quaternaria: #3a4cb4;
@@ -51,6 +51,16 @@ header div:nth-child(1) ul li a:hover ul {
   display: block;
   z-index: 2;
 }
+
+
+.container-personalizado {
+  display: flex;
+  flex-direction: column;
+  max-width: 95%;
+  margin: 0 auto;
+  gap: 1em;
+}
+
 
 .rede a::before {
   content: attr(data-rede);
@@ -239,9 +249,9 @@ a:hover::before {
 
 @media screen and (min-width: 1024px) {
   .container-personalizado {
-    grid-template-columns: auto 1fr;
+    display: grid;
+    grid-template-columns: 40% 1fr;
   }
-
   .produtos {
     display: grid;
     grid-template-columns: 55% 1fr;
@@ -260,6 +270,9 @@ a:hover::before {
 }
 
 @media screen and (min-width: 1440px) {
+  .container-personalizado {
+    grid-template-columns: 30% 1fr;
+  }
   .produtos {
     margin-top: 1em;
   }

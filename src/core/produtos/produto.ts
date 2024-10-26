@@ -1,5 +1,6 @@
 export interface Produto {
     id: number
+    esporte: string
     tipoCamisa: string
     marca: string
     categoria: string

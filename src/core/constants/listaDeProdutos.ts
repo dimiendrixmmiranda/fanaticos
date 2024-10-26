@@ -3,6 +3,7 @@ import { Produto } from "../produtos/produto";
 export const listaDeProdutos: Produto[] = [
     {
         id: 1,
+        esporte: 'basquete',
         marca: 'nike',
         tipoCamisa: 'clube',
         categoria: "chaveiro",
@@ -14,6 +15,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 2,
+        esporte: 'basquete',
         marca: 'puma',
         tipoCamisa: 'selecao',
         categoria: "camisa",
@@ -25,6 +27,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 3,
+        esporte: 'basquete',
         marca: 'puma',
         tipoCamisa: 'clube',
         categoria: "camisa",
@@ -36,6 +39,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 4,
+        esporte: 'basquete',
         marca: 'puma',
         tipoCamisa: 'clube',
         categoria: "camisa",
@@ -47,6 +51,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 5,
+        esporte: 'americano',
         marca: 'puma',
         tipoCamisa: 'clube',
         categoria: "camisa",
@@ -58,6 +63,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 6,
+        esporte: 'americano',
         marca: 'puma',
         tipoCamisa: 'clube',
         categoria: "camisa",
@@ -69,6 +75,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 7,
+        esporte: 'americano',
         marca: 'puma',
         tipoCamisa: 'clube',
         categoria: "camisa",
@@ -80,6 +87,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 8,
+        esporte: 'americano',
         marca: 'puma',
         tipoCamisa: 'clube',
         categoria: "camisa",
@@ -91,6 +99,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 9,
+        esporte: 'futebol',
         marca: 'puma',
         tipoCamisa: 'clube',
         categoria: "camisa",
@@ -102,6 +111,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 10,
+        esporte: 'futebol',
         marca: 'puma',
         tipoCamisa: 'clube',
         categoria: "camisa",
@@ -113,6 +123,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 11,
+        esporte: 'futebol',
         marca: 'nike',
         tipoCamisa: 'selecao',
         categoria: "camisa",
@@ -124,6 +135,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 12,
+        esporte: 'futebol',
         marca: 'adidas',
         tipoCamisa: 'selecao',
         categoria: "camisa",
@@ -135,6 +147,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 13,
+        esporte: 'futebol',
         marca: 'nike',
         tipoCamisa: 'clube',
         categoria: "camisa",
@@ -146,6 +159,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 14,
+        esporte: 'futebol',
         marca: 'puma',
         tipoCamisa: 'selecao',
         categoria: "camisa",
@@ -157,6 +171,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 15,
+        esporte: 'futebol',
         marca: 'adidas',
         tipoCamisa: 'clube',
         categoria: "camisa",
@@ -168,6 +183,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 16,
+        esporte: 'futebol',
         marca: 'nike',
         tipoCamisa: 'selecao',
         categoria: "camisa",
@@ -179,6 +195,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 17,
+        esporte: 'futebol',
         marca: 'adidas',
         tipoCamisa: 'clube',
         categoria: "camisa",
@@ -190,6 +207,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 18,
+        esporte: 'futebol',
         marca: 'umbro',
         tipoCamisa: 'clube',
         categoria: "camisa",
@@ -201,6 +219,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 19,
+        esporte: 'futebol',
         marca: 'new balance',
         tipoCamisa: 'clube',
         categoria: "camisa",
@@ -212,6 +231,7 @@ export const listaDeProdutos: Produto[] = [
     },
     {
         id: 20,
+        esporte: 'futebol',
         marca: 'adidas',
         tipoCamisa: 'selecao',
         categoria: "camisa",

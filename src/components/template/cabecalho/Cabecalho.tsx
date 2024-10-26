@@ -14,7 +14,7 @@ import useHandlePesquisar from "@/utils/handlePesquisar";
 
 const Cabecalho = () => {
     const [isClient, setIsClient] = useState(false);
-    const { searchQuery, setSearchQuery, handlePesquisar } = useHandlePesquisar(); // Adicione handlePesquisar aqui
+    const { searchQuery, setSearchQuery, handlePesquisar } = useHandlePesquisar();
 
     useEffect(() => {
         setIsClient(true)
@@ -42,7 +42,7 @@ const Cabecalho = () => {
                             <Link href={item.menu.link} className="flex items-center gap-1 text-md font-sans font-bold p-2 lg:px-4 lg:text-lg xl:px-6 xl:text-xl">
                                 {item.menu.icone}
                                 <p>{item.menu.texto}</p>
-                                <ul className="absolute left-[0] top-[100%] w-[100%] bg-[--secundaria] hidden transition-all">
+                                <ul className="absolute left-[0] top-[100%] w-[100%] bg-[--secundaria] hidden transition-all p-1">
                                     {renderizarSubmenu(item?.submenu)}
                                 </ul>
                             </Link>
@@ -60,11 +60,11 @@ const Cabecalho = () => {
                         id="buscar"
                         className="h-full rounded-xl px-2 w-full lg:px-4 lg:text-xl"
                         placeholder="O que está buscando??"
-                        value={searchQuery} // Valor controlado pelo estado
-                        onChange={(e) => setSearchQuery(e.target.value)} // Atualiza o estado ao digitar
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                     />
                     <button
-                        className="absolute top-[50%] right-0 bg-[--primaria] h-full px-3  text-black lg:text-2xl"
+                        className="absolute top-[50%] right-0 bg-[--primaria] h-full px-3 text-white lg:text-2xl"
                         style={{ transform: 'translate(0,-50%)', borderRadius: '0 12px 12px 0' }}
                         type="submit"
                     >
