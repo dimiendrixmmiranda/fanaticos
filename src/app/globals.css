@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Bangers&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* Fontes */
+  --fonte-primaria: "Open Sans", sans-serif;
+  --fonte-secundaria: "Lato", sans-serif;
+  --fonte-terciaria: "Bangers", system-ui;
+  --fonte-cursiva: "Parisienne", 'cursive';
+
+  /* Cores */
+  --azul-escuro: #00224E;
+  --azul: #144c96;
+  --magenta: #ff204e;
+  --laranja: #FF693A;
+  --amarelo: #DC7C15;
+  --preto: #1d1e22;
+  --amarelo-claro: #ffb037;
+  --turquesaEscuro: #005d71;
+  --turquesaClaro: #68c9da;
+  --turquesaMedio: #1c9dac;
+  --salmao: #f8726b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
+}
+
+.p-sidebar {
+  background-color: var(--magenta) !important;
+  color: white !important;
+}
