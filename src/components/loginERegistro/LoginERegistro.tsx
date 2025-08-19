@@ -25,7 +25,7 @@ export default function LoginERegistro() {
     ];
 
     return (
-        <div className='flex justify-center items-center w-10'>
+        <div className='justify-center items-center w-10 hidden lg:flex'>
             <Menu model={items} popup ref={menu} />
             <Button onClick={(event) => menu.current?.toggle(event)}>
                 <HiUserCircle size={24} />

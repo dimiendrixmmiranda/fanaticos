@@ -2,7 +2,7 @@ import Product from "@/components/product/Product"
 import Template from "@/components/template/Template"
 import { ProductType } from "@/types/ProductType"
 import { getProducts } from "@/lib/stripe"
-
+// https://dashboard.stripe.com/test/workbench/overview
 export default async function Page() {
 	const products = await getProducts()
 
