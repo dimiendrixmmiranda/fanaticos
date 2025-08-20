@@ -5,16 +5,21 @@ import { formatarPreco } from "@/utils/FormatarPreco"
 import Image from "next/image"
 import { TiDelete } from "react-icons/ti"
 
-export default function CartDrawer() {
+
+interface CartDrawerProps {
+    mobile: boolean
+}
+
+export default function CartDrawer({ mobile }: CartDrawerProps) {
     const useStore = useCardStore()
     return (
         <div
-            className="fixed z-20 w-full h-screen bg-black/25 left-0 top-0"
+            className="fixed z-20 w-full h-screen bg-black/45 left-0 top-0"
             onClick={() => useStore.toggleCart()}
         >
             <div
                 onClick={(e) => e.stopPropagation()}
-                className="absolute bg-slate-600 right-0 top-0 w-[90%] h-screen p-6 overflow-y-scroll md:w-2/3 lg:w-1/3 xl:w-1/4"
+                className={`absolute bg-slate-600 top-0 w-[90%] h-screen p-6 overflow-y-scroll md:w-2/3 lg:w-1/3 xl:w-1/4 ${mobile ? 'left-0' : 'right-0'}`}
             >
                 <div className="flex justify-between">
                     <button className="font-bold text-sm" onClick={() => useStore.toggleCart()}>Voltar para loja</button>

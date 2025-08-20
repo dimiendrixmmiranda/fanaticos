@@ -17,3 +17,5 @@ export default async function Page() {
 		</Template>
 	)
 }
+
+// comando para rodar o stripe: stripe listen --forward-to localhost:3000/api/stripe/webhook

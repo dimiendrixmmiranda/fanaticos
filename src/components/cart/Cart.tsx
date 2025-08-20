@@ -4,12 +4,16 @@ import { useCardStore } from "@/store"
 import { FaShoppingCart } from "react-icons/fa"
 import CartDrawer from "../base/CartDrawer"
 
-export default function Cart() {
+interface CartProps {
+    mobile: boolean
+}
+
+export default function Cart({ mobile }: CartProps) {
     const useStore = useCardStore()
     console.log(useStore)
 
     return (
-        <div className="hidden lg:flex">
+        <div className={mobile ? 'flex bg-laranja justify-center p-2 rounded-lg' : 'hidden lg:flex'}>
             <div
                 className="flex items-center justify-center relative cursor-pointer w-10"
                 onClick={() => useStore.toggleCart()}
@@ -19,7 +23,7 @@ export default function Cart() {
             </div>
             {
                 useStore.isOpen && (
-                    <CartDrawer />
+                    <CartDrawer mobile={mobile} />
                 )
             }
         </div>

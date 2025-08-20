@@ -1,5 +1,7 @@
 'use client'
+import BarraDeBusca from "@/components/barraDeBusca/BarraDeBusca";
 import Cart from "@/components/cart/Cart";
+import Favoritos from "@/components/favoritos/Favoritos";
 import LoginERegistro from "@/components/loginERegistro/LoginERegistro";
 import Navbar from "@/components/navbar/Navbar";
 import SidebarComponent from "@/components/sidebarComponent/SidebarComponent";
@@ -14,17 +16,19 @@ export default function Cabecalho() {
                 <div className="w-12 h-12 relative">
                     <Image alt="Logo Fanáticos" src={'/logo/logo-fanaticos.png'} fill className="object-contain" />
                 </div>
-                <h2 className="font-terciaria text-4xl hidden sm:block md:hidden lg:block" style={{ textShadow: '1px 1px 3px black' }}>Fanáticos</h2>
+                <h2 className="font-terciaria text-4xl sm:block md:hidden lg:block" style={{ textShadow: '1px 1px 3px black' }}>Fanáticos</h2>
             </Link>
 
             <Navbar />
 
             <SidebarComponent />
 
-            {/* Carrinho de compras */}
-            <Cart />
+            <BarraDeBusca mobile={false} />
 
-            <LoginERegistro />
+            {/* Carrinho de compras */}
+            <Cart mobile={false} />
+            <Favoritos mobile={true} />
+            <LoginERegistro mobile={false} />
         </header>
     )
 }
