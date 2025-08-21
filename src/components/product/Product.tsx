@@ -9,19 +9,22 @@ interface ProductProps {
 }
 
 export default function Product({ produto }: ProductProps) {
+    console.log(produto)
     return (
-        <Link href={`/product/${produto.id}`}>
-            <li className="bg-red-400 overflow-hidden flex flex-col">
-                <div>
+        <li className="bg-red-400 overflow-hidden flex flex-col p-2 rounded-lg gap-2 max-w-[400px]">
+            <Link href={`/product/${produto.id}`} className="flex flex-col">
+                <ProductImage product={produto} />
+                <div className="uppercase font-bold text-2xl">
                     {produto.name}
                 </div>
-                <ProductImage product={produto} />
                 <div className="line-clamp-3">
                     {produto.description}
                 </div>
-                <p>{formatarPreco(produto.price)}</p>
-            </li>
-            <AddCart produto={produto} />
-        </Link>
+                <p className="text-xl font-black">{formatarPreco(produto.price)}</p>
+            </Link>
+            <div className="grid grid-cols-2 gap-4">
+                <AddCart produto={produto} />
+            </div>
+        </li>
     )
 }

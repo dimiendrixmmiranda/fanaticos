@@ -10,8 +10,6 @@ interface CartProps {
 
 export default function Cart({ mobile }: CartProps) {
     const useStore = useCardStore()
-    console.log(useStore)
-
     return (
         <div className={mobile ? 'flex bg-laranja justify-center p-2 rounded-lg' : 'hidden lg:flex'}>
             <div

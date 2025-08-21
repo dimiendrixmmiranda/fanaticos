@@ -2,6 +2,7 @@
 
 import { useCardStore } from "@/store"
 import { ProductType } from "@/types/ProductType"
+import { FaShoppingCart } from "react-icons/fa"
 
 
 interface AddCartProps {
@@ -12,10 +13,11 @@ export default function AddCart({ produto }: AddCartProps) {
     const useStore = useCardStore()
     return (
         <button
-        onClick={() => useStore.addProduct(produto)}
-            className="bg-blue-600"
+            onClick={() => useStore.addProduct(produto)}
+            className="bg-blue-600 flex items-center justify-center gap-1 uppercase font-bold py-2"
         >
-            Adicionar ao carrinho
+            <FaShoppingCart />
+            <p className="hidden md:flex">Adicionar ao carrinho</p>
         </button>
     )
 }

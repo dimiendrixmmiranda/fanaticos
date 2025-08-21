@@ -20,6 +20,7 @@ export default function ProductImage({ product, fill }: ProductImageProps) {
                 :
                 'scale-100 blur-0 grayscale-0'}`}
             onLoadingComplete={() => setLoading(false)}
+            unoptimized
         />
     ) : (
         <Image

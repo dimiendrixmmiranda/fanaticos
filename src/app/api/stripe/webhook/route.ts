@@ -33,6 +33,11 @@ export async function POST(req: Request) {
         return new NextResponse("Webhook Error: Unknown error", { status: 400 });
     }
 
+    if (event.type === "product.deleted") {
+        const product = event.data.object as Stripe.Product;
+        await db.collection("products").doc(product.id).delete();
+    }
+
     if (event.type === "product.created" || event.type === "product.updated") {
         const product = event.data.object as Stripe.Product;
         const prices = await stripe.prices.list({ product: product.id });
@@ -42,6 +47,7 @@ export async function POST(req: Request) {
             {
                 name: product.name,
                 description: product.description,
+                images: product.images,
                 price: (price?.unit_amount ?? 0) / 100,
                 currency: price?.currency ?? "brl",
                 stripeId: product.id,

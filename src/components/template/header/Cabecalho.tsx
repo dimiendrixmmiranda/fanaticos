@@ -27,7 +27,7 @@ export default function Cabecalho() {
 
             {/* Carrinho de compras */}
             <Cart mobile={false} />
-            <Favoritos mobile={true} />
+            <Favoritos mobile={false} />
             <LoginERegistro mobile={false} />
         </header>
     )
