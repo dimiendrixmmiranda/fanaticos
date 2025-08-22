@@ -9,20 +9,31 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
 
     try {
+        // Cria o produto
         const product = await stripe.products.create({
             name: body.name,
             description: body.description,
             images: body.images,
-            metadata: { category: body.category || "camisa" },
+            metadata: {
+                category: body.category || "camisa",
+                priceDefault: body.price?.toString() || "0",
+            },
         });
 
+        const normalizedPrice = Number(parseFloat(body.price).toFixed(2)) * 100;
+        // Cria o preço
         const price = await stripe.prices.create({
             product: product.id,
-            unit_amount: Math.round(body.price * 100),
+            unit_amount: normalizedPrice,
             currency: "brl",
         });
 
-        // Cria um objeto "limpo" para enviar pro frontend
+        // Atualiza o produto com o preço padrão
+        await stripe.products.update(product.id, {
+            default_price: price.id,
+        });
+
+        // Retorna já com os dados certinhos
         const responseData = {
             id: product.id,
             name: product.name,
@@ -31,6 +42,7 @@ export async function POST(req: NextRequest) {
             category: product.metadata.category,
             price: price.unit_amount ? price.unit_amount / 100 : 0,
             priceId: price.id,
+            priceDefault: parseFloat(product.metadata.priceDefault),
         };
 
         return NextResponse.json(responseData);

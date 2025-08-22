@@ -1,15 +1,17 @@
+'use client'
+
 import { ProductType } from "@/types/ProductType"
 import ProductImage from "../base/ProductImage"
 import { formatarPreco } from "@/utils/FormatarPreco"
 import AddCart from "../base/AddCart"
 import Link from "next/link"
+import AddFavoritos from "../base/AddFavoritos"
 
 interface ProductProps {
     produto: ProductType
 }
 
 export default function Product({ produto }: ProductProps) {
-    console.log(produto)
     return (
         <li className="bg-red-400 overflow-hidden flex flex-col p-2 rounded-lg gap-2 max-w-[400px]">
             <Link href={`/product/${produto.id}`} className="flex flex-col">
@@ -24,6 +26,7 @@ export default function Product({ produto }: ProductProps) {
             </Link>
             <div className="grid grid-cols-2 gap-4">
                 <AddCart produto={produto} />
+                <AddFavoritos produto={produto} />
             </div>
         </li>
     )

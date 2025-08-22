@@ -9,7 +9,7 @@ export default function AddProduct() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        const parsedPrice = parseFloat(price) // Converte a string para número
+        const parsedPrice = parseFloat(price.replace(",", "."))
         if (isNaN(parsedPrice)) {
             alert("Por favor, insira um preço válido.")
             return
