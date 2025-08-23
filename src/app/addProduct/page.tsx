@@ -5,6 +5,7 @@ export default function AddProduct() {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState<string>("") // MUDANÇA: estado agora é string
+    const [category, setCategory] = useState<string>('')
     const [images, setImages] = useState<string[]>([])
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -23,7 +24,7 @@ export default function AddProduct() {
                 description,
                 price: parsedPrice,
                 images,
-                category: "futebol"
+                category: category
             }),
         })
 
@@ -32,7 +33,7 @@ export default function AddProduct() {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col text-black gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col text-black gap-4 bg-zinc-700">
             <input
                 type="text"
                 placeholder="Nome"
@@ -51,6 +52,14 @@ export default function AddProduct() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
+            <select name="category" id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
+                <option value="">Selecione</option>
+                <option value="futebol">Futebol</option>
+                <option value="nba">NBA</option>
+                <option value="nfl">NFL</option>
+                <option value="e-sports">E-sports</option>
+                <option value="f1">F1</option>
+            </select>
             <input
                 type="text"
                 placeholder="URL da imagem"

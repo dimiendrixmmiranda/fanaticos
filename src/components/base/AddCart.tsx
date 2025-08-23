@@ -14,10 +14,9 @@ export default function AddCart({ produto }: AddCartProps) {
     return (
         <button
             onClick={() => useStore.addProduct(produto)}
-            className="bg-blue-600 flex items-center justify-center gap-1 uppercase font-bold py-2"
+            className="bg-green-600 text-white flex items-center justify-center gap-1 uppercase font-bold py-2"
         >
             <FaShoppingCart />
-            <p className="hidden md:flex">Adicionar ao carrinho</p>
         </button>
     )
 }

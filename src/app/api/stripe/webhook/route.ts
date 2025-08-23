@@ -50,6 +50,7 @@ export async function POST(req: Request) {
                 images: product.images,
                 price: (price?.unit_amount ?? 0) / 100,
                 currency: price?.currency ?? "brl",
+                category: product.metadata.category,
                 stripeId: product.id,
                 updatedAt: new Date(),
             },

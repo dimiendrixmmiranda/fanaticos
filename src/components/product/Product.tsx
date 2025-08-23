@@ -1,32 +1,36 @@
 'use client'
 
 import { ProductType } from "@/types/ProductType"
-import ProductImage from "../base/ProductImage"
 import { formatarPreco } from "@/utils/FormatarPreco"
 import AddCart from "../base/AddCart"
 import Link from "next/link"
 import AddFavoritos from "../base/AddFavoritos"
+import CarrosselCardProduct from "../carrossel/CarrosselCardProduct"
 
 interface ProductProps {
-    produto: ProductType
+    produtoStripe: ProductType
 }
 
-export default function Product({ produto }: ProductProps) {
+export default function Product({ produtoStripe }: ProductProps) {
     return (
-        <li className="bg-red-400 overflow-hidden flex flex-col p-2 rounded-lg gap-2 max-w-[400px]">
-            <Link href={`/product/${produto.id}`} className="flex flex-col">
-                <ProductImage product={produto} />
-                <div className="uppercase font-bold text-2xl">
-                    {produto.name}
+        <li className="bg-zinc-100 overflow-hidden flex flex-col p-2 rounded-lg gap-2 max-w-[320px] text-black sm:p-3">
+            <Link href={`/product/${produtoStripe.id}`} className="flex flex-col gap-3">
+                {/* <ProductImage product={produtoStripe} /> */}
+                <CarrosselCardProduct productStripe={produtoStripe}/>
+                <div>
+                    <div className="uppercase font-bold text-2xl">
+                        {produtoStripe.name}
+                    </div>
+                    <div className="line-clamp-3 leading-5">
+                        {produtoStripe.description}
+                    </div>
+                    <p className="text-xl font-black">{formatarPreco(produtoStripe.price)}</p>
+                    <span className="text-sm italic">Ou 4x de R$71,50</span>
                 </div>
-                <div className="line-clamp-3">
-                    {produto.description}
-                </div>
-                <p className="text-xl font-black">{formatarPreco(produto.price)}</p>
             </Link>
             <div className="grid grid-cols-2 gap-4">
-                <AddCart produto={produto} />
-                <AddFavoritos produto={produto} />
+                <AddCart produto={produtoStripe} />
+                <AddFavoritos produto={produtoStripe} />
             </div>
         </li>
     )
