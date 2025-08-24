@@ -7,8 +7,6 @@ export default interface ProductFirebase {
     price: number
     currency: string
     category: string
-    updatedAt: {
-        seconds: number
-        nanoseconds: number
-    }
+    productId: string
+    updatedAt: string | null
 }

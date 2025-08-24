@@ -46,3 +46,7 @@ body {
   background-color: var(--magenta) !important;
   color: white !important;
 }
+
+.p-galleria-thumbnail-items-container{
+  width: 50px;
+}

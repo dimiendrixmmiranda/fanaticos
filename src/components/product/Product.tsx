@@ -6,17 +6,23 @@ import AddCart from "../base/AddCart"
 import Link from "next/link"
 import AddFavoritos from "../base/AddFavoritos"
 import CarrosselCardProduct from "../carrossel/CarrosselCardProduct"
+import ProductFirebase from "@/types/ProductFirebase"
 
 interface ProductProps {
     produtoStripe: ProductType
+    produtoFirebase?: ProductFirebase
 }
 
-export default function Product({ produtoStripe }: ProductProps) {
+export default function Product({ produtoStripe, produtoFirebase }: ProductProps) {
     return (
         <li className="bg-zinc-100 overflow-hidden flex flex-col p-2 rounded-lg gap-2 max-w-[320px] text-black sm:p-3">
             <Link href={`/product/${produtoStripe.id}`} className="flex flex-col gap-3">
                 {/* <ProductImage product={produtoStripe} /> */}
-                <CarrosselCardProduct productStripe={produtoStripe}/>
+                {
+                    produtoFirebase && (
+                        <CarrosselCardProduct produtoFirebase={produtoFirebase} />
+                    )
+                }
                 <div>
                     <div className="uppercase font-bold text-2xl">
                         {produtoStripe.name}

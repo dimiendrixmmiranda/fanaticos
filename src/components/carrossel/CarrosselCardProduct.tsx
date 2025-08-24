@@ -7,16 +7,14 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/autoplay'
-import { ProductType } from '@/types/ProductType'
 import Image from 'next/image'
+import ProductFirebase from '@/types/ProductFirebase'
 
 interface CarrosselCardProduct {
-    productStripe: ProductType // vai ter que ser o productFirebase
+    produtoFirebase: ProductFirebase // vai ter que ser o productFirebase
 }
 
-export default function CarrosselCardProduct({ productStripe }: CarrosselCardProduct) {
-    // Lista de itens de exemplo (pode trocar por dados reais)
-
+export default function CarrosselCardProduct({ produtoFirebase }: CarrosselCardProduct) {
     return (
         <div className="w-full max-w-6xl mx-auto p-4">
             <Swiper
@@ -30,16 +28,15 @@ export default function CarrosselCardProduct({ productStripe }: CarrosselCardPro
                 a11y={{ enabled: true }}
                 className='w-full h-[240px] bg-zinc-400'
             >
-                {/* Vai iterar em cima do array de imagens */}
-                <SwiperSlide>
-                    <Image alt='image' src={productStripe.image} fill className='object-cover'></Image>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <Image alt='image' src={productStripe.image} fill className='object-cover'></Image>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <Image alt='image' src={productStripe.image} fill className='object-cover'></Image>
-                </SwiperSlide>
+                {
+                    Array.isArray(produtoFirebase.images) && produtoFirebase.images.length > 0 &&
+                    produtoFirebase.images.map((img, i) => (
+                        <SwiperSlide key={i}>
+                            <Image alt="image" src={img} fill className="object-cover" />
+                        </SwiperSlide>
+                    ))
+                }
+
             </Swiper>
         </div>
     )

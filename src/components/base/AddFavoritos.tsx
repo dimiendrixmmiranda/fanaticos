@@ -12,7 +12,6 @@ interface addFavoritosProps {
 export default function AddFavoritos({ produto }: addFavoritosProps) {
     const useFavotites = useFavoritesStore()
     const isFavorite = useFavotites.favorites.some((p) => p.id === produto.id)
-    console.log(isFavorite)
     return (
         <button
             onClick={() => useFavotites.toggleFavorite(produto)}

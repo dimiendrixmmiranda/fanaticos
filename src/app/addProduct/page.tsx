@@ -4,6 +4,7 @@ import { useState } from "react"
 export default function AddProduct() {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
+    const [idProduct, setIdProduct] = useState("")
     const [price, setPrice] = useState<string>("") // MUDANÇA: estado agora é string
     const [category, setCategory] = useState<string>('')
     const [images, setImages] = useState<string[]>([])
@@ -24,7 +25,8 @@ export default function AddProduct() {
                 description,
                 price: parsedPrice,
                 images,
-                category: category
+                category: category,
+                idProduct: idProduct
             }),
         })
 
@@ -45,6 +47,12 @@ export default function AddProduct() {
                 placeholder="Preço"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)} // MUDANÇA: atualiza como string
+            />
+            <input
+                type="text"
+                placeholder="idProduct (nome do produto para busca)"
+                value={idProduct}
+                onChange={(e) => setIdProduct(e.target.value)}
             />
             <input
                 type="text"

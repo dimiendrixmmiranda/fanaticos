@@ -10,7 +10,7 @@ import Image from "next/image";
 import { useTimesNfl } from "@/data/hooks/useTimesNfl";
 import { useTimesF1 } from "@/data/hooks/useTimesF1";
 import styles from './style.module.css'
-import { brasileiro, bundesliga, laLiga, ligue1, outros, premierLeague, serieA } from "@/constants/timesDeFutebol";
+import { renderizarTimesFutebol } from "@/utils/RenderizarTimesDeFutebol";
 
 export default function Navbar() {
     const [openMenu, setOpenMenu] = useState<string | null>(null)
@@ -20,30 +20,6 @@ export default function Navbar() {
     const { teamsNfl } = useTimesNfl()
     const { teamsF1 } = useTimesF1()
 
-    const renderizarTimesFutebol = (idLiga: number) => {
-        let times: typeof brasileiro = []
-
-        switch (idLiga) {
-            case 1000: times = brasileiro; break;
-            case 1001: times = premierLeague; break;
-            case 1002: times = laLiga; break;
-            case 1003: times = bundesliga; break;
-            case 1004: times = ligue1; break;
-            case 1005: times = serieA; break;
-            case 1006: times = outros; break;
-        }
-
-        return times.map((time, i) => (
-            <li key={i} className="p-2 hover:bg-azul">
-                <Link href={'/'}>
-                    <div className="flex flex-col items-center gap-1">
-                        <Image src={time.imagem || '/default.png'} alt={time.nome} width={40} height={40} className="object-contain" />
-                        <p className="uppercase text-xs font-black">{time.abreviacao}</p>
-                    </div>
-                </Link>
-            </li>
-        ))
-    }
 
     const toggleMenu = (menu: string | null) => {
         setOpenMenu(openMenu === menu ? null : menu)

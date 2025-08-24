@@ -17,6 +17,7 @@ export async function POST(req: NextRequest) {
             metadata: {
                 category: body.category || "camisa",
                 priceDefault: body.price?.toString() || "0",
+                idProduct: body.idProduct || "", // 👈 aqui
             },
         });
 
@@ -40,6 +41,7 @@ export async function POST(req: NextRequest) {
             description: product.description,
             images: product.images,
             category: product.metadata.category,
+            idProduct: product.metadata.idProduct,
             price: price.unit_amount ? price.unit_amount / 100 : 0,
             priceId: price.id,
             priceDefault: parseFloat(product.metadata.priceDefault),
