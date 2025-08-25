@@ -14,8 +14,11 @@ export function useTimesNba() {
     const [error, setError] = useState<string | null>(null)
 
     useEffect(() => {
-        fetch("https://www.thesportsdb.com/api/v1/json/3/search_all_teams.php?l=NBA")
-            .then(res => res.json())
+        fetch("/api/times-nba")
+            .then(res => {
+                if (!res.ok) throw new Error("Erro na resposta da API");
+                return res.json();
+            })
             .then(data => {
                 setTeamsNba(data.teams || [])
                 setLoading(false)
@@ -25,7 +28,7 @@ export function useTimesNba() {
                 setError("Erro ao buscar times")
                 setLoading(false)
             });
-    }, []);
+    }, [])
 
     return { teamsNba, loading, error }
 }

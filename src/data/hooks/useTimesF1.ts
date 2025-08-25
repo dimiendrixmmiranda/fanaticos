@@ -15,8 +15,11 @@ export function useTimesF1() {
     const [error, setError] = useState<string | null>(null)
 
     useEffect(() => {
-        fetch("https://www.thesportsdb.com/api/v1/json/3/search_all_teams.php?l=Formula 1")
-            .then(res => res.json())
+        fetch("/api/times-f1")
+            .then(res => {
+                if (!res.ok) throw new Error("Erro na resposta da API");
+                return res.json();
+            })
             .then(data => {
                 setTeamsF1(data.teams || [])
                 setLoading(false)
@@ -26,7 +29,6 @@ export function useTimesF1() {
                 setError("Erro ao buscar times")
                 setLoading(false)
             });
-    }, []);
-
+    }, [])
     return { teamsF1, loading, error }
 }

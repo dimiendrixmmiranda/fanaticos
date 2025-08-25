@@ -5,140 +5,140 @@ const timesDeFutebol = [
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'COR',
-        imagem: 'https://escudosfc.com.br/images/corinthians.png'
+        imagem: 'https://i.imgur.com/JfnEjcK.png'
     },
     {
         nome: 'Palmeiras',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'PAL',
-        imagem: 'https://escudosfc.com.br/images/palmeiras.png'
+        imagem: 'https://i.imgur.com/xolEtYy.png'
     },
     {
         nome: 'São Paulo',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'SAO',
-        imagem: 'https://escudosfc.com.br/images/saopaulo.png'
+        imagem: 'https://i.imgur.com/MTYf1gd.png'
     },
     {
         nome: 'Santos',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'SAN',
-        imagem: 'https://escudosfc.com.br/images/santos.png'
+        imagem: 'https://i.imgur.com/ZUGLJaR.png'
     },
     {
         nome: 'Mirassol',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'MIR',
-        imagem: 'https://escudosfc.com.br/images/mirassol.jpg'
+        imagem: 'https://i.imgur.com/tZZDl6J.png'
     },
     {
         nome: 'RB Brangantino',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'RBB',
-        imagem: 'https://escudosfc.com.br/images/bragantino.png'
+        imagem: 'https://i.imgur.com/hYrRIcS.png'
     },
     {
         nome: 'Flamengo',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'FLA',
-        imagem: 'https://escudosfc.com.br/images/fla.png'
+        imagem: 'https://i.imgur.com/KytncYu.png'
     },
     {
         nome: 'Fluminense',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'FLU',
-        imagem: 'https://escudosfc.com.br/images/fluminense.png'
+        imagem: 'https://i.imgur.com/3RxuCUw.png'
     },
     {
         nome: 'Vasco da Gama',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'VAS',
-        imagem: 'https://escudosfc.com.br/images/vasco.png'
+        imagem: 'https://i.imgur.com/y9Q1rfB.png'
     },
     {
         nome: 'Botafogo',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'BOT',
-        imagem: 'https://escudosfc.com.br/images/botafogo.gif'
+        imagem: 'https://i.imgur.com/Z73U8Zz.png'
     },
     {
         nome: 'Cruzeiro',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'CRU',
-        imagem: 'https://escudosfc.com.br/images/cruzeiro.png'
+        imagem: 'https://i.imgur.com/EzyCknn.png'
     },
     {
         nome: 'Atlético Mineiro',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'CAM',
-        imagem: 'https://escudosfc.com.br/images/atletico-mg.png'
+        imagem: 'https://i.imgur.com/OOB1wxp.png'
+    },
+    {
+        nome: 'Bahia',
+        liga: 'Brasileiro',
+        idLiga: 1000, 
+        abreviacao: 'BAH',
+        imagem: 'https://i.imgur.com/PzSnPNc.png'
     },
     {
         nome: 'Grêmio',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'GRE',
-        imagem: 'https://escudosfc.com.br/images/gremio.png'
+        imagem: 'https://i.imgur.com/DCgxTdS.png'
     },
     {
         nome: 'Internacional',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'INT',
-        imagem: 'https://escudosfc.com.br/images/internacional.png'
-    },
-    {
-        nome: 'Goiás',
-        liga: 'Brasileiro',
-        idLiga: 1000, 
-        abreviacao: 'GOI',
-        imagem: 'https://escudosfc.com.br/images/goias.png'
+        imagem: 'https://i.imgur.com/YylUkuT.png'
     },
     {
         nome: 'Sport Recife',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'SPO',
-        imagem: 'https://escudosfc.com.br/images/sport.png'
+        imagem: 'https://i.imgur.com/2OUDWFr.png'
     },
     {
         nome: 'Ceará',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'CEA',
-        imagem: 'https://escudosfc.com.br/images/ceara.png'
+        imagem: 'https://i.imgur.com/rGGQ4Bf.png'
     },
     {
         nome: 'Fortaleza',
         liga: 'Brasileiro',
         idLiga: 1000, 
         abreviacao: 'FOR',
-        imagem: 'https://escudosfc.com.br/images/fortaleza.png'
+        imagem: 'https://i.imgur.com/Rn7Xj7b.png'
     },
     {
-        nome: 'Atlético Goianiense',
+        nome: 'Vitória',
         liga: 'Brasileiro',
         idLiga: 1000, 
-        abreviacao: 'ACG',
-        imagem: 'https://escudosfc.com.br/images/atletico-go.png'
+        abreviacao: 'VIT',
+        imagem: 'https://i.imgur.com/K9d15m3.png'
     },
     {
-        nome: 'América Mineiro',
+        nome: 'Juventude',
         liga: 'Brasileiro',
         idLiga: 1000, 
-        abreviacao: 'AME',
-        imagem: 'https://escudosfc.com.br/images/america-mg.png'
+        abreviacao: 'JUV',
+        imagem: 'https://i.imgur.com/LQy4xQ7.png'
     },
     {
         nome: 'Barcelona',

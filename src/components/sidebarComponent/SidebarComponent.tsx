@@ -32,7 +32,7 @@ export default function SidebarComponent() {
         setOpenMenuFutebol(openMenuFutebol === idLiga ? null : idLiga)
     }
 
-
+    console.log(openMenuFutebol)
     return (
         <div className="card flex justify-center items-center lg:hidden">
             <div className="flex gap-2 justify-center">
@@ -84,42 +84,14 @@ export default function SidebarComponent() {
                                         </button>
                                     </div>
 
-                                    <ul className="flex">
+                                    <ul className="flex mt-4">
                                         {/* FUTEBOL */}
-                                        <li className={`h-fit`}>
-                                            <div
-                                                className="p-2 mt-2 bg-magenta shadow-lg rounded z-20 md:w-[550px] md:grid md:grid-cols-[190px_1fr] md:gap-x-4 lg:w-[610px] lg:-left-36"
-                                                onClick={(e) => e.stopPropagation()}
-                                            >
-                                                {/* Times */}
-                                                <ul className="grid grid-cols-4">
-                                                    {renderizarTimesFutebol(openMenuFutebol ?? 1000)}
-                                                </ul>
-
-                                                <Link href={'/'} className="text-center flex justify-center items-center leading-5 font-bold">
-                                                    Linha completa de acessórios para os fãs de Futebol!
-                                                </Link>
-                                            </div>
+                                        <li className="flex w-full justify-center">
+                                            {/* Times */}
+                                            <ul className={`w-full ${openMenuFutebol ? ('grid grid-cols-4') : ('hidden')}`}>
+                                                {renderizarTimesFutebol(openMenuFutebol ?? 1000)}
+                                            </ul>
                                         </li>
-                                        {/* E-SPORTS */}
-                                        {/* <li className={`relative ${styles.esports}`}>
-                                            <button
-                                                onClick={() => toggleMenu("esports")}
-                                                className={`flex items-center gap-1 p-2 rounded-md hover:bg-magenta ${openMenu === "esports" ? 'bg-magenta' : ''}`}
-                                            >
-                                                <IoGameController className="text-xl" style={{ filter: "drop-shadow(0px 0px 1px black)" }} />
-                                                <p className="uppercase font-bold text-lg whitespace-nowrap" style={{ textShadow: "1px 1px 2px black" }}>E-sports</p>
-                                            </button>
-                                            {openMenu === "esports" && (
-                                                <ul
-                                                    className="absolute top-[105%] w-full left-0 mt-2 bg-white shadow-lg rounded z-20"
-                                                    onClick={(e) => e.stopPropagation()}
-                                                >
-                                                    <li className="px-4 py-2 hover:bg-gray-100">CS:GO</li>
-                                                    <li className="px-4 py-2 hover:bg-gray-100">LoL</li>
-                                                </ul>
-                                            )}
-                                        </li> */}
                                     </ul>
                                 </div>
                             </AccordionTab>

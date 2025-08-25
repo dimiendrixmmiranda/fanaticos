@@ -11,19 +11,19 @@ interface CartProps {
 export default function Cart({ mobile }: CartProps) {
     const useStore = useCardStore()
     return (
-        <div className={mobile ? 'flex bg-laranja justify-center p-2 rounded-lg' : 'hidden lg:flex'}>
+        <>
             <div
-                className="flex items-center justify-center relative cursor-pointer w-10"
+                className={`items-center justify-center justify-self-center relative cursor-pointer w-20 h-full rounded-md ${mobile ? 'flex bg-laranja justify-center p-2 rounded-lg' : 'hidden lg:flex h-10 my-auto'}`}
                 onClick={() => useStore.toggleCart()}
             >
                 <FaShoppingCart />
-                <span className="absolute top-0 right-0 text-[.5em] rounded-full w-[14px] h-[14px] bg-azul flex justify-center items-center">{useStore.cart.length || 0}</span>
+                <span className={`absolute text-[.5em] rounded-full w-[14px] h-[14px] bg-azul flex justify-center items-center ${mobile ? 'top-2 right-4': 'top-0 right-2 xl:right-4'}`}>{useStore.cart.length || 0}</span>
             </div>
             {
                 useStore.isOpen && (
                     <CartDrawer mobile={mobile} />
                 )
             }
-        </div>
+        </>
     )
 }

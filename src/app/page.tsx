@@ -16,6 +16,7 @@ export default async function Page() {
 	const productsStripe = await getProducts()
 	const productsFirebase: ProductFirebase[] = await getProductsFirebase()
 
+
 	return (
 		<Template>
 			<CarrosselOfertas />

@@ -16,9 +16,9 @@ export const renderizarTimesFutebol = (idLiga: number) => {
     }
 
     return times.map((time, i) => (
-        <li key={i} className="p-2 hover:bg-azul">
+        <li key={i} className="p-2 w-full h-full flex justify-center items-center hover:bg-azul">
             <Link href={'/'}>
-                <div className="flex flex-col items-center gap-1">
+                <div className="flex flex-col items-center justify-center gap-1">
                     <Image src={time.imagem || '/default.png'} alt={time.nome} width={40} height={40} className="object-contain" />
                     <p className="uppercase text-xs font-black">{time.abreviacao}</p>
                 </div>

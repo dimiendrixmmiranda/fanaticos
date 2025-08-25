@@ -14,8 +14,11 @@ export function useTimesNfl() {
     const [error, setError] = useState<string | null>(null)
 
     useEffect(() => {
-        fetch("https://www.thesportsdb.com/api/v1/json/3/search_all_teams.php?l=NFL")
-            .then(res => res.json())
+        fetch("/api/times-nfl")
+            .then(res => {
+                if (!res.ok) throw new Error("Erro na resposta da API");
+                return res.json();
+            })
             .then(data => {
                 setTeamsNfl(data.teams || [])
                 setLoading(false)
@@ -25,7 +28,7 @@ export function useTimesNfl() {
                 setError("Erro ao buscar times")
                 setLoading(false)
             });
-    }, []);
+    }, [])
 
     return { teamsNfl, loading, error }
 }

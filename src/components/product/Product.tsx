@@ -17,7 +17,6 @@ export default function Product({ produtoStripe, produtoFirebase }: ProductProps
     return (
         <li className="bg-zinc-100 overflow-hidden flex flex-col p-2 rounded-lg gap-2 max-w-[320px] text-black sm:p-3">
             <Link href={`/product/${produtoStripe.id}`} className="flex flex-col gap-3">
-                {/* <ProductImage product={produtoStripe} /> */}
                 {
                     produtoFirebase && (
                         <CarrosselCardProduct produtoFirebase={produtoFirebase} />

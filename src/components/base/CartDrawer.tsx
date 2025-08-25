@@ -4,6 +4,7 @@ import { useCardStore } from "@/store"
 import { formatarPreco } from "@/utils/FormatarPreco"
 import Image from "next/image"
 import { TiDelete } from "react-icons/ti"
+import CheckoutButton from "./CheckoutButton"
 
 
 interface CartDrawerProps {
@@ -12,6 +13,9 @@ interface CartDrawerProps {
 
 export default function CartDrawer({ mobile }: CartDrawerProps) {
     const useStore = useCardStore()
+    const totalPrice = useStore.cart.reduce((acc, item) => {
+        return acc + item.price! * item.quantity!
+    }, 0)
     return (
         <div
             className="fixed z-20 w-full h-screen bg-black/45 left-0 top-0"
@@ -63,6 +67,12 @@ export default function CartDrawer({ mobile }: CartDrawerProps) {
                                 })
                             }
                         </ul>
+                    )
+                }
+
+                {
+                    useStore.cart.length > 0 && (
+                        <CheckoutButton totalPrice={totalPrice} />
                     )
                 }
             </div>
