@@ -47,6 +47,29 @@ body {
   color: white !important;
 }
 
-.p-galleria-thumbnail-items-container{
+.p-galleria-thumbnail-items-container {
   width: 50px;
+}
+
+.carrosselOfertasDoDia .swiper-slide {
+  /* background-color: red!important; */
+  height: 505px !important;
+  /* 550px */
+}
+
+.carrosselCardProduct .swiper-button-next,
+.carrosselCardProduct .swiper-button-prev {
+  color: black !important;
+  font-size: .5em;
+}
+
+.carrosselCardProduct .swiper-button-next::after,
+.carrosselCardProduct .swiper-button-prev::after {
+  font-size: 3em!important;
+}
+
+@media screen and (min-width:1024px){
+  .carrosselOfertasDoDia .swiper-slide {
+  height: 550px !important;
+}
 }

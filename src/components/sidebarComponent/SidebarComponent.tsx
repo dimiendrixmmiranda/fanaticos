@@ -32,7 +32,6 @@ export default function SidebarComponent() {
         setOpenMenuFutebol(openMenuFutebol === idLiga ? null : idLiga)
     }
 
-    console.log(openMenuFutebol)
     return (
         <div className="card flex justify-center items-center lg:hidden">
             <div className="flex gap-2 justify-center">

@@ -16,7 +16,7 @@ interface CarrosselCardProduct {
 
 export default function CarrosselCardProduct({ produtoFirebase }: CarrosselCardProduct) {
     return (
-        <div className="w-full max-w-6xl mx-auto p-4">
+        <div className="w-full max-w-6xl mx-auto p-2 carrosselCardProduct">
             <Swiper
                 modules={[Navigation, Pagination, Autoplay, A11y]}
                 spaceBetween={16}
@@ -26,7 +26,7 @@ export default function CarrosselCardProduct({ produtoFirebase }: CarrosselCardP
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
                 loop
                 a11y={{ enabled: true }}
-                className='w-full h-[240px] bg-zinc-400'
+                className='w-full h-[260px] bg-zinc-400 lg:h-[300px]'
             >
                 {
                     Array.isArray(produtoFirebase.images) && produtoFirebase.images.length > 0 &&

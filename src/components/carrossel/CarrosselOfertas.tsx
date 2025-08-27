@@ -18,10 +18,10 @@ export default function CarrosselOfertas() {
                 slidesPerView={1}
                 navigation
                 pagination={{ clickable: true }}
-                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                autoplay={{ delay: 1000000, disableOnInteraction: false }}
                 loop
                 a11y={{ enabled: true }}
-                className='w-full h-[260px] bg-zinc-400 sm:h-[300px] md:h-[450px] lg:h-[550px]'
+                className='w-full h-[260px] bg-zinc-400 sm:h-[300px] md:h-[450px] lg:h-[600px]'
             >
                 <SwiperSlide>
                     <Image alt='image' src={'/default/wireframe.png'} fill className='object-cover'/>

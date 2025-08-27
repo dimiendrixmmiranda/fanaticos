@@ -1,7 +1,8 @@
 // app/api/stripe/customer/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { adminAuth, db } from "@/lib/firebaseAdmin";
 import { stripe } from "@/lib/stripe";
+import { initFirebaseAdmin } from "@/lib/firebaseAdmin";
+const { adminAuth, db } = initFirebaseAdmin(); // <- chama a função
 
 export async function POST(req: NextRequest) {
     try {
@@ -32,9 +33,11 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({ stripeCustomerId });
     } catch (err: unknown) {
-        if (err instanceof Error) {
-            return new NextResponse(`error: "internal_error"`, { status: 500 });
-        }
-        return new NextResponse(`error: "internal_error"`, { status: 500 });
+        console.error("Erro no checkout:", err);
+
+        return NextResponse.json(
+            { error: "internal_error", message: err instanceof Error ? err.message : String(err) },
+            { status: 500 }
+        )
     }
 }

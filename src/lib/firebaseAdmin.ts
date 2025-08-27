@@ -1,5 +1,5 @@
-// import { initializeApp, cert, getApps } from "firebase-admin/app";
-import { getApps, initializeApp, applicationDefault, cert } from "firebase-admin/app";
+// src/lib/firebaseAdmin.ts
+import { getApps, initializeApp, cert } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
 
@@ -13,16 +13,8 @@ export function initFirebaseAdmin() {
             }),
         });
     }
+    return {
+        adminAuth: getAuth(),
+        db: getFirestore(),
+    };
 }
-
-if (!getApps().length) {
-    // Use um dos dois: applicationDefault() (GCP) ou cert(JSON do service account)
-    initializeApp({
-        credential: process.env.FIREBASE_SERVICE_ACCOUNT_KEY
-            ? cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY))
-            : applicationDefault(),
-    });
-}
-
-export const adminAuth = getAuth();
-export const db = getFirestore();
