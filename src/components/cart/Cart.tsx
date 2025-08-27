@@ -13,7 +13,7 @@ export default function Cart({ mobile }: CartProps) {
     return (
         <>
             <div
-                className={`items-center justify-center justify-self-center relative cursor-pointer w-20 h-full rounded-md ${mobile ? 'flex bg-laranja justify-center p-2 rounded-lg' : 'hidden lg:flex h-10 my-auto'}`}
+                className={`items-center justify-center justify-self-center relative cursor-pointer w-20 h-12 rounded-md ${mobile ? 'flex bg-laranja justify-center rounded-lg' : 'hidden lg:flex'}`}
                 onClick={() => useStore.toggleCart()}
             >
                 <FaShoppingCart />

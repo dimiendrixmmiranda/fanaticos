@@ -1,0 +1,40 @@
+// app/api/stripe/customer/route.ts
+import { NextRequest, NextResponse } from "next/server";
+import { adminAuth, db } from "@/lib/firebaseAdmin";
+import { stripe } from "@/lib/stripe";
+
+export async function POST(req: NextRequest) {
+    try {
+        const authHeader = req.headers.get("authorization") || "";
+        const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : null;
+        if (!token) return NextResponse.json({ error: "missing token" }, { status: 401 });
+
+        const decoded = await adminAuth.verifyIdToken(token);
+        const uid = decoded.uid;
+        const userRecord = await adminAuth.getUser(uid);
+
+        const userRef = db.collection("users").doc(uid);
+        const snap = await userRef.get();
+        let stripeCustomerId = snap.exists ? snap.get("stripeCustomerId") : null;
+
+        if (!stripeCustomerId) {
+            const customer = await stripe.customers.create({
+                email: userRecord.email ?? undefined,
+                name: userRecord.displayName ?? undefined,
+                metadata: { firebaseUID: uid },
+            });
+            stripeCustomerId = customer.id;
+            await userRef.set(
+                { stripeCustomerId, email: userRecord.email ?? null, name: userRecord.displayName ?? null },
+                { merge: true }
+            );
+        }
+
+        return NextResponse.json({ stripeCustomerId });
+    } catch (err: unknown) {
+        if (err instanceof Error) {
+            return new NextResponse(`error: "internal_error"`, { status: 500 });
+        }
+        return new NextResponse(`error: "internal_error"`, { status: 500 });
+    }
+}

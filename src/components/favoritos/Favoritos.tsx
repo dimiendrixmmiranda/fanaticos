@@ -13,7 +13,7 @@ export default function Favoritos({ mobile }: CartProps) {
     return (
         <>
             <div
-                className={`items-center justify-center justify-self-center relative cursor-pointer w-20 h-full ${mobile ? 'flex bg-laranja justify-center p-2 rounded-lg' : 'hidden lg:flex h-10 my-auto'}`}
+                className={`items-center justify-center justify-self-center relative cursor-pointer w-20 h-12 ${mobile ? 'flex bg-laranja justify-center p-2 rounded-lg' : 'hidden lg:flex'}`}
                 onClick={() => useFavotites.toggleBtnFavorite()}
             >
                 <FaHeart />

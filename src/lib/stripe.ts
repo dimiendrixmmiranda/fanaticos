@@ -1,11 +1,11 @@
 import Stripe from "stripe"
 import { ProductType } from "@/types/ProductType"
 
-export async function getProducts(): Promise<ProductType[]> {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-        apiVersion: "2025-07-30.basil",
-    })
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+    apiVersion: "2025-07-30.basil",
+})
 
+export async function getProducts(): Promise<ProductType[]> {
     const products = await stripe.products.list({ expand: ["data.default_price"] })
 
     return products.data.map((product) => {
@@ -19,6 +19,7 @@ export async function getProducts(): Promise<ProductType[]> {
             image: product.images[0] || "",
             description: product.description || null,
             currency: priceObj?.currency,
+            stripePriceId: priceObj?.id || "",
         }
     })
 }

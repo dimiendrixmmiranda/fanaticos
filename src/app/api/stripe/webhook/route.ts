@@ -49,6 +49,7 @@ export async function POST(req: Request) {
                 description: product.description,
                 images: product.images,
                 price: (price?.unit_amount ?? 0) / 100,
+                stripePriceId: price?.id ?? "",
                 currency: price?.currency ?? "brl",
                 category: product.metadata.category,
                 idProduct: product.metadata.idProduct,
@@ -58,6 +59,30 @@ export async function POST(req: Request) {
             { merge: true }
         );
     }
+
+    if (event.type === "checkout.session.completed") {
+        const session = event.data.object as Stripe.Checkout.Session;
+
+        // Recupere os itens da compra
+        const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
+
+        await db.collection("orders").doc(session.id).set({
+            uid: session.metadata?.userId ?? null,
+            customerId: session.customer,
+            amount_total: session.amount_total,
+            currency: session.currency,
+            payment_status: session.payment_status,
+            createdAt: new Date(),
+            items: lineItems.data.map(li => ({
+                description: li.description,
+                quantity: li.quantity,
+                amount_subtotal: li.amount_subtotal,
+                amount_total: li.amount_total,
+                price: li.price?.id,
+            })),
+        }, { merge: true });
+    }
+
 
     return new NextResponse("success", { status: 200 });
 }
