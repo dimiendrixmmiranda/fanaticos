@@ -14,8 +14,18 @@ interface ProductProps {
 }
 
 export default function Product({ produtoStripe, produtoFirebase }: ProductProps) {
+    const desconto = 0
+
+    function definirCorDeFundo(desconto?: number) {
+        if (!desconto) return "bg-zinc-100"
+        if (desconto >= 70) return "bg-red-700"
+        if (desconto >= 40) return "bg-yellow-400"
+        if (desconto >= 10) return "bg-green-700"
+        return "bg-zinc-100"
+    }
+
     return (
-        <li className="bg-zinc-100 overflow-hidden flex flex-col p-2 rounded-lg gap-2 max-w-[320px] h-full text-black sm:p-3 lg:max-w-[350px]">
+        <li className={`${definirCorDeFundo(desconto)} overflow-hidden flex flex-col p-2 rounded-lg gap-2 max-w-[280px] h-full text-black border-2 border-black justify-self-center sm:p-3 sm:max-w-[320px] lg:max-w-[350px]`}>
             <Link href={`/product/${produtoStripe.id}`} className="flex flex-col gap-3">
                 {
                     produtoFirebase && (

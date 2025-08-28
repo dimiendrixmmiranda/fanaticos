@@ -35,7 +35,6 @@ export default function CarrosselOfertasDoDia({ produtosStripe, produtosFirebase
                 autoplay={{ delay: 10000, disableOnInteraction: false }}
                 loop
                 a11y={{ enabled: true }}
-                className="!pb-10"
             >
                 {produtosStripe.map((produtoStripe: ProductType) => {
                     const produtoFirebase = produtosFirebase.find(
