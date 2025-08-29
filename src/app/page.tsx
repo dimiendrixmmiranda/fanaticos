@@ -3,6 +3,9 @@ import CarrosselOfertas from "@/components/carrossel/CarrosselOfertas"
 import OfertasDoDia from "@/components/ofertasDoDia/OfertasDoDia"
 import MVV from "@/components/mvv/MVV"
 import Newsletter from "@/components/newsletter/Newsletter"
+import Marcas from "@/components/marcas/Marcas"
+import Lancamentos from "@/components/lancamentos/Lancamentos"
+import CatalogoDeProdutos from "@/components/catalogoDeProdutos/CatalogoDeProdutos"
 // https://dashboard.stripe.com/test/workbench/overview
 // comando para rodar o stripe: stripe listen --forward-to localhost:3000/api/stripe/webhook
 // Imagens dos produtos esta sendo armazenada em imgur.com
@@ -13,6 +16,9 @@ export default async function Page() {
 		<Template>
 			<CarrosselOfertas />
 			<OfertasDoDia />
+			<Lancamentos />
+			<CatalogoDeProdutos />
+			<Marcas />
 			<MVV />
 			<Newsletter />
 			{/* <ul className="grid grid-cols-1 gap-4">

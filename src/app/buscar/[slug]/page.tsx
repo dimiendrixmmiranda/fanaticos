@@ -10,18 +10,19 @@ type DynamicParams<T> = {
 
 export default async function Page({ params }: DynamicParams<{ slug: string }>) {
     const { slug } = await params; // 👈 await obrigatório no Next 15
-    const termoPesquisado = slug.toLowerCase();
+    const termoPesquisado = decodeURIComponent(slug).toLowerCase();
 
     const productsFirebase: ProductFirebase[] = await getProductsFirebase();
     const productsStripe = await getProducts()
 
+    const palavrasPesquisadas = termoPesquisado.split(" ").filter(Boolean);
+
     const produtosFirebaseFiltrados = productsFirebase.filter((produto) => {
-        return (
-            produto.category.toLowerCase().includes(termoPesquisado) ||
-            produto.name.toLowerCase().includes(termoPesquisado) ||
-            produto.description.toLowerCase().includes(termoPesquisado)
-        )
-    })
+        const textoProduto = `${produto.category} ${produto.name} ${produto.description}`.toLowerCase();
+
+        // retorna true se pelo menos UMA palavra bater
+        return palavrasPesquisadas.some((palavra) => textoProduto.includes(palavra));
+    });
 
     const stripeIds = produtosFirebaseFiltrados.map((p) => p.stripeId);
 
@@ -31,7 +32,7 @@ export default async function Page({ params }: DynamicParams<{ slug: string }>) 
 
     return (
         <Template>
-            <h1 className="uppercase font-bold text-3xl leading-8 text-black">Resultados encontrados para: <b className="font-black text-red-600">{slug}</b></h1>
+            <h1 className="uppercase font-bold text-3xl leading-8 text-black">Resultados encontrados para: <b className="font-black text-red-600">{termoPesquisado}</b></h1>
             <ResultadoDaBusca produtosFirebase={produtosFirebaseFiltrados} produtosStripe={produtosStripeFiltrados} />
         </Template>
     );

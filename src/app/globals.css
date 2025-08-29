@@ -68,6 +68,20 @@ body {
   font-size: 3em!important;
 }
 
+.marcas .swiper-button-next,
+.marcas .swiper-button-prev {
+  color: black !important;
+  font-size: .5em;
+}
+.marcas .swiper{
+  overflow: initial;
+}
+.marcas .swiper-pagination{
+  /* background-color: red; */
+  bottom: -25px!important;
+  z-index: 20!important;
+}
+
 @media screen and (min-width:1024px){
   .carrosselOfertasDoDia .swiper-slide {
   height: 550px !important;

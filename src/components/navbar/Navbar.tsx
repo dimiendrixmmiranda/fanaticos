@@ -23,6 +23,7 @@ export default function Navbar() {
 
     const toggleMenu = (menu: string | null) => {
         setOpenMenu(openMenu === menu ? null : menu)
+        console.log(menu)
     }
 
     const toggleMenuFutebol = (idLiga: number) => {
@@ -45,7 +46,14 @@ export default function Navbar() {
                     <div className="flex flex-col relative">
                         <button
                             onClick={() => toggleMenu("futebol")}
-                            className={`flex items-center gap-1 p-2 rounded-md hover:bg-magenta ${openMenu === "futebol" ? "bg-magenta" : ""}`}
+                            className={`
+                                flex items-center gap-1 p-2 rounded-md relative 
+                                hover:bg-magenta 
+                                ${openMenu === "futebol"
+                                    ? "bg-magenta after:content-[''] after:absolute after:left-1/2 after:top-full after:-translate-x-1/2 after:border-x-8 after:border-x-transparent after:border-t-8 after:border-t-magenta"
+                                    : ""
+                                }
+                                `}
                         >
                             <GiSoccerBall className="text-xl" style={{ filter: "drop-shadow(0px 0px 1px black)" }} />
                             <p className="uppercase font-bold text-lg whitespace-nowrap" style={{ textShadow: "1px 1px 2px black" }}>Futebol</p>
@@ -146,7 +154,14 @@ export default function Navbar() {
                     <div className="flex flex-col relative">
                         <button
                             onClick={() => toggleMenu("nba")}
-                            className={`flex items-center gap-1 p-2 rounded-md hover:bg-magenta ${openMenu === "nba" ? 'bg-magenta' : ''}`}
+                            className={`
+                                flex items-center gap-1 p-2 rounded-md relative 
+                                hover:bg-magenta 
+                                ${openMenu === "nba"
+                                    ? "bg-magenta after:content-[''] after:absolute after:left-1/2 after:top-full after:-translate-x-1/2 after:border-x-8 after:border-x-transparent after:border-t-8 after:border-t-magenta"
+                                    : ""
+                                }
+                                `}
                         >
                             <FaBasketball className="text-xl" style={{ filter: "drop-shadow(0px 0px 1px black)" }} />
                             <p className="uppercase font-bold text-lg whitespace-nowrap" style={{ textShadow: "1px 1px 2px black" }}>NBA</p>
@@ -159,11 +174,12 @@ export default function Navbar() {
                             onClick={(e) => e.stopPropagation()}
                         >
                             {teamsNba.map((time, i) => {
+                                const busca = time.strTeam.split(' ').map(p => p.toLowerCase()).join(' ')
                                 const ultimaPalavra = time.strTeam.split(' ').at(-1) || ''
                                 const tamanho = ultimaPalavra.length
                                 return (
                                     <li key={i}>
-                                        <Link href={'/'} className="flex flex-col justify-center items-center p-2 rounded-md hover:bg-azul">
+                                        <Link href={`/buscar/${encodeURIComponent(busca)}`} className="flex flex-col justify-center items-center p-2 rounded-md hover:bg-azul">
                                             <Image alt={time.strTeam} src={time.strBadge} width={40} height={40} />
                                             <p className={`uppercase text-white font-black ${tamanho > 10 ? 'text-[.5em]' : 'text-[.6em]'}`}>{ultimaPalavra}</p>
                                         </Link>
@@ -180,7 +196,14 @@ export default function Navbar() {
                     <div className="flex flex-col relative">
                         <button
                             onClick={() => toggleMenu("nfl")}
-                            className={`flex items-center gap-1 p-2 rounded-md hover:bg-magenta ${openMenu === "nfl" ? 'bg-magenta' : ''}`}
+                            className={`
+                                flex items-center gap-1 p-2 rounded-md relative 
+                                hover:bg-magenta 
+                                ${openMenu === "nfl"
+                                    ? "bg-magenta after:content-[''] after:absolute after:left-1/2 after:top-full after:-translate-x-1/2 after:border-x-8 after:border-x-transparent after:border-t-8 after:border-t-magenta"
+                                    : ""
+                                }
+                                `}
                         >
                             <FaFootballBall className="text-xl" style={{ filter: "drop-shadow(0px 0px 1px black)" }} />
                             <p className="uppercase font-bold text-lg whitespace-nowrap" style={{ textShadow: "1px 1px 2px black" }}>NFL</p>
@@ -193,10 +216,11 @@ export default function Navbar() {
                             onClick={(e) => e.stopPropagation()}
                         >
                             {teamsNfl.map((time, i) => {
+                                const busca = time.strTeam.split(' ').map(p => p.toLowerCase()).join(' ')
                                 const ultimaPalavra = time.strTeam.split(' ').at(-1) || ''
                                 return (
                                     <li key={i}>
-                                        <Link href={'/'} className="flex flex-col justify-center items-center p-2 rounded-md hover:bg-azul">
+                                        <Link href={`/buscar/${encodeURIComponent(busca)}`} className="flex flex-col justify-center items-center p-2 rounded-md hover:bg-azul">
                                             <Image alt={time.strTeam} src={time.strBadge} width={40} height={40} />
                                             <p className="uppercase text-white font-black text-[.6em]">{ultimaPalavra}</p>
                                         </Link>
@@ -212,7 +236,14 @@ export default function Navbar() {
                 <li className={`relative ${styles.esports}`}>
                     <button
                         onClick={() => toggleMenu("esports")}
-                        className={`flex items-center gap-1 p-2 rounded-md hover:bg-magenta ${openMenu === "esports" ? 'bg-magenta' : ''}`}
+                        className={`
+                                flex items-center gap-1 p-2 rounded-md relative 
+                                hover:bg-magenta 
+                                ${openMenu === "esports"
+                                ? "bg-magenta after:content-[''] after:absolute after:left-1/2 after:top-full after:-translate-x-1/2 after:border-x-8 after:border-x-transparent after:border-t-8 after:border-t-magenta"
+                                : ""
+                            }
+                                `}
                     >
                         <IoGameController className="text-xl" style={{ filter: "drop-shadow(0px 0px 1px black)" }} />
                         <p className="uppercase font-bold text-lg whitespace-nowrap" style={{ textShadow: "1px 1px 2px black" }}>E-sports</p>
@@ -233,7 +264,14 @@ export default function Navbar() {
                     <div className="flex flex-col relative">
                         <button
                             onClick={() => toggleMenu("f1")}
-                            className={`flex items-center gap-1 p-2 rounded-md hover:bg-magenta ${openMenu === "f1" ? 'bg-magenta' : ''}`}
+                            className={`
+                                flex items-center gap-1 p-2 rounded-md relative 
+                                hover:bg-magenta 
+                                ${openMenu === "f1"
+                                    ? "bg-magenta after:content-[''] after:absolute after:left-1/2 after:top-full after:-translate-x-1/2 after:border-x-8 after:border-x-transparent after:border-t-8 after:border-t-magenta"
+                                    : ""
+                                }
+                                `}
                         >
                             <SiF1 className="text-xl" style={{ filter: "drop-shadow(0px 0px 1px black)" }} />
                             <p className="uppercase font-bold text-lg whitespace-nowrap" style={{ textShadow: "1px 1px 2px black" }}>Fórmula 1</p>
@@ -245,14 +283,17 @@ export default function Navbar() {
                             className="absolute p-2 top-[105%] -left-40 mt-2 bg-magenta shadow-lg rounded z-20 md:w-[350px] md:grid md:grid-cols-4 lg:w-[410px] lg:-left-32"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            {teamsF1.map((time, i) => (
-                                <li key={i}>
-                                    <Link href={'/'} className="flex flex-col justify-center items-center p-2 rounded-md hover:bg-azul">
-                                        <Image alt={time.strTeam} src={time.strBadge} width={40} height={40} />
-                                        <p className="uppercase text-center text-white font-black text-[.6em]">{time.strTeamAlternate}</p>
-                                    </Link>
-                                </li>
-                            ))}
+                            {teamsF1.map((time, i) => {
+                                const busca = time.strTeam.split(' ').map(p => p.toLowerCase()).join(' ')
+                                return (
+                                    <li key={i}>
+                                        <Link href={`/buscar/${encodeURIComponent(busca)}`} className="flex flex-col justify-center items-center p-2 rounded-md hover:bg-azul">
+                                            <Image alt={time.strTeam} src={time.strBadge} width={40} height={40} />
+                                            <p className="uppercase text-center text-white font-black text-[.6em]">{time.strTeamAlternate}</p>
+                                        </Link>
+                                    </li>
+                                )
+                            })}
                             <Link href={'/'} className="col-start-1 col-end-5 text-center uppercase mt-4 font-bold text-sm bg-azul py-1 cursor-pointer">Linha completa de acessórios para os fãs da F1!</Link>
                         </ul>
                     )}
