@@ -4,6 +4,7 @@ import { useState } from "react"
 export default function AddProduct() {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
+    const [marca, setMarca] = useState("")
     const [idProduct, setIdProduct] = useState("")
     const [price, setPrice] = useState<string>("") // MUDANÇA: estado agora é string
     const [category, setCategory] = useState<string>('')
@@ -26,6 +27,7 @@ export default function AddProduct() {
                 price: parsedPrice,
                 images,
                 category: category,
+                marca: marca,
                 idProduct: idProduct
             }),
         })
@@ -54,6 +56,17 @@ export default function AddProduct() {
                 value={idProduct}
                 onChange={(e) => setIdProduct(e.target.value)}
             />
+            <select name="marca" id="marca" value={marca} onChange={(e) => setMarca(e.target.value)}>
+                <option value="">Selecione</option>
+                <option value="nike">Nike</option>
+                <option value="adidas">Adidas</option>
+                <option value="new-balance">New Balance</option>
+                <option value="puma">Puma</option>
+                <option value="umbro">Umbro</option>
+                <option value="under-armour">Under Armour</option>
+                <option value="kappa">Kappa</option>
+                <option value="outros">outros</option>
+            </select>
             <input
                 type="text"
                 placeholder="Descrição"

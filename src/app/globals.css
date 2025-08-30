@@ -81,9 +81,3 @@ body {
   bottom: -25px!important;
   z-index: 20!important;
 }
-
-@media screen and (min-width:1024px){
-  .carrosselOfertasDoDia .swiper-slide {
-  height: 550px !important;
-}
-}

@@ -6,8 +6,13 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 })
 
 export async function getProducts(): Promise<ProductType[]> {
-    const products = await stripe.products.list({ expand: ["data.default_price"] })
 
+    const products = await stripe.products.list({
+        active: true, // só pega produtos ativos, ignora os arquivados
+        expand: ["data.default_price"],
+        limit: 100,
+    })
+    
     return products.data.map((product) => {
         const priceObj = product.default_price as Stripe.Price | null
 

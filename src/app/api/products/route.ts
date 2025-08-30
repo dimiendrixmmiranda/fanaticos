@@ -3,7 +3,7 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
     apiVersion: "2025-07-30.basil",
-});
+})
 
 export async function POST(req: NextRequest) {
     const body = await req.json();
@@ -17,7 +17,8 @@ export async function POST(req: NextRequest) {
             metadata: {
                 category: body.category || "camisa",
                 priceDefault: body.price?.toString() || "0",
-                idProduct: body.idProduct || "", // 👈 aqui
+                idProduct: body.idProduct || "",
+                marca: body.marca
             },
         });
 
@@ -42,6 +43,7 @@ export async function POST(req: NextRequest) {
             images: product.images,
             category: product.metadata.category,
             idProduct: product.metadata.idProduct,
+            marca: product.metadata.marca,
             price: price.unit_amount ? price.unit_amount / 100 : 0,
             priceId: price.id,
             priceDefault: parseFloat(product.metadata.priceDefault),

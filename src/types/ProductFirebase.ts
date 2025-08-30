@@ -9,4 +9,5 @@ export default interface ProductFirebase {
     category: string
     productId: string
     updatedAt: string | null
+    marca: string
 }

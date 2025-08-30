@@ -25,7 +25,7 @@ export default function Product({ produtoStripe, produtoFirebase }: ProductProps
     }
 
     return (
-        <li className={`${definirCorDeFundo(desconto)} overflow-hidden flex flex-col p-2 rounded-lg gap-2 max-w-[280px] h-full text-black border-2 border-black justify-self-center sm:p-3 sm:max-w-[320px] lg:max-w-[350px]`}>
+        <li className={`${definirCorDeFundo(desconto)} overflow-hidden flex flex-col p-2 rounded-lg gap-2 max-w-[280px] h-full text-black border-2 border-black justify-self-center sm:p-3`}>
             <Link href={`/product/${produtoStripe.id}`} className="flex flex-col gap-3">
                 {
                     produtoFirebase && (

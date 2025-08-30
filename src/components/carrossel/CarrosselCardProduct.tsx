@@ -23,7 +23,7 @@ export default function CarrosselCardProduct({ produtoFirebase }: CarrosselCardP
                 navigation
                 pagination={{ clickable: true }}
                 a11y={{ enabled: true }}
-                className='w-full h-[245px] bg-zinc-400 lg:h-[300px]'
+                className='w-full h-[230px] bg-zinc-400'
             >
                 {
                     Array.isArray(produtoFirebase.images) && produtoFirebase.images.length > 0 &&
