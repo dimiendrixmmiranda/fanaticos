@@ -1,5 +1,4 @@
 'use client'
-
 import { useCardStore } from "@/store"
 import { ProductType } from "@/types/ProductType"
 import { FaShoppingCart } from "react-icons/fa"
@@ -11,7 +10,7 @@ interface AddCartProps {
 
 export default function AddCart({ produto }: AddCartProps) {
     const useStore = useCardStore()
-    
+
     return (
         <button
             onClick={() => {

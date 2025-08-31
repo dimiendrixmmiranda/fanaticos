@@ -65,7 +65,7 @@ body {
 
 .carrosselCardProduct .swiper-button-next::after,
 .carrosselCardProduct .swiper-button-prev::after {
-  font-size: 3em!important;
+  font-size: 3em !important;
 }
 
 .marcas .swiper-button-next,
@@ -73,11 +73,18 @@ body {
   color: black !important;
   font-size: .5em;
 }
-.marcas .swiper{
+
+.marcas .swiper {
   overflow: initial;
 }
-.marcas .swiper-pagination{
+
+.marcas .swiper-pagination {
   /* background-color: red; */
-  bottom: -25px!important;
-  z-index: 20!important;
+  bottom: -25px !important;
+  z-index: 20 !important;
+}
+
+
+.clip-path-triangle {
+  clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
 }

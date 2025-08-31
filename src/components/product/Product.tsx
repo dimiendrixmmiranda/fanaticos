@@ -9,11 +9,11 @@ import CarrosselCardProduct from "../carrossel/CarrosselCardProduct"
 import ProductFirebase from "@/types/ProductFirebase"
 
 interface ProductProps {
-    produtoStripe: ProductType
+    produtoStripe?: ProductType
     produtoFirebase?: ProductFirebase
 }
 
-export default function Product({ produtoStripe, produtoFirebase }: ProductProps) {
+export default function Product({ produtoFirebase }: ProductProps) {
     const desconto = 0
 
     function definirCorDeFundo(desconto?: number) {
@@ -25,8 +25,8 @@ export default function Product({ produtoStripe, produtoFirebase }: ProductProps
     }
 
     return (
-        <li className={`${definirCorDeFundo(desconto)} overflow-hidden flex flex-col p-2 rounded-lg gap-2 max-w-[280px] h-full text-black border-2 border-black justify-self-center sm:p-3`}>
-            <Link href={`/product/${produtoStripe.id}`} className="flex flex-col gap-3">
+        produtoFirebase && <li className={`${definirCorDeFundo(desconto)} overflow-hidden flex flex-col p-2 rounded-lg gap-2 max-w-[280px] h-full text-black border-2 border-black justify-self-center sm:p-3`}>
+            <Link href={`/product/${produtoFirebase?.stripeId}`} className="flex flex-col gap-3">
                 {
                     produtoFirebase && (
                         <CarrosselCardProduct produtoFirebase={produtoFirebase} />
@@ -34,18 +34,36 @@ export default function Product({ produtoStripe, produtoFirebase }: ProductProps
                 }
                 <div>
                     <div className="uppercase font-bold text-2xl line-clamp-2">
-                        {produtoStripe.name}
+                        {produtoFirebase?.name}
                     </div>
                     <div className="line-clamp-3 leading-5">
-                        {produtoStripe.description}
+                        {produtoFirebase?.description}
                     </div>
-                    <p className="text-xl font-black">{formatarPreco(produtoStripe.price)}</p>
+                    <p className="text-xl font-black">{formatarPreco(produtoFirebase?.price)}</p>
                     <span className="text-sm italic">Ou 4x de R$71,50</span>
                 </div>
             </Link>
             <div className="grid grid-cols-2 gap-4 mt-auto">
-                <AddCart produto={produtoStripe} />
-                <AddFavoritos produto={produtoStripe} />
+                <AddCart produto={{
+                    id: produtoFirebase.stripeId,
+                    name: produtoFirebase.name,
+                    price: produtoFirebase.price,
+                    stripePriceId: produtoFirebase.stripePriceId,
+                    quantity: 1,
+                    image: produtoFirebase.images[0],
+                    description: produtoFirebase.description,
+                    currency: produtoFirebase.currency,
+                }} />
+                <AddFavoritos produto={{
+                    id: produtoFirebase.stripeId,
+                    name: produtoFirebase.name,
+                    price: produtoFirebase.price,
+                    stripePriceId: produtoFirebase.stripePriceId,
+                    quantity: 1,
+                    image: produtoFirebase.images[0],
+                    description: produtoFirebase.description,
+                    currency: produtoFirebase.currency,
+                }} />
             </div>
         </li>
     )

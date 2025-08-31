@@ -1,27 +1,88 @@
-import { getProductsFirebase } from "@/lib/getProductsFirebase"
-import { getProducts } from "@/lib/stripe"
 import ProductFirebase from "@/types/ProductFirebase"
-import { ProductType } from "@/types/ProductType"
+import { useEffect, useState } from "react"
+import { collection, getDocs } from "firebase/firestore"
+import { db } from "@/lib/firebase"
 import Product from "../product/Product"
 
-export default async function ProdutosFiltrados() {
-    const productsStripe = await getProducts()
-    const productsFirebase: ProductFirebase[] = await getProductsFirebase()
-    return (
-        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:col-span-2 xl:grid-cols-3 3xl:grid-cols-4">
-            {productsStripe.map((produtoStripe: ProductType) => {
-                const produtoFirebase = productsFirebase.find(
-                    (p: ProductFirebase) => p.stripeId === produtoStripe.id
-                )
+interface ProdutosFiltradosProps {
+    filtros: { marca: string, preco: string, esporte: string }
+}
 
-                return (
-                    <Product
-                        key={produtoStripe.id}
-                        produtoStripe={produtoStripe}
-                        produtoFirebase={produtoFirebase}
-                    />
+export default function ProdutosFiltrados({ filtros }: ProdutosFiltradosProps) {
+    const [produtos, setProdutos] = useState<ProductFirebase[]>([])
+    const [isLoading, setIsLoading] = useState(true) // Novo estado para controle de carregamento
+
+    // useEffect(() => {
+    //     async function fetchProdutos() {
+    //         const snapshot = await getDocs(collection(db, "products"))
+    //         setProdutos(
+    //             snapshot.docs.map(
+    //                 doc => ({ id: doc.id, ...doc.data() } as ProductFirebase)
+    //             )
+    //         )
+    //     }
+    //     fetchProdutos()
+    // }, [])
+
+
+    useEffect(() => {
+        async function fetchProdutos() {
+            try {
+                const snapshot = await getDocs(collection(db, "products"))
+                const fetchedProducts = snapshot.docs.map(
+                    doc => ({ id: doc.id, ...doc.data() } as ProductFirebase)
                 )
-            })}
+                setProdutos(fetchedProducts)
+                setIsLoading(false) // Define o estado como falso quando o carregamento terminar
+            } catch (error) {
+                console.error("Erro ao buscar produtos: ", error)
+                setIsLoading(false) // Também define como falso em caso de erro
+            }
+        }
+        fetchProdutos()
+    }, [])
+
+    if (isLoading) {
+        return <p>Carregando produtos...</p>
+    }
+
+    // Aplica os filtros e a ordenação
+    let filtrados = [...produtos]
+    console.log(filtrados) //aqui tem os produtos 
+
+    if (filtros.marca !== "todas-as-marcas") {
+        filtrados = filtrados.filter((p) => p.marca === filtros.marca)
+    }
+
+    if (filtros.esporte !== "todos-os-esportes") {
+        filtrados = filtrados.filter((p) => p.category === filtros.esporte)
+    }
+
+    if (filtros.preco === "maior") {
+        filtrados.sort((a, b) => b.price - a.price)
+    } else if (filtros.preco === "menor") {
+        filtrados.sort((a, b) => a.price - b.price)
+    }
+
+    console.log(filtrados) // aqui esta vazio
+
+    return (
+        <ul className="grid grid-cols-1 col-start-2 col-end-4 gap-4 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4">
+            {/* Gambiarra */}
+            {
+                filtrados.length <= 0 ? (
+                    produtos.map((produto) => {
+                        return (
+                            <Product key={produto.id} produtoFirebase={produto} />
+                        )
+                    })) : (
+                    filtrados.map((produto) => {
+                        return (
+                            <Product key={produto.id} produtoFirebase={produto} />
+                        )
+                    })
+                )
+            }
         </ul>
     )
 }

@@ -1,6 +1,24 @@
+'use client'
+import { useState } from "react";
 import ProdutosFiltrados from "../produtosFiltrados/ProdutosFiltrados";
 
 export default function CatalogoDeProdutos() {
+    const [marca, setMarca] = useState('outros')
+    const [preco, setPreco] = useState('relevancia')
+    const [esporte, setEsporte] = useState('todos-os-esportes')
+
+    const [filtros, setFiltros] = useState<{ marca: string; preco: string; esporte: string }>({
+        marca: "outros",
+        preco: "relevancia",
+        esporte: "todos-os-esportes",
+    })
+
+
+    function handleFiltros() {
+        setFiltros({ marca, preco, esporte })
+        console.log(filtros)
+    }
+
     return (
         <section className="p-4 flex flex-col gap-4 max-w-[1800px] mx-auto lg:grid lg:grid-cols-3 lg:gap-y-5">
             <div className="bg-azul-escuro text-white p-2 lg:col-start-1 lg:col-end-4">
@@ -14,36 +32,36 @@ export default function CatalogoDeProdutos() {
                         <legend className="col-start-1 col-end-3 uppercase font-bold text-lg">Por Marca:</legend>
 
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="marca" id="nike" value="nike" />
+                            <input className="w-4 h-4" type="radio" name="marca" id="nike" value="nike" onChange={(e) => setMarca(e.target.value)} />
                             <label className="leading-4" htmlFor="nike">Nike</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="marca" id="adidas" value="adidas" />
+                            <input className="w-4 h-4" type="radio" name="marca" id="adidas" value="adidas" onChange={(e) => setMarca(e.target.value)} />
                             <label className="leading-4" htmlFor="adidas">Adidas</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="marca" id="new-balance" value="new-balance" />
+                            <input className="w-4 h-4" type="radio" name="marca" id="new-balance" value="new-balance" onChange={(e) => setMarca(e.target.value)} />
                             <label className="leading-4" htmlFor="new-balance">New Balance</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="marca" id="puma" value="puma" />
+                            <input className="w-4 h-4" type="radio" name="marca" id="puma" value="puma" onChange={(e) => setMarca(e.target.value)} />
                             <label className="leading-4" htmlFor="puma">Puma</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="marca" id="umbro" value="umbro" />
+                            <input className="w-4 h-4" type="radio" name="marca" id="umbro" value="umbro" onChange={(e) => setMarca(e.target.value)} />
                             <label className="leading-4" htmlFor="umbro">Umbro</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="marca" id="under-armour" value="under-armour" />
+                            <input className="w-4 h-4" type="radio" name="marca" id="under-armour" value="under-armour" onChange={(e) => setMarca(e.target.value)} />
                             <label className="leading-4" htmlFor="under-armour">Under Armour</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="marca" id="todas-as-marcas" value="todas-as-marcas" />
-                            <label className="leading-4" htmlFor="todas-as-marcas">Todas as Marcas</label>
+                            <input className="w-4 h-4" type="radio" name="marca" id="outros" value="outros" onChange={(e) => setMarca(e.target.value)} />
+                            <label className="leading-4" htmlFor="outros">Outros</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="marca" id="outros" value="outros" />
-                            <label className="leading-4" htmlFor="outros" defaultChecked>Outros</label>
+                            <input className="w-4 h-4" type="radio" name="marca" id="todas-as-marcas" value="todas-as-marcas" defaultChecked onChange={(e) => setMarca(e.target.value)} />
+                            <label className="leading-4" htmlFor="todas-as-marcas">Todas as Marcas</label>
                         </div>
 
                     </fieldset>
@@ -52,16 +70,16 @@ export default function CatalogoDeProdutos() {
                         <legend className="col-start-1 col-end-3 uppercase font-bold text-lg">Por Preço:</legend>
 
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="preco" id="maior" value="maior" />
+                            <input className="w-4 h-4" type="radio" name="preco" id="maior" value="maior" onChange={(e) => setPreco(e.target.value)} />
                             <label className="leading-4" htmlFor="maior">Maior</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="preco" id="menor" value="menor" />
+                            <input className="w-4 h-4" type="radio" name="preco" id="menor" value="menor" onChange={(e) => setPreco(e.target.value)} />
                             <label className="leading-4" htmlFor="menor">Menor</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="preco" id="relevancia" value="relevancia" />
-                            <label className="leading-4" htmlFor="relevancia" defaultChecked>Relevância</label>
+                            <input className="w-4 h-4" type="radio" name="preco" id="relevancia" value="relevancia" defaultChecked onChange={(e) => setPreco(e.target.value)} />
+                            <label className="leading-4" htmlFor="relevancia">Relevância</label>
                         </div>
 
                     </fieldset>
@@ -70,38 +88,38 @@ export default function CatalogoDeProdutos() {
                         <legend className="col-start-1 col-end-3 uppercase font-bold text-lg">Por Esporte:</legend>
 
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="esporte" id="futebol" value="futebol" />
+                            <input className="w-4 h-4" type="radio" name="esporte" id="futebol" value="futebol" onChange={(e) => setEsporte(e.target.value)} />
                             <label className="leading-4" htmlFor="futebol">Futebol</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="esporte" id="nba" value="nba" />
+                            <input className="w-4 h-4" type="radio" name="esporte" id="nba" value="nba" onChange={(e) => setEsporte(e.target.value)} />
                             <label className="leading-4" htmlFor="nba">NBA</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="esporte" id="nfl" value="nfl" />
+                            <input className="w-4 h-4" type="radio" name="esporte" id="nfl" value="nfl" onChange={(e) => setEsporte(e.target.value)} />
                             <label className="leading-4" htmlFor="nfl">NFL</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="esporte" id="e-sports" value="e-sports" />
+                            <input className="w-4 h-4" type="radio" name="esporte" id="e-sports" value="e-sports" onChange={(e) => setEsporte(e.target.value)} />
                             <label className="leading-4" htmlFor="e-sports">E-Sports</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="esporte" id="formula-1" value="formula-1" />
+                            <input className="w-4 h-4" type="radio" name="esporte" id="formula-1" value="formula-1" onChange={(e) => setEsporte(e.target.value)} />
                             <label className="leading-4" htmlFor="formula-1">Formula 1</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="esporte" id="todos-os-esportes" value="todos-os-esportes" />
-                            <label className="leading-4" htmlFor="todos-os-esportes" defaultChecked>Todos os Esportes</label>
+                            <input className="w-4 h-4" type="radio" name="esporte" id="todos-os-esportes" value="todos-os-esportes" defaultChecked onChange={(e) => setEsporte(e.target.value)} />
+                            <label className="leading-4" htmlFor="todos-os-esportes">Todos os Esportes</label>
                         </div>
 
                     </fieldset>
 
-                    <button className="bg-azul-escuro text-white w-full uppercase font-black text-xl py-1">Filtrar</button>
+                    <button className="bg-azul-escuro text-white w-full uppercase font-black text-xl py-1" onClick={() => handleFiltros()}>Filtrar</button>
                 </fieldset>
             </div>
 
             {/* Vai ser renderizado em outro componente, vai receber o array final de filtros como parametro */}
-            <ProdutosFiltrados />
+            <ProdutosFiltrados filtros={filtros} />
         </section>
     )
 }
