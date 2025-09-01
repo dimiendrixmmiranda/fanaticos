@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
 import ProdutosFiltrados from "../produtosFiltrados/ProdutosFiltrados";
-import { Paginator } from 'primereact/paginator';
+import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
 
 export default function CatalogoDeProdutos() {
     const [marca, setMarca] = useState('outros')
@@ -22,10 +22,10 @@ export default function CatalogoDeProdutos() {
         console.log(filtros)
     }
 
-    const onPageChange = (event: any) => {
+    const onPageChange = (event: PaginatorPageChangeEvent) => {
         setFirst(event.first);
         setRows(event.rows);
-    };
+    }
     return (
         <section className="p-4 flex flex-col gap-4 max-w-[1800px] mx-auto lg:grid lg:grid-cols-3 lg:gap-y-5">
             <div className="bg-azul-escuro text-white p-2 lg:col-start-1 lg:col-end-4">

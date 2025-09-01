@@ -36,6 +36,7 @@ export default async function Page() {
 					)
 				})}
 			</ul> */}
+			{/* Melhorias: ter um icone de default na imagem */}
 		</Template>
 	)
 }
