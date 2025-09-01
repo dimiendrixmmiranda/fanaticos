@@ -10,7 +10,7 @@ export default function Template({ children }: TemplateProps) {
     return (
         <>
             <Cabecalho />
-            <main className="bg-zinc-300 min-h-screen">
+            <main className="bg-zinc-300 min-h-screen pb-6">
                 {
                     children
                 }

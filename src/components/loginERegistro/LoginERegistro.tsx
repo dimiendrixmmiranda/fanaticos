@@ -29,7 +29,7 @@ export default function LoginERegistro({ mobile }: LoginERegistroProps) {
     ];
 
     return (
-        <div className={`${mobile ? 'flex justify-center items-center bg-laranja rounded-lg' : 'justify-center items-center w-20 hidden lg:flex'}`}>
+        <div className={`${mobile ? 'flex justify-center items-center bg-laranja rounded-lg w-20 h-12' : 'justify-center items-center w-20 hidden lg:flex'}`}>
             <Menu model={items} popup ref={menu} />
             <Button onClick={(event) => menu.current?.toggle(event)}>
                 <HiUserCircle size={24} />

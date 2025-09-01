@@ -1,11 +1,14 @@
 'use client'
 import { useState } from "react";
 import ProdutosFiltrados from "../produtosFiltrados/ProdutosFiltrados";
+import { Paginator } from 'primereact/paginator';
 
 export default function CatalogoDeProdutos() {
     const [marca, setMarca] = useState('outros')
     const [preco, setPreco] = useState('relevancia')
     const [esporte, setEsporte] = useState('todos-os-esportes')
+    const [first, setFirst] = useState(0);
+    const [rows, setRows] = useState(8);
 
     const [filtros, setFiltros] = useState<{ marca: string; preco: string; esporte: string }>({
         marca: "outros",
@@ -19,6 +22,10 @@ export default function CatalogoDeProdutos() {
         console.log(filtros)
     }
 
+    const onPageChange = (event: any) => {
+        setFirst(event.first);
+        setRows(event.rows);
+    };
     return (
         <section className="p-4 flex flex-col gap-4 max-w-[1800px] mx-auto lg:grid lg:grid-cols-3 lg:gap-y-5">
             <div className="bg-azul-escuro text-white p-2 lg:col-start-1 lg:col-end-4">
@@ -119,7 +126,23 @@ export default function CatalogoDeProdutos() {
             </div>
 
             {/* Vai ser renderizado em outro componente, vai receber o array final de filtros como parametro */}
-            <ProdutosFiltrados filtros={filtros} />
+            <ProdutosFiltrados
+                filtros={filtros}
+                first={first}
+                rows={rows}
+            />
+
+            <div className="card lg:col-start-2 lg:col-end-4">
+                <Paginator
+                    first={first}
+                    rows={rows}
+                    totalRecords={120} // pode ser o length do array filtrado
+                    rowsPerPageOptions={[10, 20, 30]}
+                    onPageChange={onPageChange}
+                    pageLinkSize={3}
+                    template="PrevPageLink PageLinks NextPageLink"
+                />
+            </div>
         </section>
     )
 }

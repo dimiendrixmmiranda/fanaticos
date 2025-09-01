@@ -19,6 +19,7 @@ import { useTimesNba } from '@/data/hooks/useTimesNba';
 import { useTimesNfl } from '@/data/hooks/useTimesNfl';
 import { useTimesF1 } from '@/data/hooks/useTimesF1';
 import styles from './styles.module.css'
+import RedesSociais from '../redesSociais/RedesSociais';
 
 export default function SidebarComponent() {
     const [visibleRight, setVisibleRight] = useState(false);
@@ -40,7 +41,7 @@ export default function SidebarComponent() {
                 </Button>
             </div>
             <Sidebar visible={visibleRight} position="right" onHide={() => setVisibleRight(false)} header={<h2 className='uppercase font-bold text-3xl'>Menu</h2>}>
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-4 h-full'>
                     <div className='grid gap-4 grid-cols-3 h-[60px]'>
                         <Cart mobile={true} />
                         <Favoritos mobile={true} />
@@ -186,6 +187,7 @@ export default function SidebarComponent() {
                             </AccordionTab>
                         </Accordion>
                     </div>
+                    <RedesSociais mobile={true}/>
                 </div>
             </Sidebar >
         </div >
