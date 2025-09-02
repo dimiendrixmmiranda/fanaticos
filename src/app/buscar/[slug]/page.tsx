@@ -18,7 +18,7 @@ export default async function Page({ params }: DynamicParams<{ slug: string }>) 
     const palavrasPesquisadas = termoPesquisado.split(" ").filter(Boolean);
 
     const produtosFirebaseFiltrados = productsFirebase.filter((produto) => {
-        const textoProduto = `${produto.category} ${produto.name} ${produto.description} ${produto.marca}`.toLowerCase();
+        const textoProduto = `${produto.category} ${produto.name} ${produto.description}`.toLowerCase();
 
         // retorna true se pelo menos UMA palavra bater
         return palavrasPesquisadas.some((palavra) => textoProduto.includes(palavra));

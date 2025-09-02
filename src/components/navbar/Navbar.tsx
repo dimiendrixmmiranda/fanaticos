@@ -141,7 +141,7 @@ export default function Navbar() {
                                     {renderizarTimesFutebol(openMenuFutebol ?? 1000)}
                                 </ul>
 
-                                <Link href={'/'} className="col-start-1 col-end-3 text-center uppercase mt-2 font-bold text-sm bg-azul py-1 cursor-pointer">
+                                <Link href={`/buscar/${encodeURIComponent('futebol')}`} className="col-start-1 col-end-3 text-center uppercase mt-2 font-bold text-sm bg-azul py-1 cursor-pointer">
                                     Linha completa de acessórios para os fãs de Futebol!
                                 </Link>
                             </div>
@@ -186,7 +186,7 @@ export default function Navbar() {
                                     </li>
                                 )
                             })}
-                            <Link href={'/'} className="col-start-1 col-end-7 text-center uppercase mt-4 font-bold text-sm bg-azul py-1 cursor-pointer">Linha completa de acessórios para os fãs da NBA!</Link>
+                            <Link href={`/buscar/${encodeURIComponent('nba')}`} className="col-start-1 col-end-7 text-center uppercase mt-4 font-bold text-sm bg-azul py-1 cursor-pointer">Linha completa de acessórios para os fãs da NBA!</Link>
                         </ul>
                     )}
                 </li>
@@ -227,7 +227,7 @@ export default function Navbar() {
                                     </li>
                                 )
                             })}
-                            <Link href={'/'} className="col-start-1 col-end-7 text-center uppercase mt-4 font-bold text-sm bg-azul py-1 cursor-pointer">Linha completa de acessórios para os fãs da NFL!</Link>
+                            <Link href={`/buscar/${encodeURIComponent('nfl')}`} className="col-start-1 col-end-7 text-center uppercase mt-4 font-bold text-sm bg-azul py-1 cursor-pointer">Linha completa de acessórios para os fãs da NFL!</Link>
                         </ul>
                     )}
                 </li>
@@ -294,7 +294,7 @@ export default function Navbar() {
                                     </li>
                                 )
                             })}
-                            <Link href={'/'} className="col-start-1 col-end-5 text-center uppercase mt-4 font-bold text-sm bg-azul py-1 cursor-pointer">Linha completa de acessórios para os fãs da F1!</Link>
+                            <Link href={`/buscar/${encodeURIComponent('f1')}`} className="col-start-1 col-end-5 text-center uppercase mt-4 font-bold text-sm bg-azul py-1 cursor-pointer">Linha completa de acessórios para os fãs da F1!</Link>
                         </ul>
                     )}
                 </li>
