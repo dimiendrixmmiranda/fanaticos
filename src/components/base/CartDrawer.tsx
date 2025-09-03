@@ -23,7 +23,7 @@ export default function CartDrawer({ mobile }: CartDrawerProps) {
         >
             <div
                 onClick={(e) => e.stopPropagation()}
-                className={`absolute bg-slate-600 top-0 w-[90%] h-screen p-6 overflow-y-scroll md:w-2/3 lg:w-1/3 xl:w-1/4 ${mobile ? 'left-0' : 'right-0'}`}
+                className={`absolute bg-azul-escuro top-0 w-[90%] h-screen p-6 overflow-y-scroll md:w-2/3 lg:w-1/3 xl:w-1/4 ${mobile ? 'left-0' : 'right-0'}`}
             >
                 <div className="flex justify-between">
                     <button className="font-bold text-sm" onClick={() => useStore.toggleCart()}>Voltar para loja</button>

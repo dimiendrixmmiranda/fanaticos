@@ -1,5 +1,6 @@
 'use client'
 
+import Template from "@/components/template/Template"
 import useAuth from "@/data/hooks/useAuth"
 import { limparVariosInputs } from "@/utils/LinparInput"
 import { useSearchParams } from "next/navigation"
@@ -74,49 +75,53 @@ function LoginForm() {
     }
 
     return (
-        <div className="max-w-md mx-auto mt-8 p-4 border rounded">
-            {erro && <p className="text-red-500 mb-2">{erro}</p>}
+        <Template>
+            <div className="p-4 flex justify-center items-center">
+                <div className="p-4 bg-azul-escuro max-w-[450px] w-full">
+                    {erro && <p className="text-red-500 mb-2">{erro}</p>}
 
-            {modo === 'create-account' ? (
-                <form className="flex flex-col gap-2" onSubmit={submeterCadastro}>
-                    <fieldset>
-                        <label htmlFor="nome">Nome Completo:</label>
-                        <input type="text" id="nome" value={nome} onChange={e => setNome(e.target.value)} />
-                    </fieldset>
-                    <fieldset>
-                        <label htmlFor="email">Email:</label>
-                        <input type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} />
-                    </fieldset>
-                    <fieldset>
-                        <label htmlFor="senha">Senha:</label>
-                        <input type="password" id="senha" value={senha} onChange={e => setSenha(e.target.value)} />
-                    </fieldset>
-                    <fieldset>
-                        <label htmlFor="confirmacaoSenha">Confirme a Senha:</label>
-                        <input type="password" id="confirmacaoSenha" value={confirmacaoSenha} onChange={e => setConfirmacaoSenha(e.target.value)} />
-                    </fieldset>
-                    <button type="submit" className="bg-blue-500 text-white p-2 rounded">Criar Conta</button>
-                    <button type="button" onClick={trocarModo} className="mt-2 underline text-blue-700">
-                        Já é inscrito? Faça login
-                    </button>
-                </form>
-            ) : (
-                <form className="flex flex-col gap-2" onSubmit={submeterLogin}>
-                    <fieldset>
-                        <label htmlFor="email">Email:</label>
-                        <input type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} />
-                    </fieldset>
-                    <fieldset>
-                        <label htmlFor="senha">Senha:</label>
-                        <input type="password" id="senha" value={senha} onChange={e => setSenha(e.target.value)} />
-                    </fieldset>
-                    <button type="submit" className="bg-green-500 text-white p-2 rounded">Iniciar Sessão</button>
-                    <button type="button" onClick={trocarModo} className="mt-2 underline text-green-700">
-                        Ainda não é inscrito? Se inscreva já!
-                    </button>
-                </form>
-            )}
-        </div>
+                    {modo === 'create-account' ? (
+                        <form className="flex flex-col gap-2" onSubmit={submeterCadastro}>
+                            <fieldset className="flex flex-col gap-1">
+                                <label htmlFor="nome">Nome Completo:</label>
+                                <input className="h-[30px] rounded-lg" type="text" id="nome" value={nome} onChange={e => setNome(e.target.value)} />
+                            </fieldset>
+                            <fieldset className="flex flex-col gap-1">
+                                <label htmlFor="email">Email:</label>
+                                <input className="h-[30px] rounded-lg" type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} />
+                            </fieldset>
+                            <fieldset className="flex flex-col gap-1">
+                                <label htmlFor="senha">Senha:</label>
+                                <input className="h-[30px] rounded-lg" type="password" id="senha" value={senha} onChange={e => setSenha(e.target.value)} />
+                            </fieldset>
+                            <fieldset className="flex flex-col gap-1">
+                                <label htmlFor="confirmacaoSenha">Confirme a Senha:</label>
+                                <input className="h-[30px] rounded-lg" type="password" id="confirmacaoSenha" value={confirmacaoSenha} onChange={e => setConfirmacaoSenha(e.target.value)} />
+                            </fieldset>
+                            <button type="submit" className="bg-laranja uppercase font-bold text-xl text-white p-1 rounded">Criar Conta</button>
+                            <button type="button" onClick={trocarModo} className="mt-2 text-whites">
+                                Já é inscrito? Faça login
+                            </button>
+                        </form>
+                    ) : (
+                        <form className="flex flex-col gap-2" onSubmit={submeterLogin}>
+                            <fieldset className="flex flex-col gap-1">
+                                <label htmlFor="email">Email:</label>
+                                <input className="h-[30px] rounded-lg" type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} />
+                            </fieldset>
+                            <fieldset className="flex flex-col gap-1">
+                                <label htmlFor="senha">Senha:</label>
+                                <input className="h-[30px] rounded-lg" type="password" id="senha" value={senha} onChange={e => setSenha(e.target.value)} />
+                            </fieldset>
+                            <button type="submit" className="bg-laranja uppercase font-bold text-xl text-white p-1 rounded">Iniciar Sessão</button>
+                            <button type="button" onClick={trocarModo} className="text-sm mt-2">
+                                Ainda não é inscrito? Se inscreva já!
+                            </button>
+                        </form>
+                    )}
+                </div>
+            </div>
+        </Template>
     )
 }
 

@@ -77,6 +77,15 @@ export default function CarrosselMarcas() {
                         </div>
                     </Link>
                 </SwiperSlide>
+                <SwiperSlide>
+                    <Link href={`/buscar/${encodeURIComponent('outros')}`}>
+                        <div className='relative w-full h-32 bg-zinc-200 rounded-lg'>
+                            <div className='w-full h-full flex justify-center items-center'>
+                                <h2 className='text-black uppercase font-black font-secundaria text-3xl 2xl:text-5xl'>Outros</h2>
+                            </div>
+                        </div>
+                    </Link>
+                </SwiperSlide>
             </Swiper>
         </div>
     )

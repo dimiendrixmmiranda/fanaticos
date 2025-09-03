@@ -82,6 +82,9 @@ export default function SidebarComponent() {
                                         <button className='p-2 rounded-md flex justify-center items-center' onClick={() => toggleMenuFutebol(1006)}>
                                             <Image alt='Logo Brasileirão' src={'/competicoes/outros.png'} width={30} height={30} />
                                         </button>
+                                        <Link href={`/buscar/${encodeURIComponent('futebol')}`} className="col-start-1 col-end-5 text-white text-center uppercase mt-2 font-bold text-sm bg-azul py-1 cursor-pointer">
+                                            Linha completa de acessórios para os fãs de Futebol!
+                                        </Link>
                                     </div>
 
                                     <ul className="flex mt-4">
@@ -108,18 +111,19 @@ export default function SidebarComponent() {
                                         onClick={(e) => e.stopPropagation()}
                                     >
                                         {teamsNba.map((time, i) => {
+                                            const busca = time.strTeam.split(' ').map(p => p.toLowerCase()).join(' ')
                                             const ultimaPalavra = time.strTeam.split(' ').at(-1) || ''
                                             const tamanho = ultimaPalavra.length
                                             return (
                                                 <li key={i}>
-                                                    <Link href={'/'} className="flex flex-col justify-center items-center p-2 rounded-md hover:bg-azul">
+                                                    <Link href={`/buscar/${encodeURIComponent(busca)}`} className="flex flex-col justify-center items-center p-2 rounded-md hover:bg-azul">
                                                         <Image alt={time.strTeam} src={time.strBadge} width={40} height={40} />
                                                         <p className={`uppercase text-black font-black ${tamanho > 10 ? 'text-[.5em]' : 'text-[.6em]'}`}>{ultimaPalavra}</p>
                                                     </Link>
                                                 </li>
                                             )
                                         })}
-                                        <Link href={'/'} className="col-start-1 col-end-5 text-center uppercase mt-4 font-bold text-sm bg-azul py-1 cursor-pointer">Linha completa de acessórios para os fãs da NBA!</Link>
+                                        <Link href={`/buscar/${encodeURIComponent('nba')}`} className="col-start-1 col-end-5 text-white text-center uppercase mt-4 font-bold text-sm bg-azul py-1 cursor-pointer">Linha completa de acessórios para os fãs da NBA!</Link>
                                     </ul>
                                 </div>
                             </AccordionTab>
@@ -135,17 +139,18 @@ export default function SidebarComponent() {
                                         onClick={(e) => e.stopPropagation()}
                                     >
                                         {teamsNfl.map((time, i) => {
+                                            const busca = time.strTeam.split(' ').map(p => p.toLowerCase()).join(' ')
                                             const ultimaPalavra = time.strTeam.split(' ').at(-1) || ''
                                             return (
                                                 <li key={i}>
-                                                    <Link href={'/'} className="flex flex-col justify-center items-center p-2 rounded-md hover:bg-azul">
+                                                    <Link href={`/buscar/${encodeURIComponent(busca)}`} className="flex flex-col justify-center items-center p-2 rounded-md hover:bg-azul">
                                                         <Image alt={time.strTeam} src={time.strBadge} width={40} height={40} />
                                                         <p className="uppercase text-black font-black text-[.6em]">{ultimaPalavra}</p>
                                                     </Link>
                                                 </li>
                                             )
                                         })}
-                                        <Link href={'/'} className="col-start-1 col-end-5 text-center uppercase mt-4 font-bold text-sm bg-azul py-1 cursor-pointer">Linha completa de acessórios para os fãs da NFL!</Link>
+                                        <Link href={`/buscar/${encodeURIComponent('nfl')}`} className="col-start-1 col-end-5 text-white text-center uppercase mt-4 font-bold text-sm bg-azul py-1 cursor-pointer">Linha completa de acessórios para os fãs da NFL!</Link>
                                     </ul>
                                 </div>
                             </AccordionTab>
@@ -173,21 +178,24 @@ export default function SidebarComponent() {
                                         className="grid grid-cols-4"
                                         onClick={(e) => e.stopPropagation()}
                                     >
-                                        {teamsF1.map((time, i) => (
-                                            <li key={i}>
-                                                <Link href={'/'} className="flex flex-col justify-center items-center p-2 rounded-md hover:bg-azul">
-                                                    <Image alt={time.strTeam} src={time.strBadge} width={40} height={40} />
-                                                    <p className="uppercase text-center text-black font-black text-[.6em]">{time.strTeamAlternate}</p>
-                                                </Link>
-                                            </li>
-                                        ))}
-                                        <Link href={'/'} className="col-start-1 col-end-5 text-center uppercase mt-4 font-bold text-sm bg-azul py-1 cursor-pointer">Linha completa de acessórios para os fãs da F1!</Link>
+                                        {teamsF1.map((time, i) => {
+                                            const busca = time.strTeam.split(' ').map(p => p.toLowerCase()).join(' ')
+                                            return (
+                                                <li key={i}>
+                                                    <Link href={`/buscar/${encodeURIComponent(busca)}`} className="flex flex-col justify-center items-center p-2 rounded-md hover:bg-azul">
+                                                        <Image alt={time.strTeam} src={time.strBadge} width={40} height={40} />
+                                                        <p className="uppercase text-center text-black font-black text-[.6em]">{time.strTeamAlternate}</p>
+                                                    </Link>
+                                                </li>
+                                            )
+                                        })}
+                                        <Link href={`/buscar/${encodeURIComponent('f1')}`} className="col-start-1 col-end-5 text-white text-center uppercase mt-4 font-bold text-sm bg-azul py-1 cursor-pointer">Linha completa de acessórios para os fãs da F1!</Link>
                                     </ul>
                                 </div>
                             </AccordionTab>
                         </Accordion>
                     </div>
-                    <RedesSociais mobile={true}/>
+                    <RedesSociais mobile={true} />
                 </div>
             </Sidebar >
         </div >
