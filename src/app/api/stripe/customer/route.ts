@@ -25,10 +25,18 @@ export async function POST(req: NextRequest) {
                 metadata: { firebaseUID: uid },
             });
             stripeCustomerId = customer.id;
+
+            // agora salva também os dados do usuário junto com stripe
             await userRef.set(
-                { stripeCustomerId, email: userRecord.email ?? null, name: userRecord.displayName ?? null },
+                {
+                    stripeCustomerId,
+                    email: userRecord.email ?? null,
+                    name: userRecord.displayName ?? null,
+                    imagemURL: userRecord.photoURL ?? "",
+                    tipo: "usuario",
+                },
                 { merge: true }
-            );
+            )
         }
 
         return NextResponse.json({ stripeCustomerId });

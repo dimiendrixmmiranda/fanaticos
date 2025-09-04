@@ -8,6 +8,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/autoplay'
 import Image from 'next/image'
 import Link from 'next/link'
+import { marcas } from '@/constants/marcas'
 
 export default function CarrosselMarcas() {
     return (
@@ -28,64 +29,31 @@ export default function CarrosselMarcas() {
                 loop
                 a11y={{ enabled: true }}
             >
-                <SwiperSlide>
-                    <Link href={`/buscar/${encodeURIComponent('nike')}`}>
-                        <div className='relative w-full h-32 bg-zinc-200 rounded-lg'>
-                            <Image alt='imagem' src={'/marcas/nike.png'} fill className='object-contain p-4' />
-                        </div>
-                    </Link>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <Link href={`/buscar/${encodeURIComponent('adidas')}`}>
-                        <div className='relative w-full h-32 bg-zinc-200 rounded-lg'>
-                            <Image alt='imagem' src={'/marcas/adidas.png'} fill className='object-contain p-4' />
-                        </div>
-                    </Link>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <Link href={`/buscar/${encodeURIComponent('new-balance')}`}>
-                        <div className='relative w-full h-32 bg-zinc-200 rounded-lg'>
-                            <Image alt='imagem' src={'/marcas/new-balance.png'} fill className='object-contain p-4' />
-                        </div>
-                    </Link>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <Link href={`/buscar/${encodeURIComponent('puma')}`}>
-                        <div className='relative w-full h-32 bg-zinc-200 rounded-lg'>
-                            <Image alt='imagem' src={'/marcas/puma.png'} fill className='object-contain p-4' />
-                        </div>
-                    </Link>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <Link href={`/buscar/${encodeURIComponent('umbro')}`}>
-                        <div className='relative w-full h-32 bg-zinc-200 rounded-lg'>
-                            <Image alt='imagem' src={'/marcas/umbro.png'} fill className='object-contain p-4' />
-                        </div>
-                    </Link>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <Link href={`/buscar/${encodeURIComponent('under-armour')}`}>
-                        <div className='relative w-full h-32 bg-zinc-200 rounded-lg'>
-                            <Image alt='imagem' src={'/marcas/under-armour.png'} fill className='object-contain p-4' />
-                        </div>
-                    </Link>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <Link href={`/buscar/${encodeURIComponent('kappa')}`}>
-                        <div className='relative w-full h-32 bg-zinc-200 rounded-lg'>
-                            <Image alt='imagem' src={'/marcas/kappa.png'} fill className='object-contain p-4' />
-                        </div>
-                    </Link>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <Link href={`/buscar/${encodeURIComponent('outros')}`}>
-                        <div className='relative w-full h-32 bg-zinc-200 rounded-lg'>
-                            <div className='w-full h-full flex justify-center items-center'>
-                                <h2 className='text-black uppercase font-black font-secundaria text-3xl 2xl:text-5xl'>Outros</h2>
-                            </div>
-                        </div>
-                    </Link>
-                </SwiperSlide>
+                {
+                    marcas.map(( marca, i) => {
+                        return (
+                            marca.id === 'outros' ? (
+                                <SwiperSlide key={i}>
+                                    <Link href={`/buscar/${encodeURIComponent(marca.id)}`}>
+                                        <div className='relative w-full h-32 bg-zinc-200 rounded-lg'>
+                                            <div className='w-full h-full flex justify-center items-center'>
+                                                <h2 className='text-black uppercase font-black font-secundaria text-3xl 2xl:text-5xl'>Outros</h2>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </SwiperSlide>
+                            ) : (
+                                <SwiperSlide>
+                                    <Link href={`/buscar/${encodeURIComponent(marca.id)}`}>
+                                        <div className='relative w-full h-32 bg-zinc-200 rounded-lg'>
+                                            <Image alt='imagem' src={marca.imagem} fill className='object-contain p-4' />
+                                        </div>
+                                    </Link>
+                                </SwiperSlide>
+                            )
+                        )
+                    })
+                }
             </Swiper>
         </div>
     )

@@ -21,28 +21,26 @@ const AuthContext = createContext<AuthContextProps>({});
 
 async function usuarioNormalizado(usuarioFirebase: User): Promise<Usuario> {
     const token = await usuarioFirebase.getIdToken();
-    const userDoc = await getDoc(doc(db, "usuarios", usuarioFirebase.uid));
-    let tipo: string | undefined;
+    const userDoc = await getDoc(doc(db, "users", usuarioFirebase.uid));
 
-    if (userDoc.exists()) {
-        tipo = userDoc.data().tipo;
-    }
+    const data = userDoc.exists() ? userDoc.data() : {};
 
     return {
         uid: usuarioFirebase.uid,
-        nome: usuarioFirebase.displayName || "",
-        email: usuarioFirebase.email || "",
+        nome: data.nome || usuarioFirebase.displayName || "",
+        email: data.email || usuarioFirebase.email || "",
         token,
         provedor: usuarioFirebase.providerData[0]?.providerId || "",
-        imagemURL: usuarioFirebase.photoURL || "",
-        tipo,
-    };
+        imagemURL: data.imagemURL || usuarioFirebase.photoURL || "",
+        tipo: data.tipo || "usuario", // default se não tiver
+        stripeCustomerId: data.stripeCustomerId || null,
+    }
 }
 
 export function AuthProvider({ children }: AuthContextProps) {
     const [carregando, setCarregando] = useState(true)
-    const [usuario, setUsuario] = useState<Usuario | null>(null);
-    const router = useRouter(); // Usando useRouter corretamente
+    const [usuario, setUsuario] = useState<Usuario | null>(null)
+    const router = useRouter()
 
     async function configurarSessao(usuarioFirebase: User | null) {
         if (usuarioFirebase && usuarioFirebase.email) {
@@ -99,26 +97,31 @@ export function AuthProvider({ children }: AuthContextProps) {
 
     async function cadastrar(email: string, senha: string, nome: string) {
         try {
-            setCarregando(true);
-            const result = await createUserWithEmailAndPassword(auth, email, senha);
-            const user = result.user;
+            setCarregando(true)
+            const result = await createUserWithEmailAndPassword(auth, email, senha)
+            const user = result.user
 
-            await updateProfile(user, { displayName: nome });
+            await updateProfile(user, { displayName: nome })
 
-            await setDoc(doc(db, "usuarios", user.uid), {
+            // grava em "users" em vez de "usuarios"
+            await setDoc(doc(db, "users", user.uid), {
                 nome,
                 email,
-            });
+                imagemURL: "/default/usuario-padrao.png",
+                tipo: "usuario",
+                stripeCustomerId: null,
+            })
 
-            await configurarSessao(user); // só atualiza o estado
-            router.push('/pages/usuario'); // redireciona sem esperar o setState
+            await configurarSessao(user)
+            router.push('/pages/usuario')
         } catch (error) {
-            console.error("Erro ao cadastrar:", error);
-            throw error;
+            console.error("Erro ao cadastrar:", error)
+            throw error
         } finally {
-            setCarregando(false);
+            setCarregando(false)
         }
     }
+
 
     // Recuperando o usuário do cookie ou localStorage na inicialização
     useEffect(() => {

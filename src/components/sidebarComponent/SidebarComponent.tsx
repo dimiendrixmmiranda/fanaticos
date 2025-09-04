@@ -24,7 +24,6 @@ import RedesSociais from '../redesSociais/RedesSociais';
 export default function SidebarComponent() {
     const [visibleRight, setVisibleRight] = useState(false);
     const [openMenuFutebol, setOpenMenuFutebol] = useState<number | null>(null)
-
     const { teamsNba } = useTimesNba()
     const { teamsNfl } = useTimesNfl()
     const { teamsF1 } = useTimesF1()
