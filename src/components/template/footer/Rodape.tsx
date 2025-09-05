@@ -1,7 +1,81 @@
+import Image from "next/image";
+import Link from "next/link";
+
 export default function Rodape() {
     return (
-        <footer className="bg-laranja p-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate ac tellus vel iaculis. Ut sollicitudin eleifend sapien, et efficitur elit aliquam vel. Proin convallis leo ut velit gravida, ut mollis leo pulvinar. Etiam ac turpis metus. Sed pharetra, ipsum a luctus tincidunt, mauris odio euismod dolor, at interdum dui ante sit amet metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam eu dolor purus.
+        <footer className="bg-laranja p-4 flex flex-col gap-6 md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+            <Link href={'/'} className="flex items-center justify-center gap-2 flex-1 md:col-start-1 md:col-end-4 lg:col-end-2">
+                <div className="w-20 h-20 relative">
+                    <Image alt="Logo Fanáticos" src={'/logo/logo-fanaticos.png'} fill className="object-contain" />
+                </div>
+                <h2 className="font-terciaria text-6xl sm:block lg:hidden xl:block" style={{ textShadow: '1px 1px 3px black' }}>Fanáticos</h2>
+            </Link>
+            <div className="flex flex-col" style={{ textShadow: '1px 1px 2px black' }}>
+                <h2 className="uppercase font-bold text-lg">Ajuda e Atendimento</h2>
+                <ul>
+                    <li>
+                        <Link href={'/'}>Minha conta</Link>
+                    </li>
+                    <li>
+                        <Link href={'/'}>Acompanhe seu pedido</Link>
+                    </li>
+                    <li>
+                        <Link href={'/'}>Dúvidas Frequentes</Link>
+                    </li>
+                    <li>
+                        <Link href={'/'}>Fale com a gente</Link>
+                    </li>
+                    <li>
+                        <Link href={'/'}>Troca e arrependimento</Link>
+                    </li>
+                </ul>
+            </div>
+            <div className="flex flex-col" style={{ textShadow: '1px 1px 2px black' }}>
+                <h2 className="uppercase font-bold text-lg">Políticas e Regulamento</h2>
+                <ul>
+                    <li>
+                        <Link href={'/'}>Políticas de cookies</Link>
+                    </li>
+                    <li>
+                        <Link href={'/'}>Políticas de privacidade</Link>
+                    </li>
+                    <li>
+                        <Link href={'/'}>Política de troca e arrependimento</Link>
+                    </li>
+                    <li>
+                        <Link href={'/'}>Regulamentos</Link>
+                    </li>
+                    <li>
+                        <Link href={'/'}>Segurança</Link>
+                    </li>
+                    <li>
+                        <Link href={'/'}>Termos e condições</Link>
+                    </li>
+                </ul>
+            </div>
+            <div className="flex flex-col" style={{ textShadow: '1px 1px 2px black' }}>
+                <h2 className="uppercase font-bold text-lg">Institucional</h2>
+                <ul>
+                    <li>
+                        <Link href={'/'}>Acessoria de Imprensa</Link>
+                    </li>
+                    <li>
+                        <Link href={'/'}>Relação com Investidores</Link>
+                    </li>
+                    <li>
+                        <Link href={'/'}>Sustentabilidade</Link>
+                    </li>
+                    <li>
+                        <Link href={'/'}>Trabalhe Conosco</Link>
+                    </li>
+                    <li>
+                        <Link href={'/'}>Central de Vendas</Link>
+                    </li>
+                    <li>
+                        <Link href={'/'}>Tire suas Dúvidas</Link>
+                    </li>
+                </ul>
+            </div>
         </footer>
     )
 }

@@ -50,6 +50,7 @@ export default function LoginERegistro({ mobile }: LoginERegistroProps) {
         },
     ];
 
+    console.log(usuario)
 
     return (
         usuario ? (

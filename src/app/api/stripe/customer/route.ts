@@ -26,13 +26,12 @@ export async function POST(req: NextRequest) {
             });
             stripeCustomerId = customer.id;
 
-            // agora salva também os dados do usuário junto com stripe
             await userRef.set(
                 {
                     stripeCustomerId,
                     email: userRecord.email ?? null,
                     name: userRecord.displayName ?? null,
-                    imagemURL: userRecord.photoURL ?? "",
+                    imagemURL: userRecord.photoURL,
                     tipo: "usuario",
                 },
                 { merge: true }

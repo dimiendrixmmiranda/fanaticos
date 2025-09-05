@@ -4,14 +4,14 @@ import ProdutosFiltrados from "../produtosFiltrados/ProdutosFiltrados";
 import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
 
 export default function CatalogoDeProdutos() {
-    const [marca, setMarca] = useState('outros')
+    const [marca, setMarca] = useState('todas-as-marcas')
     const [preco, setPreco] = useState('relevancia')
     const [esporte, setEsporte] = useState('todos-os-esportes')
     const [first, setFirst] = useState(0);
-    const [rows, setRows] = useState(8);
+    const [rows, setRows] = useState(6);
 
     const [filtros, setFiltros] = useState<{ marca: string; preco: string; esporte: string }>({
-        marca: "outros",
+        marca: "todas-as-marcas",
         preco: "relevancia",
         esporte: "todos-os-esportes",
     })

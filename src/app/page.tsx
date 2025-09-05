@@ -8,6 +8,7 @@ import Lancamentos from "@/components/lancamentos/Lancamentos"
 import CatalogoDeProdutos from "@/components/catalogoDeProdutos/CatalogoDeProdutos"
 import ProdutoAleatorio from "@/components/produtoAleatorio/ProdutoAleatorio"
 import Banners from "@/components/banners/Banners"
+import Servicos from "@/components/servicos/Servicos"
 // https://dashboard.stripe.com/test/workbench/overview
 // comando para rodar o stripe: stripe listen --forward-to localhost:3000/api/stripe/webhook
 // Imagens dos produtos esta sendo armazenada em imgur.com
@@ -27,6 +28,7 @@ export default async function Page() {
 			</div>
 			<MVV />
 			<Newsletter />
+			<Servicos />
 			{/* <ul className="grid grid-cols-1 gap-4">
 				{productsStripe.map((produtoStripe: ProductType) => {
 					const produtoFirebase = productsFirebase.find(

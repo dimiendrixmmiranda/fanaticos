@@ -36,7 +36,9 @@ export default function ProdutosFiltrados({ filtros, first, rows }: ProdutosFilt
 
     let filtrados = [...produtos]
 
-    if (filtros.marca !== "todas-as-marcas") {
+    if (filtros.marca == "todas-as-marcas") {
+        filtrados = [...produtos]
+    } else if (filtros.marca !== "todas-as-marcas") {
         filtrados = filtrados.filter((p) => p.marca === filtros.marca)
     }
 
@@ -50,24 +52,16 @@ export default function ProdutosFiltrados({ filtros, first, rows }: ProdutosFilt
         filtrados.sort((a, b) => a.price - b.price)
     }
 
-    const pagina = filtrados.slice(first, first + rows)
+    const paginaFiltrados = filtrados.slice(first, first + rows)
 
     return (
         <ul className="grid grid-cols-1 col-start-2 col-end-4 gap-4 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4">
-            {/* Gambiarra */}
             {
-                filtrados.length <= 0 ? (
-                    produtos.slice(first, first + rows).map((produto) => {
-                        return (
-                            <Product key={produto.id} produtoFirebase={produto} />
-                        )
-                    })) : (
-                    pagina.map((produto) => {
-                        return (
-                            <Product key={produto.id} produtoFirebase={produto} />
-                        )
-                    })
-                )
+                paginaFiltrados.map((produto) => {
+                    return (
+                        <Product key={produto.id} produtoFirebase={produto} />
+                    )
+                })
             }
         </ul>
     )

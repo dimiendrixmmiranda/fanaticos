@@ -22,11 +22,9 @@ export async function POST(req: NextRequest) {
             },
         });
 
-        const normalizedPrice = Number(parseFloat(body.price).toFixed(2)) * 100;
-        // Cria o preço
         const price = await stripe.prices.create({
             product: product.id,
-            unit_amount: normalizedPrice,
+            unit_amount: Math.round(parseFloat(body.price) * 100),
             currency: "brl",
         });
 
@@ -52,8 +50,14 @@ export async function POST(req: NextRequest) {
         return NextResponse.json(responseData);
     } catch (err: unknown) {
         if (err instanceof Error) {
-            return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
+            return NextResponse.json(
+                { error: err.message },
+                { status: 400 }
+            );
         }
-        return new NextResponse("Webhook Error: Unknown error", { status: 400 });
+        return NextResponse.json(
+            { error: "Unknown error" },
+            { status: 400 }
+        )
     }
 }
