@@ -55,7 +55,7 @@ export default function ProdutosFiltrados({ filtros, first, rows }: ProdutosFilt
     const paginaFiltrados = filtrados.slice(first, first + rows)
 
     return (
-        <ul className="grid grid-cols-1 col-start-2 col-end-4 gap-4 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4">
+        <ul className="grid grid-cols-1 col-start-2 col-end-4 gap-4 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 3xl:col-end-5">
             {
                 paginaFiltrados.map((produto) => {
                     return (

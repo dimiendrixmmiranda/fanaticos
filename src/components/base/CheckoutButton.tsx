@@ -37,11 +37,12 @@ export default function CheckoutButton({ totalPrice }: CheckoutButtonProps) {
 
 
     return (
-        <div>
-            <p className="text-green-500 font-bold text-xl">
-                Total: {formatarPreco(totalPrice)}
-            </p>
-            <button className="bg-teal-600 font-black text-xl p-2" onClick={handleCheckout}>
+        <div className="mt-4 flex flex-col gap-2" style={{textShadow: '1px 1px 2px black'}}>
+            <div className="font-bold text-xl flex gap-2 p-2">
+                <p>Total:</p>
+                <span className="bg-laranja px-2">{formatarPreco(totalPrice)}</span>
+            </div>
+            <button className="bg-green-600 font-black text-xl p-2 w-full" onClick={handleCheckout} style={{textShadow: '1px 1px 2px black'}}>
                 Finalizar Compra
             </button>
         </div>

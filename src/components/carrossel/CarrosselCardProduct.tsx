@@ -21,6 +21,7 @@ export default function CarrosselCardProduct({ produtoFirebase }: CarrosselCardP
                 spaceBetween={16}
                 slidesPerView={1}
                 navigation
+                loop
                 pagination={{ clickable: true }}
                 a11y={{ enabled: true }}
                 className='w-full h-[230px] bg-zinc-400'

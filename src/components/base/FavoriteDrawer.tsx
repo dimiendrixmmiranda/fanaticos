@@ -3,6 +3,7 @@
 import { useFavoritesStore } from "@/storeFavorite"
 import { formatarPreco } from "@/utils/FormatarPreco"
 import Image from "next/image"
+import { FaTrashAlt } from "react-icons/fa"
 import { TiDelete } from "react-icons/ti"
 
 
@@ -41,16 +42,16 @@ export default function FavoriteDrawer({ mobile }: FavoriteDrawerProps) {
                                     return (
                                         <li key={item.id} className="flex gap-2 border-b border-slate-400 p-2">
                                             <Image alt={item.name} src={item.image} width={100} height={100} className="rounded-md object-cover w-24" />
-                                            <div>
-                                                <h2 className="w-42 truncate">{item.name}</h2>
-                                                <h2 className="w-42 truncate">Quantidade: {item.quantity}</h2>
+                                            <div className="flex flex-col gap-1">
+                                                <h2 className="w-42 line-clamp-1 sm:line-clamp-2">{item.name}</h2>
+                                                <h2 className="w-42 line-clamp-1 sm:line-clamp-2">Quantidade: {item.quantity}</h2>
                                                 <p className="uppercase font-black">{formatarPreco(item.price)}</p>
-                                                <div className="flex items-center gap-2">
+                                                <div className="flex items-center gap-2 justify-end">
                                                     <button
-                                                        className="p-1 border rounded-md text-sm"
+                                                        className="p-1 border rounded-md text-sm bg-red-600"
                                                         onClick={() => useFavoritos.removeFavorite(item)}
                                                     >
-                                                        Remover
+                                                        <FaTrashAlt />
                                                     </button>
                                                 </div>
                                             </div>

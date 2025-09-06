@@ -27,8 +27,8 @@ export default function CatalogoDeProdutos() {
         setRows(event.rows);
     }
     return (
-        <section className="p-4 flex flex-col gap-4 max-w-[1800px] mx-auto lg:grid lg:grid-cols-3 lg:gap-y-5">
-            <div className="bg-azul-escuro text-white p-2 lg:col-start-1 lg:col-end-4">
+        <section className="p-4 flex flex-col gap-4 max-w-[1700px] mx-auto lg:grid lg:grid-cols-3 lg:gap-y-5 3xl:grid-cols-4">
+            <div className="bg-azul-escuro text-white p-2 lg:col-start-1 lg:col-end-4 3xl:col-end-5">
                 <h2 className="uppercase font-black text-2xl text-center">Confira Todos os Nossos Produtos:</h2>
             </div>
             <div className="lg:col-start-1 lg:col-end-2 lg:w-fit lg:h-fit lg:pb-8 lg:pr-16 lg:border-r-2 lg:border-r-azul-escuro">
@@ -132,7 +132,7 @@ export default function CatalogoDeProdutos() {
                 rows={rows}
             />
 
-            <div className="card lg:col-start-2 lg:col-end-4">
+            <div className="card lg:col-start-2 lg:col-end-4 3xl:col-end-5">
                 <Paginator
                     first={first}
                     rows={rows}

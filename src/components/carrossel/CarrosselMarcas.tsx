@@ -43,7 +43,7 @@ export default function CarrosselMarcas() {
                                     </Link>
                                 </SwiperSlide>
                             ) : (
-                                <SwiperSlide>
+                                <SwiperSlide key={i}>
                                     <Link href={`/buscar/${encodeURIComponent(marca.id)}`}>
                                         <div className='relative w-full h-32 bg-zinc-200 rounded-lg'>
                                             <Image alt='imagem' src={marca.imagem} fill className='object-contain p-4' />

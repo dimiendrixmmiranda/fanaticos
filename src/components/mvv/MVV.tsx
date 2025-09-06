@@ -16,15 +16,15 @@ export default function MVV() {
     };
 
     return (
-        <div className="max-w-[1200px] mx-auto flex flex-col gap-14 mt-12 p-4 md:grid md:gap-x-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="max-w-[1200px] mx-auto flex flex-col gap-[85px] mt-20 p-4 md:grid md:gap-x-6 md:grid-cols-2 lg:grid-cols-3">
             <div className="h-[380px] flex flex-col justify-between relative">
-                <div className="absolute -top-14 left-0 w-full h-fit">
+                <div className="absolute -top-[74px] left-0 w-full h-fit">
                     <div className="relative w-44 h-44 z-10 mx-auto">
-                        <Image alt="missão" src={'/default/missao.png'} fill className="object-contain" />
+                        <Image alt="missão" src={'/default/trofeu.png'} fill className="object-contain" />
                     </div>
                 </div>
                 <div className="absolute bottom-0 left-0 w-full h-fit">
-                    <div className="w-full h-[320px] bg-magenta relative">
+                    <div className="w-full h-[320px] relative" style={{ backgroundImage: "url('/textura/magenta.jpg')", backgroundSize: "cover", backgroundPosition: "center", textShadow: '1px 1px 2px black' }}>
                         <button
                             className="absolute top-2 right-2 text-2xl"
                             onClick={() => openDialog("Oferecer artigos esportivos de qualidade, acessíveis e inspiradores, que aproximem torcedores e amantes do esporte de suas paixões, proporcionando praticidade e confiança em cada compra online.")}
@@ -48,13 +48,13 @@ export default function MVV() {
                 </div>
             </div>
             <div className="h-[380px] flex flex-col justify-between relative">
-                <div className="absolute -top-14 left-0 w-full h-fit">
+                <div className="absolute -top-[74px] left-0 w-full h-fit">
                     <div className="relative w-44 h-44 z-10 mx-auto">
-                        <Image alt="visão" src={'/default/missao.png'} fill className="object-contain" />
+                        <Image alt="visão" src={'/default/apito.png'} fill className="object-contain" />
                     </div>
                 </div>
                 <div className="absolute bottom-0 left-0 w-full h-fit">
-                    <div className="w-full h-[320px] bg-laranja relative">
+                    <div className="w-full h-[320px] relative" style={{ backgroundImage: "url('/textura/laranja.png')", backgroundSize: "cover", backgroundPosition: "center", textShadow: '1px 1px 2px black' }}>
                         <button
                             className="absolute top-2 right-2 text-2xl"
                             onClick={() => openDialog("Valorizamos a paixão pelo esporte como força de união entre pessoas, oferecendo produtos de qualidade com transparência e confiança. Buscamos sempre a acessibilidade com preços justos, incentivando que todos possam viver essa paixão. Mantemos a inovação como princípio para melhorar constantemente a experiência de compra online e colocamos o cliente no centro de nossas decisões, guiados pelo respeito e dedicação em cada detalhe.")}
@@ -78,13 +78,13 @@ export default function MVV() {
                 </div>
             </div>
             <div className="h-[380px] flex flex-col justify-between relative">
-                <div className="absolute -top-14 left-0 w-full h-fit">
+                <div className="absolute -top-[74px] left-0 w-full h-fit">
                     <div className="relative w-44 h-44 z-10 mx-auto">
-                        <Image alt="valores" src={'/default/missao.png'} fill className="object-contain" />
+                        <Image alt="valores" src={'/default/maos.png'} fill className="object-contain" />
                     </div>
                 </div>
                 <div className="absolute bottom-0 left-0 w-full h-fit">
-                    <div className="w-full h-[320px] bg-magenta relative">
+                    <div className="w-full h-[320px] relative" style={{ backgroundImage: "url('/textura/magenta.jpg')", backgroundSize: "cover", backgroundPosition: "center", textShadow: '1px 1px 2px black' }}>
                         <button
                             className="absolute top-2 right-2 text-2xl"
                             onClick={() => openDialog("Ser referência nacional em e-commerce de artigos esportivos, reconhecida pela diversidade de produtos, excelência no atendimento e pela conexão autêntica com a cultura esportiva.")}

@@ -2,9 +2,11 @@
 import { db } from "@/lib/firebase"
 import ProductFirebase from "@/types/ProductFirebase"
 import { collection, getDocs } from "firebase/firestore"
+import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { FaRepeat } from "react-icons/fa6"
+import Product from "../product/Product"
 
 export default function ProdutoAleatorio() {
     const [visible, setVisible] = useState(false)
@@ -49,21 +51,61 @@ export default function ProdutoAleatorio() {
     }, [produtoSorteado])
 
     return (
-        <div className="p-4 lg:h-[525px]">
-            <div className={`p-4 bg-azul-escuro flex-col gap-2 ${visible ? 'hidden' : 'flex'} h-full`}>
+        <div className="p-4 lg:h-[700px]">
+            <div
+                className={`relative p-4 flex-col gap-2 ${visible ? 'hidden' : 'flex'} h-full`}
+                style={{ backgroundImage: "url('/textura/azul.jpg')", backgroundSize: "cover", backgroundPosition: "center", textShadow: '1px 1px 2px black' }}
+            >
                 <h2 className="text-4xl font-terciaria text-center md:text-7xl">Surpreenda-me!</h2>
                 <p className="font-secundaria text-xl leading-6 text-center">Está em dúvida de qual produto levar para casa?????</p>
                 <span className="font-secundaria text-lg leading-6 text-center">Deixe que a sorte decida por voce!!! Clique no botão sortear e descubra seu próximo produto predileto!</span>
-                <div className="w-48 h-72 bg-zinc-400 mx-auto"></div>
+                <div className="relative w-[250px] h-[250px] mx-auto sm:w-[350px] sm:h-[350px] lg:h-[380px] lg:w-[380px]">
+                    <Image src={'/default/camisa.png'} alt="Camisa" fill className="object-contain"></Image>
+                </div>
                 <button
-                    className="bg-laranja uppercase font-bold text-2xl w-full p-1"
+                    className="bg-laranja uppercase font-bold text-2xl w-full p-1 mt-auto"
                     style={{ textShadow: '1px 1px 2px black' }}
                     onClick={() => handleProduto(true)}
                 >
                     Sortear!
                 </button>
+                <div
+                    className="absolute top-[210px] right-[40px] w-28 h-28 rotate-[25deg] hidden md:block lg:hidden xl:block"
+                    style={{
+                        backgroundImage: "url('/vetores/raios.png')",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center"
+                    }}
+                />
+                <div
+                    className="absolute top-[240px] left-[10px] w-28 h-28 rotate-[25deg] hidden md:block lg:hidden xl:block"
+                    style={{
+                        backgroundImage: "url('/vetores/raios.png')",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center"
+                    }}
+                />
+                <div
+                    className="absolute top-[370px] right-[30px] w-28 h-28 rotate-[25deg] hidden md:block lg:hidden xl:block"
+                    style={{
+                        backgroundImage: "url('/vetores/raios.png')",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center"
+                    }}
+                />
+                <div
+                    className="absolute top-[390px] left-[40px] w-28 h-28 rotate-[25deg] hidden md:block lg:hidden xl:block"
+                    style={{
+                        backgroundImage: "url('/vetores/raios.png')",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center"
+                    }}
+                />
             </div>
-            <div className={`relative p-4 bg-azul-escuro flex flex-col justify-between gap-4 ${visible ? 'flex' : 'hidden'} h-full`}>
+            <div
+                className={`relative p-4 flex flex-col justify-between gap-4 ${visible ? 'flex' : 'hidden'} h-full`}
+                style={{ backgroundImage: "url('/textura/azul.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+            >
                 <div className="grid grid-cols-[1fr_30px]">
                     <h2 className="uppercase font-black text-2xl leading-6 text-center md:text-3xl 2xl:text-4xl">Olha o que a sorte trouxe pra você!!!</h2>
                     <button
@@ -73,14 +115,48 @@ export default function ProdutoAleatorio() {
                         <FaRepeat />
                     </button>
                 </div>
-                <div className="w-[260px] h-[300px] bg-zinc-400 mx-auto">
-                    <h2>{produtoSorteado?.name}</h2>
-                </div>
+                {
+                    produtoSorteado && <div className="w-[260px] mx-auto">
+                        <Product produtoFirebase={produtoSorteado} />
+                    </div>
+                }
                 {
                     produtoSorteado ? (
-                        <Link href={`/product/${produtoSorteado?.stripeId}`} className="uppercase font-bold bg-laranja p-1 text-center text-lg sm:text-xl">Me leve Até o produto!</Link>
+                        <Link href={`/product/${produtoSorteado?.stripeId}`} className="uppercase font-bold bg-laranja p-1 text-center text-lg sm:text-xl" style={{ textShadow: '1px 1px 2px black' }}>Me leve Até o produto!</Link>
                     ) : ('')
                 }
+                <div
+                    className="absolute top-[210px] right-[40px] w-28 h-28 rotate-[25deg] hidden md:block lg:hidden xl:block"
+                    style={{
+                        backgroundImage: "url('/vetores/raios.png')",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center"
+                    }}
+                />
+                <div
+                    className="absolute top-[240px] left-[10px] w-28 h-28 rotate-[25deg] hidden md:block lg:hidden xl:block"
+                    style={{
+                        backgroundImage: "url('/vetores/raios.png')",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center"
+                    }}
+                />
+                <div
+                    className="absolute top-[370px] right-[30px] w-28 h-28 rotate-[25deg] hidden md:block lg:hidden xl:block"
+                    style={{
+                        backgroundImage: "url('/vetores/raios.png')",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center"
+                    }}
+                />
+                <div
+                    className="absolute top-[390px] left-[40px] w-28 h-28 rotate-[25deg] hidden md:block lg:hidden xl:block"
+                    style={{
+                        backgroundImage: "url('/vetores/raios.png')",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center"
+                    }}
+                />
             </div>
         </div>
     )

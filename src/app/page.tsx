@@ -48,5 +48,3 @@ export default async function Page() {
 		</Template>
 	)
 }
-
-// não sabe o que decidir? 

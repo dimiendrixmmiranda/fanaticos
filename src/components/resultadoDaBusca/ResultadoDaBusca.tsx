@@ -11,7 +11,7 @@ export default function ResultadoDaBusca({ produtosFirebase, produtosStripe }: R
 
     return (
         <div className="mt-6">
-            <ul className="grid grid-cols-1 gap-4">
+            <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4">
                 {produtosStripe.map((produtoStripe: ProductType) => {
                     const produtoFirebase = produtosFirebase.find(
                         (p: ProductFirebase) => p.stripeId === produtoStripe.id

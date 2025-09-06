@@ -23,7 +23,7 @@ export default function CartDrawer({ mobile }: CartDrawerProps) {
         >
             <div
                 onClick={(e) => e.stopPropagation()}
-                className={`absolute bg-azul-escuro top-0 w-[90%] h-screen p-6 overflow-y-scroll md:w-2/3 lg:w-1/3 xl:w-1/4 ${mobile ? 'left-0' : 'right-0'}`}
+                className={`absolute bg-azul-escuro top-0 w-[95%] h-screen p-6 overflow-y-scroll md:w-2/3 lg:w-1/3 xl:w-1/4 ${mobile ? 'left-0' : 'right-0'}`}
             >
                 <div className="flex justify-between">
                     <button className="font-bold text-sm" onClick={() => useStore.toggleCart()}>Voltar para loja</button>
@@ -43,11 +43,11 @@ export default function CartDrawer({ mobile }: CartDrawerProps) {
                                     return (
                                         <li key={item.id} className="flex gap-2 border-b border-slate-400 p-2">
                                             <Image alt={item.name} src={item.image} width={100} height={100} className="rounded-md object-cover w-24" />
-                                            <div>
-                                                <h2 className="w-42 truncate">{item.name}</h2>
-                                                <h2 className="w-42 truncate">Quantidade: {item.quantity}</h2>
+                                            <div className="flex flex-col gap-1">
+                                                <h2 className="w-42 line-clamp-1 sm:line-clamp-2">{item.name}</h2>
+                                                <h2 className="w-42 line-clamp-1 sm:line-clamp-2">Quantidade: {item.quantity}</h2>
                                                 <p className="uppercase font-black">{formatarPreco(item.price)}</p>
-                                                <div className="flex items-center gap-2">
+                                                <div className="flex items-center gap-1">
                                                     <button
                                                         className="p-1 border rounded-md text-sm"
                                                         onClick={() => useStore.addProduct(item)}
