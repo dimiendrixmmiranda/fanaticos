@@ -3,16 +3,19 @@ import { useEffect, useState } from "react"
 import { collection, getDocs } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 import Product from "../product/Product"
+import Filtros from "@/types/Filtros"
 
 interface ProdutosFiltradosProps {
-    filtros: { marca: string, preco: string, esporte: string }
+    filtros: Filtros
     first: number
     rows: number
+    termo: string
 }
 
 export default function ProdutosFiltrados({ filtros, first, rows }: ProdutosFiltradosProps) {
     const [produtos, setProdutos] = useState<ProductFirebase[]>([])
     const [isLoading, setIsLoading] = useState(true)
+
     useEffect(() => {
         async function fetchProdutos() {
             try {
@@ -42,7 +45,7 @@ export default function ProdutosFiltrados({ filtros, first, rows }: ProdutosFilt
         filtrados = filtrados.filter((p) => p.marca === filtros.marca)
     }
 
-    if (filtros.esporte !== "todos-os-esportes") {
+    if (filtros.esporte !== "todos") {
         filtrados = filtrados.filter((p) => p.category === filtros.esporte)
     }
 
@@ -50,6 +53,23 @@ export default function ProdutosFiltrados({ filtros, first, rows }: ProdutosFilt
         filtrados.sort((a, b) => b.price - a.price)
     } else if (filtros.preco === "menor") {
         filtrados.sort((a, b) => a.price - b.price)
+    }
+
+    // Tem que ser o ultimo
+    if (filtros.termo && filtros.termo.trim() !== "") {
+        const termoLower = filtros.termo.toLowerCase()
+        const marcasConhecidas = ["nike", "adidas", "puma", "umbro", "new-balance", "under-armour", "outros"]
+
+        if (marcasConhecidas.includes(termoLower)) {
+            // 👉 filtro apenas pela marca
+            filtrados = filtrados.filter((p) => p.marca?.toLowerCase() === termoLower)
+        } else {
+            // 👉 pesquisa geral (nome, descrição, categoria)
+            filtrados = filtrados.filter((p) => {
+                const textoProduto = `${p.category} ${p.name} ${p.description}`.toLowerCase()
+                return textoProduto.includes(termoLower)
+            })
+        }
     }
 
     const paginaFiltrados = filtrados.slice(first, first + rows)
