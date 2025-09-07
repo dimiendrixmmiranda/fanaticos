@@ -44,7 +44,7 @@ export default function Product({ produtoFirebase }: ProductProps) {
                 </div>
             </Link>
             <div className="grid grid-cols-2 gap-4 mt-auto">
-                <AddCart produto={{
+                <AddCart textoBotao={false} produto={{
                     id: produtoFirebase.stripeId,
                     name: produtoFirebase.name,
                     price: produtoFirebase.price,
@@ -54,7 +54,7 @@ export default function Product({ produtoFirebase }: ProductProps) {
                     description: produtoFirebase.description,
                     currency: produtoFirebase.currency,
                 }} />
-                <AddFavoritos produto={{
+                <AddFavoritos textoBotao={false} produto={{
                     id: produtoFirebase.stripeId,
                     name: produtoFirebase.name,
                     price: produtoFirebase.price,

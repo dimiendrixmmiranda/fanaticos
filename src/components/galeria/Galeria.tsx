@@ -20,7 +20,7 @@ export default function Galeria({ produtoFirebase }: GaleriaProps) {
 
     return (
         <div className='flex'>
-            <div className='flex flex-col-reverse h-[380px] w-full gap-2 bg-zinc-800 md:flex-row'>
+            <div className='flex flex-col-reverse h-[380px] w-full gap-2 bg-zinc-800 sm:h-[450px] md:flex-row md:h-[550px] xl:h-[600px]'>
                 {/* Miniaturas */}
                 <ul className='flex h-[80px] w-full p-2 gap-2 md:w-[80px] md:flex-col md:h-full '>
                     {produtoFirebase?.images && Array.isArray(produtoFirebase.images) && produtoFirebase.images.map((img, i) => (

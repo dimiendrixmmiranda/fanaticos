@@ -6,9 +6,10 @@ import { FaShoppingCart } from "react-icons/fa"
 
 interface AddCartProps {
     produto: ProductType
+    textoBotao: boolean
 }
 
-export default function AddCart({ produto }: AddCartProps) {
+export default function AddCart({ produto, textoBotao }: AddCartProps) {
     const useStore = useCardStore()
 
     return (
@@ -17,9 +18,15 @@ export default function AddCart({ produto }: AddCartProps) {
                 useStore.addProduct(produto)
                 useStore.toggleCart()
             }}
-            className="bg-green-600 text-white flex items-center justify-center gap-1 uppercase font-bold py-2"
+            className="bg-azul-escuro uppercase font-black py-2 flex items-center gap-1 justify-center rounded-lg"
         >
-            <FaShoppingCart />
+            {
+                textoBotao ? (
+                    <p className="flex items-center gap-1">Adicionar ao Carrinho  <FaShoppingCart /></p>
+                ) : (
+                    <FaShoppingCart />
+                )
+            }
         </button>
     )
 }

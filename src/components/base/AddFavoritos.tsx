@@ -10,15 +10,16 @@ import { useRouter } from "next/navigation"
 
 interface addFavoritosProps {
     produto: ProductType
+    textoBotao: boolean
 }
 
-export default function AddFavoritos({ produto }: addFavoritosProps) {
+export default function AddFavoritos({ produto, textoBotao }: addFavoritosProps) {
     const useFavorites = useFavoritesStore()
     const isFavorite = useFavorites.favorites.some((p) => p.id === produto.id)
     const { usuario } = useAuth()
     const [openDialog, setOpenDialog] = useState(false)
     const router = useRouter()
-    
+
     const handleFavorite = () => {
         if (usuario) {
             useFavorites.toggleFavorite(produto)
@@ -32,9 +33,36 @@ export default function AddFavoritos({ produto }: addFavoritosProps) {
         <>
             <button
                 onClick={handleFavorite}
-                className="bg-red-600 text-white flex items-center justify-center gap-1 uppercase font-bold py-2"
+                className="bg-red-600 text-white flex items-center justify-center gap-1 uppercase font-bold py-2 rounded-lg"
             >
-                {isFavorite ? <FaHeartBroken /> : <FaHeart />}
+                {
+                    textoBotao ? (
+                        isFavorite ? (
+                            <p className="flex items-center gap-2">
+                                Remover dos Favoritos <FaHeartBroken />
+                            </p>
+                        ) : (
+                            <p className="flex items-center gap-2">
+                                Adicionar aos Favoritos <FaHeart />
+                            </p>
+                        )
+                    ) : (
+                        isFavorite ? (
+                            <p className="flex items-center gap-2">
+                                <FaHeartBroken />
+                            </p>
+                        ) : (
+                            <p className="flex items-center gap-2">
+                                <FaHeart />
+                            </p>
+                        )
+                    )
+                }
+                {/* {isFavorite ? (
+                    <p className="flex items-center gap-2">Remover aos Favoritos <FaHeartBroken /></p>
+                ) : (
+                    <p className="flex items-center gap-2">Remover dos Favoritos <FaHeart /></p>
+                )} */}
             </button>
 
             <Dialog
