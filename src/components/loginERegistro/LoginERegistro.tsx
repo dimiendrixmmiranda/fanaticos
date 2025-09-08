@@ -36,7 +36,7 @@ export default function LoginERegistro({ mobile }: LoginERegistroProps) {
         {
             label: 'Meu Perfil',
             icon: <FaUser />,
-            command: () => router.push('/pages/login?type=login')
+            command: () => router.push('/pages/usuario')
         },
         {
             label: 'Minhas Compras',

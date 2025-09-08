@@ -14,7 +14,7 @@ interface AuthContextProps {
     carregando?: boolean
     login?: (email: string, senha: string) => Promise<void>;
     logout?: (encaminhamento: string) => Promise<void>;
-    cadastrar?: (email: string, senha: string, nome: string) => Promise<void>;
+    cadastrar?: (email: string, senha: string, nome: string, genero: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextProps>({});
@@ -29,6 +29,7 @@ async function usuarioNormalizado(usuarioFirebase: User): Promise<Usuario> {
         uid: usuarioFirebase.uid,
         nome: data.nome || usuarioFirebase.displayName || "",
         email: data.email || usuarioFirebase.email || "",
+        genero: data.genero ||  "",
         token,
         provedor: usuarioFirebase.providerData[0]?.providerId || "",
         imagemURL: data.imagemURL || usuarioFirebase.photoURL || "",
@@ -74,8 +75,8 @@ export function AuthProvider({ children }: AuthContextProps) {
             const result = await signInWithEmailAndPassword(auth, email, senha);
             const user = result.user;
 
-            await configurarSessao(user); // atualiza estado
-            router.push('/pages/usuario');       // redireciona
+            await configurarSessao(user)
+            router.push('/pages/usuario')
         } catch (error) {
             console.error("Erro ao autenticar:", error);
             throw error;
@@ -95,7 +96,7 @@ export function AuthProvider({ children }: AuthContextProps) {
     }
 
 
-    async function cadastrar(email: string, senha: string, nome: string) {
+    async function cadastrar(email: string, senha: string, nome: string, genero: string) {
         try {
             setCarregando(true)
             const result = await createUserWithEmailAndPassword(auth, email, senha)
@@ -107,6 +108,7 @@ export function AuthProvider({ children }: AuthContextProps) {
             await setDoc(doc(db, "users", user.uid), {
                 nome,
                 email,
+                genero,
                 imagemURL: "/default/usuario-padrao.png",
                 tipo: "usuario",
                 stripeCustomerId: null,

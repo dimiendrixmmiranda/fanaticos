@@ -11,4 +11,6 @@ export default interface ProductFirebase {
     updatedAt: string | null
     marca: string
     stripePriceId: string
+    genero: string,
+    categoriaProduto: string,
 }

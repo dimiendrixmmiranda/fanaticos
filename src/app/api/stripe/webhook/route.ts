@@ -40,6 +40,23 @@ export async function POST(req: Request) {
 
     if (event.type === "product.created" || event.type === "product.updated") {
         const product = event.data.object as Stripe.Product;
+
+        // Se foi arquivado (active = false), marca ou deleta no Firestore
+        if (!product.active) {
+            // opção 1: só marca como inativo
+            // await db.collection("products").doc(product.id).set(
+            //     {
+            //         active: false,
+            //         updatedAt: new Date(),
+            //     },
+            //     { merge: true }
+            // )
+
+            // opção 2: deletar do Firestore
+            await db.collection("products").doc(product.id).delete();
+            return new NextResponse("product archived", { status: 200 });
+        }
+
         const prices = await stripe.prices.list({ product: product.id });
         const price = prices.data[0];
 
@@ -52,6 +69,8 @@ export async function POST(req: Request) {
                 stripePriceId: price?.id ?? "",
                 currency: price?.currency ?? "brl",
                 marca: product.metadata.marca,
+                genero: product.metadata.genero,
+                categoriaProduto: product.metadata.categoriaProduto,
                 category: product.metadata.category,
                 idProduct: product.metadata.idProduct,
                 stripeId: product.id,

@@ -55,16 +55,35 @@ export default function ProdutosFiltrados({ filtros, first, rows }: ProdutosFilt
         filtrados.sort((a, b) => a.price - b.price)
     }
 
+    if (filtros.categoria !== "todos") {
+        filtrados = filtrados.filter((p) => p.categoriaProduto === filtros.categoria)
+    }
+
+    if (filtros.genero !== "todos") {
+        filtrados = filtrados.filter((p) => p.genero === filtros.genero)
+    }
+
+    if (filtros.faixaPreco !== "todos") {
+        if (filtros.faixaPreco === 'ate-100') {
+            filtrados = filtrados.filter((p) => p.price < 100)
+        } else if (filtros.faixaPreco === 'de-100-ate-279') {
+            filtrados = filtrados.filter((p) => p.price > 100 && p.price < 279)
+        } else if (filtros.faixaPreco === 'de-279-ate-449') {
+            filtrados = filtrados.filter((p) => p.price > 279 && p.price < 449)
+        } else if (filtros.faixaPreco === 'acima-de-479') {
+            filtrados = filtrados.filter((p) => p.price > 449)
+        }
+    }
+
     // Tem que ser o ultimo
     if (filtros.termo && filtros.termo.trim() !== "") {
         const termoLower = filtros.termo.toLowerCase()
         const marcasConhecidas = ["nike", "adidas", "puma", "umbro", "new-balance", "under-armour", "outros"]
 
+        // apenas marcas
         if (marcasConhecidas.includes(termoLower)) {
-            // 👉 filtro apenas pela marca
             filtrados = filtrados.filter((p) => p.marca?.toLowerCase() === termoLower)
         } else {
-            // 👉 pesquisa geral (nome, descrição, categoria)
             filtrados = filtrados.filter((p) => {
                 const textoProduto = `${p.category} ${p.name} ${p.description}`.toLowerCase()
                 return textoProduto.includes(termoLower)

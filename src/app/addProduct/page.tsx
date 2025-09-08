@@ -9,6 +9,8 @@ export default function AddProduct() {
     const [price, setPrice] = useState<string>("") // MUDANÇA: estado agora é string
     const [category, setCategory] = useState<string>('')
     const [images, setImages] = useState<string[]>([])
+    const [genero, setGenero] = useState<string>('')
+    const [categoriaProduto, setCategoriaProduto] = useState<string>('')
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -28,6 +30,8 @@ export default function AddProduct() {
                 images,
                 category: category,
                 marca: marca,
+                genero: genero,
+                categoriaProduto: categoriaProduto,
                 idProduct: idProduct
             }),
         })
@@ -66,6 +70,23 @@ export default function AddProduct() {
                 <option value="under-armour">Under Armour</option>
                 <option value="kappa">Kappa</option>
                 <option value="outros">outros</option>
+            </select>
+            <select name="genero" id="genero" value={genero} onChange={(e) => setGenero(e.target.value)}>
+                <option value="">Selecione</option>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+                <option value="infantil">Infantil</option>
+                <option value="unissex">Unissex</option>
+                <option value="todos">Todos</option>
+            </select>
+            <select name="categoriaProduto" id="categoriaProduto" value={categoriaProduto} onChange={(e) => setCategoriaProduto(e.target.value)}>
+                <option value="">Selecione</option>
+                <option value="camisas">Camisas</option>
+                <option value="calçados">Calçados</option>
+                <option value="moletons/jaquetas">Moletons/Jaquetas</option>
+                <option value="bones">Bonés</option>
+                <option value="acessorios">Acessórios</option>
+                <option value="todos">Todos</option>
             </select>
             <input
                 type="text"

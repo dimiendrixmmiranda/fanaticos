@@ -18,7 +18,7 @@ export default function AddCart({ produto, textoBotao }: AddCartProps) {
                 useStore.addProduct(produto)
                 useStore.toggleCart()
             }}
-            className="bg-azul-escuro uppercase font-black py-2 flex items-center gap-1 justify-center rounded-lg"
+            className="bg-azul-escuro text-white uppercase font-black py-2 flex items-center gap-1 justify-center rounded-lg"
         >
             {
                 textoBotao ? (

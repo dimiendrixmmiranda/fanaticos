@@ -5,6 +5,7 @@ export type Usuario = {
     token: string
     provedor: string
     imagemURL: string
+    genero: string
     tipo?: string
     stripeCustomerId: string
 }

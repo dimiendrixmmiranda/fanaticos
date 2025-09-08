@@ -42,7 +42,6 @@ export default function CatalogoDeProdutos() {
             setRows(8)
         }
     }, [width])
-    console.log(rows)
 
     function handleFiltros() {
         setFiltros({ marca, preco, esporte, categoria, genero, faixaPreco, termo })
@@ -215,8 +214,8 @@ export default function CatalogoDeProdutos() {
                             <label className="leading-4" htmlFor="de-279-ate-449">De R$279 até R$479</label>
                         </div>
                         <div className="flex items-center gap-1">
-                            <input className="w-4 h-4" type="radio" name="faixaPreco" id="acima-de-479" value="acima-de-479" onChange={(e) => setFaixaPreco(e.target.value)} />
-                            <label className="leading-4" htmlFor="acima-de-479">Acima de R$479</label>
+                            <input className="w-4 h-4" type="radio" name="faixaPreco" id="acima-de-449" value="acima-de-449" onChange={(e) => setFaixaPreco(e.target.value)} />
+                            <label className="leading-4" htmlFor="acima-de-449">Acima de R$479</label>
                         </div>
                         <div className="flex items-center gap-1">
                             <input className="w-4 h-4" type="radio" name="faixaPreco" id="todos" value="todos" defaultChecked onChange={(e) => setFaixaPreco(e.target.value)} />
