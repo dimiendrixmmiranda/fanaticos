@@ -34,7 +34,7 @@ export default function ProdutosFiltrados({ filtros, first, rows }: ProdutosFilt
     }, [])
 
     if (isLoading) {
-        return <p>Carregando produtos...</p>
+        return <p className="text-azul-escuro text-center font-bold uppercase">Carregando produtos...</p>
     }
 
     let filtrados = [...produtos]
@@ -101,6 +101,13 @@ export default function ProdutosFiltrados({ filtros, first, rows }: ProdutosFilt
                         <Product key={produto.id} produtoFirebase={produto} />
                     )
                 })
+            }
+            {
+                paginaFiltrados.length <=0 ? (
+                    <div className="flex flex-col justify-center items-center text-azul-escuro lg:justify-start lg:col-start-1 lg:col-end-3 xl:col-end-4 3xl:col-end-5">
+                        <p className="font-bold text-center text-2xl leading-6 uppercase lg:text-3xl">Nenhum Produto Encontrado!</p>
+                    </div>
+                ): ('')
             }
         </ul>
     )
