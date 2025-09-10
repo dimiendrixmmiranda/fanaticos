@@ -1,51 +1,123 @@
 'use client'
+import CaixaDeDialogo from "@/components/base/CaixaDeDialogo"
 import FormularioEndereco from "@/components/base/FormularioEndereco"
 import Template from "@/components/template/Template"
 import useAuth from "@/data/hooks/useAuth"
+import { db } from "@/lib/firebase"
+import Endereco from "@/types/Enderecos"
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore"
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
-import { FaHome, FaUserCircle } from "react-icons/fa"
+import { useEffect, useState } from "react"
+import { FaEdit, FaHome, FaTrashAlt, FaUserCircle } from "react-icons/fa"
 import { IoLogOutSharp } from "react-icons/io5"
 import { TbTruckDelivery } from "react-icons/tb"
 
 export default function Page() {
     const { logout, usuario } = useAuth()
+    const [enderecos, setEnderecos] = useState<Endereco[] | null>(null)
     const [active, setActive] = useState<'dados' | 'pedidos' | 'enderecos' | 'logout'>('dados')
     const [visibleDialogoLogout, setVisibleDialogoLogout] = useState(false)
+
     const [visibleFormularioEndereco, setVisibleFormularioEndereco] = useState(false)
+
+    const [visibleDialogoExcluir, setVisibleDialogoExcluir] = useState(false)
+    const [enderecoSelecionado, setEnderecoSelecionado] = useState<Endereco | null>(null)
+
+    useEffect(() => {
+        if (!usuario) return
+
+        const unsubscribe = onSnapshot(
+            collection(db, "users", usuario.uid, "enderecos"),
+            (snapshot) => {
+                const lista = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                })) as Endereco[]
+                setEnderecos(lista)
+            }
+        )
+
+        return () => unsubscribe()
+    }, [usuario])
+
+    const excluirEndereco = async (userId: string, enderecoId: string) => {
+        try {
+            await deleteDoc(doc(db, "users", userId, "enderecos", enderecoId))
+            console.log("Endereço excluído com sucesso!")
+        } catch (error) {
+            console.error("Erro ao excluir endereço:", error)
+        }
+    }
+
+    const handleExcluir = async (endereco: Endereco) => {
+        const id = endereco.id
+        if (!usuario) return
+        await excluirEndereco(usuario.uid, id)
+        // Atualiza a lista local removendo o item
+        setEnderecos(prev => prev && prev.filter(endereco => endereco.id !== id))
+    }
 
     function renderizarConteudo() {
         if (active === 'dados') {
             return (
                 <>
                     <h3 className="uppercase font-bold text-xl text-black line-clamp-1">Dados Pessoais</h3>
-                    <div>
+                    <div className="flex flex-col my-3">
                         <p>Nome Completo:</p>
-                        <span>{usuario?.nome}</span>
+                        <input type="text" name="nome" id="nome" value={usuario?.nome} className="h-[30px] p-2 rounded-lg opacity-60" disabled />
                     </div>
-                    <div>
+                    <div className="flex flex-col my-3">
                         <p>Data de Nascimento:</p>
-                        <span>08/03/2001</span>
+                        <input type="date" name="data" id="data" value="2001-03-08" className="h-[30px] p-2 rounded-lg opacity-60" disabled />
                     </div>
-                    <div>
+                    <div className="flex flex-col my-3">
                         <p>CPF:</p>
-                        <span>082.186.999-02</span>
+                        <input type="text" name="cpf" id="cpf" value={'08218699902'} className="h-[30px] p-2 rounded-lg opacity-60" disabled />
                     </div>
                     <div>
                         <p>Gênero:</p>
-                        <span>{usuario?.genero}</span>
+                        {
+                            usuario?.genero === 'masculino' ? (
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="flex items-center gap-1">
+                                        <input className="w-4 h-4" type="radio" name="genero" id="masculino" value="masculino" checked />
+                                        <label className="leading-4" htmlFor="masculino">Masculino</label>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                        <input className="w-4 h-4" type="radio" name="genero" id="feminino" value="feminino" />
+                                        <label className="leading-4" htmlFor="feminino">Feminino</label>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="flex items-center gap-1">
+                                        <input className="w-4 h-4" type="radio" name="genero" id="masculino" value="masculino" />
+                                        <label className="leading-4" htmlFor="masculino">Masculino</label>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                        <input className="w-4 h-4" type="radio" name="genero" id="feminino" value="feminino" checked />
+                                        <label className="leading-4" htmlFor="feminino">Feminino</label>
+                                    </div>
+                                </div>
+                            )
+                        }
                     </div>
-                    <div>
+                    <div className="flex flex-col my-3">
                         <p>Telefone Principal:</p>
-                        <span>(43) 9 88252886</span>
-                        <button>Alterar</button>
+                        <div className="flex w-full">
+                            <input type="text" name="telefone-1" id="telefone-1" value={'43988252886'} className="h-[30px] p-2 rounded-s-lg opacity-6 w-full" />
+                            <button className="bg-laranja px-2 uppercase font-bold text-white rounded-r-lg">Alterar</button>
+                        </div>
                     </div>
-                    <div>
+                    <div className="flex flex-col my-3">
                         <p>Telefone Secundário:</p>
-                        <span>(43) 9 88252886</span>
-                        <button>Alterar</button>
+                        <div className="flex w-full">
+                            <input type="text" name="telefone-2" id="telefone-2" value={'43999572199'} className="h-[30px] p-2 rounded-s-lg opacity-6 w-full" />
+                            <button className="bg-laranja px-2 uppercase font-bold text-white rounded-r-lg">Alterar</button>
+                        </div>
                     </div>
+                    <button className="bg-azul-escuro text-white w-full uppercase font-bold py-1 text-lg rounded-lg">Salvar Alterações</button>
                 </>
             )
         } else if (active === 'pedidos') {
@@ -58,25 +130,101 @@ export default function Page() {
             return (
                 <div className="flex flex-col gap-2">
                     <h3 className="uppercase font-bold text-xl text-black line-clamp-1">Endereços</h3>
-                    <button onClick={() => setVisibleFormularioEndereco(true)} className="uppercase font-bold text-lg text-center bg-azul-escuro p-2 text-white" style={{ textShadow: '1px 1px 2px black' }}>
+                    <div>
+                        <ul className="flex flex-col gap-4 md:grid md:grid-cols-2">
+                            {
+                                enderecos && enderecos.length > 0 ? (
+                                    enderecos.map((endereco, i) => {
+                                        return (
+                                            <li className="bg-white p-4 rounded-lg h-[170px] flex flex-col" key={i}>
+                                                <h2 className="font-bold text-xl leading-5">{endereco.rua}, {endereco.numero}</h2>
+                                                <span className="flex leading-5">{endereco.bairro} - {endereco.cep} - {endereco.cidade}</span>
+                                                <p className="flex leading-5">{endereco.nomeEndereco} - {endereco.nome}</p>
+                                                <div className="grid grid-cols-2 gap-2 mt-auto">
+                                                    <button
+                                                        className="bg-laranja text-white text-sm py-1 flex items-center justify-center gap-2"
+                                                        style={{ textShadow: '1px 1px 2px black' }}
+                                                        onClick={() => {
+                                                            setEnderecoSelecionado(endereco)
+                                                            setVisibleFormularioEndereco(true)
+                                                        }}
+                                                    >
+                                                        <p className="hidden sm:block md:hidden lg:block">Editar Endereço</p>
+                                                        <FaEdit />
+                                                    </button>
+                                                    <button
+                                                        className="bg-red-600 text-white text-sm py-1 flex items-center justify-center gap-2"
+                                                        style={{ textShadow: '1px 1px 2px black' }}
+                                                        onClick={() => {
+                                                            setEnderecoSelecionado(endereco)
+                                                            setVisibleDialogoExcluir(true)
+                                                        }}
+                                                    >
+                                                        <p className="hidden sm:block md:hidden lg:block">Excluir Endereço</p>
+                                                        <FaTrashAlt />
+                                                    </button>
+                                                </div>
+                                                {visibleFormularioEndereco && (
+                                                    <FormularioEndereco
+                                                        visibleFormularioEndereco={visibleFormularioEndereco}
+                                                        setVisibleFormularioEndereco={setVisibleFormularioEndereco}
+                                                        endereco={enderecoSelecionado || undefined}
+                                                    />
+                                                )}
+                                                {visibleDialogoExcluir && enderecoSelecionado && (
+                                                    <CaixaDeDialogo
+                                                        frase="Deseja realmente excluir este endereço?"
+                                                        funcaoSim={() => {
+                                                            handleExcluir(enderecoSelecionado)
+                                                            setVisibleDialogoExcluir(false)
+                                                            setEnderecoSelecionado(null)
+                                                        }}
+                                                        funcaoNao={() => {
+                                                            setVisibleDialogoExcluir(false)
+                                                            setEnderecoSelecionado(null)
+                                                        }}
+                                                        visibleDialogo
+                                                    />
+                                                )}
+                                            </li>
+                                        )
+                                    })
+                                ) : (
+                                    <h2 className="uppercase font-bold text-lg text-center leading-5 md:col-start-1 md:col-end-3">Nenhum Endereço Cadastrado</h2>
+                                )
+                            }
+                        </ul>
+                    </div>
+                    <button
+                        onClick={() => {
+                            setEnderecoSelecionado(null)
+                            setVisibleFormularioEndereco(true)
+                        }}
+                        className="uppercase font-bold text-lg text-center bg-azul-escuro p-2 text-white mt-2"
+                        style={{ textShadow: '1px 1px 2px black' }}
+                    >
                         Adicionar Novo Endereço
                     </button>
-                    {
-                        visibleFormularioEndereco ? (
-                            <FormularioEndereco setVisibleFormularioEndereco={setVisibleFormularioEndereco} />
-                        ) : ''
-                    }
+                    <FormularioEndereco
+                        visibleFormularioEndereco={visibleFormularioEndereco}
+                        setVisibleFormularioEndereco={setVisibleFormularioEndereco}
+                        endereco={enderecoSelecionado || undefined}
+                        onSalvar={(enderecoAtualizado) => {
+                            setEnderecos(prev => prev?.map(e => e.id === enderecoAtualizado.id ? enderecoAtualizado : e) || []);
+                            setVisibleFormularioEndereco(false);
+                            setEnderecoSelecionado(null);
+                        }}
+                    />
                 </div>
             )
         } else if (active === 'logout') {
             return (
-                <div className={`fixed top-[40%] left-[50%] w-[300px] bg-azul-escuro text-white rounded-lgs flex-col gap-6 p-4 ${visibleDialogoLogout ? 'flex' : 'hidden'}`} style={{ transform: 'translate(-50%,-50%)' }}>
-                    <p className="text-2xl uppercase font-bold leading-7">Deseja Realmente sair?</p>
-                    <div className="grid grid-cols-2 gap-4">
-                        <button onClick={() => logout && logout('/')} className="bg-red-600 uppercase font-bold text-lg">Sim</button>
-                        <button className="bg-red-600 uppercase font-bold text-lg" onClick={() => setVisibleDialogoLogout(false)}>Não</button>
-                    </div>
-                </div>
+                <CaixaDeDialogo
+                    frase="Deseja Realmente Sair?"
+                    funcaoSim={() => logout && logout('/')}
+                    funcaoNao={() => setVisibleDialogoLogout(false)}
+                    visibleDialogo={visibleDialogoLogout}
+                />
             )
         }
     }
@@ -112,7 +260,8 @@ export default function Page() {
                         onClick={() => {
                             setActive('logout')
                             setVisibleDialogoLogout(true)
-                        }}>
+                        }}
+                    >
                         <IoLogOutSharp className="text-2xl" />
                         <p className="uppercase font-bold text-xl">Sair</p>
                     </button>
@@ -149,7 +298,7 @@ export default function Page() {
                         className={`flex justify-center items-center text-4xl bg-azul-escuro p-2 rounded-md ${active === 'logout' ? 'bg-laranja' : 'bg-azul-escuro'}`}
                         onClick={() => {
                             setActive('logout')
-                            setVisibleDialogoLogout(true)
+                            setVisibleDialogoLogout(false)
                         }}>
                         <IoLogOutSharp />
                     </button>
@@ -160,7 +309,7 @@ export default function Page() {
                     }
                 </div>
 
-                <Link href={'/'} className="bg-laranja text-white  uppercase font-bold text-xl py-2 rounded-lg flex justify-center items-center text-center h-fit  mt-auto max-w-[300px] mx-auto w-full md:col-start-3 md:col-end-4 md:text-base" style={{ textShadow: '1px 1px 2px black' }}>Voltar a página Inicial</Link>
+                <Link href={'/'} className="bg-laranja text-white  uppercase font-bold text-xl py-2 rounded-lg flex justify-center items-center text-center h-fit  mt-auto max-w-[300px] mx-auto w-full md:col-start-3 md:col-end-4 md:text-base xl:mx-0 xl:justify-self-end" style={{ textShadow: '1px 1px 2px black' }}>Voltar a página Inicial</Link>
             </div>
         </Template>
     )

@@ -50,8 +50,6 @@ export default function LoginERegistro({ mobile }: LoginERegistroProps) {
         },
     ];
 
-    console.log(usuario)
-
     return (
         usuario ? (
             <div className={`${mobile ? 'flex justify-center items-center bg-azul-escuro rounded-lg w-20 h-12' : 'justify-center items-center w-20 hidden lg:flex'}`}>

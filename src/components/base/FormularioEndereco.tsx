@@ -1,28 +1,123 @@
+import useAuth from "@/data/hooks/useAuth"
+import { db } from "@/lib/firebase"
+import Endereco from "@/types/Enderecos"
+import { addDoc, collection, doc, setDoc } from "firebase/firestore"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { TiDelete } from "react-icons/ti"
 
 interface FormularioEnderecoProps {
+    visibleFormularioEndereco: boolean
+    endereco?: Endereco | undefined
     setVisibleFormularioEndereco: (visibleFormularioEndereco: boolean) => void
+    onSalvar?: (endereco: Endereco) => void
 }
 
-export default function FormularioEndereco({ setVisibleFormularioEndereco }: FormularioEnderecoProps) {
-    const [nomeEndereco, setNomeEndereco] = useState('')
-    const [cep, setCep] = useState('')
-    const [nome, setNome] = useState('')
-    const [rua, setRua] = useState('')
-    const [numero, setNumero] = useState('')
-    const [bairro, setBairro] = useState('')
-    const [complemento, setComplemento] = useState('')
-    const [pontoDeReferencia, setPontoDeReferencia] = useState('')
-    const [estado, setEstado] = useState('')
-    const [cidade, setCidade] = useState('')
+export default function FormularioEndereco({ visibleFormularioEndereco, endereco, setVisibleFormularioEndereco }: FormularioEnderecoProps) {
+    const [nomeEndereco, setNomeEndereco] = useState(endereco?.nomeEndereco || '')
+    const [cep, setCep] = useState(endereco?.cep || '')
+    const [nome, setNome] = useState(endereco?.nome || '')
+    const [rua, setRua] = useState(endereco?.rua || '')
+    const [numero, setNumero] = useState(endereco?.numero || '')
+    const [bairro, setBairro] = useState(endereco?.bairro || '')
+    const [complemento, setComplemento] = useState(endereco?.complemento || '')
+    const [pontoDeReferencia, setPontoDeReferencia] = useState(endereco?.pontoDeReferencia || '')
+    const [estado, setEstado] = useState(endereco?.estado || '')
+    const [cidade, setCidade] = useState(endereco?.cidade || '')
+
+    useEffect(() => {
+        if (endereco) {
+            setNomeEndereco(endereco.nomeEndereco || "")
+            setCep(endereco.cep || "")
+            setNome(endereco.nome || "")
+            setRua(endereco.rua || "")
+            setNumero(endereco.numero || "")
+            setBairro(endereco.bairro || "")
+            setComplemento(endereco.complemento || "")
+            setPontoDeReferencia(endereco.pontoDeReferencia || "")
+            setEstado(endereco.estado || "")
+            setCidade(endereco.cidade || "")
+        } else {
+            // Limpa todos os campos se for adicionar novo endereço
+            setNomeEndereco("")
+            setCep("")
+            setNome("")
+            setRua("")
+            setNumero("")
+            setBairro("")
+            setComplemento("")
+            setPontoDeReferencia("")
+            setEstado("")
+            setCidade("")
+        }
+    }, [endereco, visibleFormularioEndereco])
+
+    const { usuario } = useAuth()
+
+    console.log(endereco) // endereco chega porem os dados nao são setados no input
+
+    const handleSalvar = async (e: React.FormEvent) => {
+        e.preventDefault()
+
+        if (!usuario) {
+            alert("Você precisa estar logado para salvar um endereço.")
+            return
+        }
+
+        try {
+            if (endereco?.id) {
+                // ALTERAR
+                const enderecoRef = doc(db, "users", usuario.uid, "enderecos", endereco.id)
+                await setDoc(enderecoRef, {
+                    nomeEndereco,
+                    cep,
+                    nome,
+                    rua,
+                    numero,
+                    bairro,
+                    complemento,
+                    pontoDeReferencia,
+                    estado,
+                    cidade,
+                    atualizadoEm: new Date()
+                }, { merge: true })
+            } else {
+                await addDoc(
+                    collection(db, "users", usuario.uid, "enderecos"),
+                    {
+                        nomeEndereco,
+                        cep,
+                        nome,
+                        rua,
+                        numero,
+                        bairro,
+                        complemento,
+                        pontoDeReferencia,
+                        estado,
+                        cidade,
+                        criadoEm: new Date()
+                    }
+                )
+            }
+
+            // Fecha o formulário em qualquer caso
+            setVisibleFormularioEndereco(false)
+
+        } catch (error) {
+            console.error("Erro ao salvar endereço:", error)
+        }
+    }
 
     return (
-        <form className="flex flex-col gap-3 bg-azul-escuro text-white p-4 fixed top-[50%] left-[50%] w-[95%] z-20 max-w-[450px]" style={{ transform: 'translate(-50%, -50%)' }}>
+        <form className={`${visibleFormularioEndereco ? 'flex' : 'hidden'} flex-col gap-3 bg-azul-escuro text-white p-4 fixed top-[50%] left-[50%] w-[95%] h-[95%] overflow-y-scroll z-20 max-w-[450px] rounded-lg`} style={{ transform: 'translate(-50%, -50%)' }}>
             <div className="flex">
                 <h2 className="flex-1 uppercase font-bold">Adicionar Novo Endereço:</h2>
-                <button className="text-2xl" onClick={() => setVisibleFormularioEndereco(false)}><TiDelete /></button>
+                <button className="text-2xl" onClick={(e) => {
+                    e.preventDefault()
+                    setVisibleFormularioEndereco(false)
+                }}>
+                    <TiDelete />
+                </button>
             </div>
             <fieldset className="flex flex-col">
                 <label htmlFor="nomeEndereco">Nome do Endereço:</label>
@@ -136,12 +231,23 @@ export default function FormularioEndereco({ setVisibleFormularioEndereco }: For
                     onChange={(e) => setCidade(e.target.value)}
                 />
             </fieldset>
+
             <div className="flex flex-col gap-2 md:grid md:grid-cols-2">
-                <button className="bg-green-600 uppercase font-bold py-1" style={{ textShadow: '1px 1px 2px black' }}>Salvar Informações</button>
                 <button
+                    className="bg-green-600 uppercase font-bold py-1"
+                    style={{ textShadow: '1px 1px 2px black' }}
+                    onClick={(e) => handleSalvar(e)}
+                >
+                    Salvar Informações
+                </button>
+                <button
+                    type="button"
                     className="bg-red-600 uppercase font-bold py-1"
                     style={{ textShadow: '1px 1px 2px black' }}
-                    onClick={() => setVisibleFormularioEndereco(false)}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        setVisibleFormularioEndereco(false)
+                    }}
                 >
                     Cancelar
                 </button>
