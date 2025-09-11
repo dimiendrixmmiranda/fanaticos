@@ -29,12 +29,16 @@ async function usuarioNormalizado(usuarioFirebase: User): Promise<Usuario> {
         uid: usuarioFirebase.uid,
         nome: data.nome || usuarioFirebase.displayName || "",
         email: data.email || usuarioFirebase.email || "",
-        genero: data.genero ||  "",
+        genero: data.genero || "",
         token,
         provedor: usuarioFirebase.providerData[0]?.providerId || "",
         imagemURL: data.imagemURL || usuarioFirebase.photoURL || "",
-        tipo: data.tipo || "usuario", // default se não tiver
+        tipo: data.tipo || "usuario",
         stripeCustomerId: data.stripeCustomerId || null,
+        cpf: data.cpf || null || '',
+        telefone1: data.telefone1 || null || '',
+        telefone2: data.telefone2 || null || '',
+        dataNascimento: data.data || null || '',
     }
 }
 
@@ -104,7 +108,6 @@ export function AuthProvider({ children }: AuthContextProps) {
 
             await updateProfile(user, { displayName: nome })
 
-            // grava em "users" em vez de "usuarios"
             await setDoc(doc(db, "users", user.uid), {
                 nome,
                 email,
@@ -115,7 +118,7 @@ export function AuthProvider({ children }: AuthContextProps) {
             })
 
             await configurarSessao(user)
-            router.push('/pages/usuario')
+            router.push('/pages/informacoesAdicionais')
         } catch (error) {
             console.error("Erro ao cadastrar:", error)
             throw error

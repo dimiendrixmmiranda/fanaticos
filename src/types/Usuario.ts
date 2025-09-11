@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore"
+
 export type Usuario = {
     uid: string
     email: string
@@ -8,4 +10,8 @@ export type Usuario = {
     genero: string
     tipo?: string
     stripeCustomerId: string
+    cpf?: string
+    telefone1?: string
+    telefone2?: string
+    dataNascimento?: string | Timestamp
 }

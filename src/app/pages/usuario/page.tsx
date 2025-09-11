@@ -5,6 +5,7 @@ import Template from "@/components/template/Template"
 import useAuth from "@/data/hooks/useAuth"
 import { db } from "@/lib/firebase"
 import Endereco from "@/types/Enderecos"
+import { atualizarCampo } from "@/utils/atualizarCampoFirebase"
 import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore"
 import Image from "next/image"
 import Link from "next/link"
@@ -23,6 +24,26 @@ export default function Page() {
 
     const [visibleDialogoExcluir, setVisibleDialogoExcluir] = useState(false)
     const [enderecoSelecionado, setEnderecoSelecionado] = useState<Endereco | null>(null)
+
+    const [nome, setNome] = useState(usuario?.nome)
+    const [dataNascimento, setDataNascimento] = useState(usuario?.dataNascimento)
+    const [cpf, setCpf] = useState(usuario?.cpf)
+    const [, setGenero] = useState(usuario?.genero)
+    const [telefone1, setTelefone1] = useState(usuario?.telefone1)
+    const [telefone2, setTelefone2] = useState(usuario?.telefone2)
+
+    console.log(usuario)
+
+    useEffect(() => {
+        if (usuario) {
+            setNome(usuario.nome)
+            setDataNascimento(usuario.dataNascimento)
+            setCpf(usuario.cpf)
+            setGenero(usuario.genero)
+            setTelefone1(usuario.telefone1)
+            setTelefone2(usuario.telefone2)
+        }
+    }, [usuario])
 
     useEffect(() => {
         if (!usuario) return
@@ -58,6 +79,7 @@ export default function Page() {
         setEnderecos(prev => prev && prev.filter(endereco => endereco.id !== id))
     }
 
+    console.log(usuario?.dataNascimento)
     function renderizarConteudo() {
         if (active === 'dados') {
             return (
@@ -65,15 +87,28 @@ export default function Page() {
                     <h3 className="uppercase font-bold text-xl text-black line-clamp-1">Dados Pessoais</h3>
                     <div className="flex flex-col my-3">
                         <p>Nome Completo:</p>
-                        <input type="text" name="nome" id="nome" value={usuario?.nome} className="h-[30px] p-2 rounded-lg opacity-60" disabled />
+                        <input type="text" name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} className="h-[30px] p-2 rounded-lg opacity-60" disabled />
                     </div>
                     <div className="flex flex-col my-3">
                         <p>Data de Nascimento:</p>
-                        <input type="date" name="data" id="data" value="2001-03-08" className="h-[30px] p-2 rounded-lg opacity-60" disabled />
+                        <input
+                            type="date"
+                            name="data"
+                            id="data"
+                            value={
+                                dataNascimento
+                                    ? (typeof dataNascimento === "string"
+                                        ? dataNascimento.split("T")[0] // caso já seja string ISO
+                                        : dataNascimento.toDate().toISOString().split("T")[0]) // caso seja Timestamp
+                                    : ""
+                            }
+                            onChange={(e) => setDataNascimento(e.target.value)} className="h-[30px] p-2 rounded-lg opacity-60"
+                            disabled
+                        />
                     </div>
                     <div className="flex flex-col my-3">
                         <p>CPF:</p>
-                        <input type="text" name="cpf" id="cpf" value={'08218699902'} className="h-[30px] p-2 rounded-lg opacity-60" disabled />
+                        <input type="text" name="cpf" id="cpf" value={cpf} onChange={(e) => setCpf(e.target.value)} className="h-[30px] p-2 rounded-lg opacity-60" disabled />
                     </div>
                     <div>
                         <p>Gênero:</p>
@@ -106,18 +141,27 @@ export default function Page() {
                     <div className="flex flex-col my-3">
                         <p>Telefone Principal:</p>
                         <div className="flex w-full">
-                            <input type="text" name="telefone-1" id="telefone-1" value={'43988252886'} className="h-[30px] p-2 rounded-s-lg opacity-6 w-full" />
-                            <button className="bg-laranja px-2 uppercase font-bold text-white rounded-r-lg">Alterar</button>
+                            <input type="text" name="telefone-1" id="telefone-1" value={telefone1} onChange={(e) => setTelefone1(e.target.value)} className="h-[30px] p-2 rounded-s-lg opacity-6 w-full" />
+                            <button
+                                className="bg-laranja px-2 uppercase font-bold text-white rounded-r-lg"
+                                onClick={() => usuario && atualizarCampo(usuario.uid, "telefone1", telefone1 || "")}
+                            >
+                                Alterar
+                            </button>
                         </div>
                     </div>
                     <div className="flex flex-col my-3">
                         <p>Telefone Secundário:</p>
                         <div className="flex w-full">
-                            <input type="text" name="telefone-2" id="telefone-2" value={'43999572199'} className="h-[30px] p-2 rounded-s-lg opacity-6 w-full" />
-                            <button className="bg-laranja px-2 uppercase font-bold text-white rounded-r-lg">Alterar</button>
+                            <input type="text" name="telefone-2" id="telefone-2" value={telefone2} onChange={(e) => setTelefone2(e.target.value)} className="h-[30px] p-2 rounded-s-lg opacity-6 w-full" />
+                            <button
+                                className="bg-laranja px-2 uppercase font-bold text-white rounded-r-lg"
+                                onClick={() => usuario && atualizarCampo(usuario.uid, "telefone2", telefone2 || "")}
+                            >
+                                Alterar
+                            </button>
                         </div>
                     </div>
-                    <button className="bg-azul-escuro text-white w-full uppercase font-bold py-1 text-lg rounded-lg">Salvar Alterações</button>
                 </>
             )
         } else if (active === 'pedidos') {
@@ -298,7 +342,7 @@ export default function Page() {
                         className={`flex justify-center items-center text-4xl bg-azul-escuro p-2 rounded-md ${active === 'logout' ? 'bg-laranja' : 'bg-azul-escuro'}`}
                         onClick={() => {
                             setActive('logout')
-                            setVisibleDialogoLogout(false)
+                            setVisibleDialogoLogout(true)
                         }}>
                         <IoLogOutSharp />
                     </button>
