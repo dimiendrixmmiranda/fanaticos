@@ -78,12 +78,12 @@ function LoginForm() {
     return (
         <Template>
             <div className="p-4 flex justify-center items-center min-h-[60vh] lg:min-h-[70vh] xl:min-h-[80vh]">
-                <div className="flex justify-center items-center md:grid md:grid-cols-2">
-                    <div className="bg-laranja justify-center items-center flex-col w-full h-full p-4 hidden md:flex">
+                <div className="flex flex-col justify-center items-center rounded-md overflow-hidden md:grid md:grid-cols-2">
+                    <div className="bg-laranja justify-center items-center flex flex-col w-full h-full p-4">
                         <div className="relative w-[180px] h-[180px] lg:w-[250px] lg:h-[250px]">
                             <Image alt="Logo Fanáticos" src={'/logo/logo-fanaticos.png'} fill className="object-contain" />
                         </div>
-                        <p className="font-bold font-cursiva text-lg lg:text-2xl    " style={{ textShadow: '1px 1px 2px black' }}>A casa dos apaixonados por esporte!</p>
+                        <p className="font-bold font-cursiva text-lg lg:text-2xl" style={{ textShadow: '1px 1px 2px black' }}>A casa dos apaixonados por esporte!</p>
                     </div>
                     <div className="bg-azul-escuro flex justify-center items-center w-full h-full p-4 md:p-8 lg:p-10">
                         {erro && <p className="text-red-500 mb-2">{erro}</p>}

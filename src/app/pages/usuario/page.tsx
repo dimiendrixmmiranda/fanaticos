@@ -6,11 +6,13 @@ import useAuth from "@/data/hooks/useAuth"
 import { db } from "@/lib/firebase"
 import Endereco from "@/types/Enderecos"
 import { atualizarCampo } from "@/utils/atualizarCampoFirebase"
-import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore"
+import handleImagemChange from "@/utils/handleImageChange"
+import { collection, deleteDoc, doc, onSnapshot, updateDoc } from "firebase/firestore"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { FaEdit, FaHome, FaTrashAlt, FaUserCircle } from "react-icons/fa"
+import { FiPlus } from "react-icons/fi"
 import { IoLogOutSharp } from "react-icons/io5"
 import { TbTruckDelivery } from "react-icons/tb"
 
@@ -31,6 +33,11 @@ export default function Page() {
     const [, setGenero] = useState(usuario?.genero)
     const [telefone1, setTelefone1] = useState(usuario?.telefone1)
     const [telefone2, setTelefone2] = useState(usuario?.telefone2)
+
+    const [, setErroImagemTamanho] = useState<string | null>()
+    const [, setImagemBase64] = useState<string | null>()
+    const [imagemPreview, setImagemPreview] = useState<string | null>()
+
 
     console.log(usuario)
 
@@ -310,14 +317,55 @@ export default function Page() {
                         <p className="uppercase font-bold text-xl">Sair</p>
                     </button>
                 </div>
+
                 <div className="flex flex-col gap-4 md:col-start-2 md:col-end-4">
                     <h1 className="uppercase font-bold text-3xl text-center">Bem vindo {usuario?.nome.split(' ')[0]}</h1>
-                    {
-                        usuario && <div className="w-[180px] h-[180px] relative mx-auto -mt-2">
-                            <Image alt="Imagem do Usuário" src={usuario?.imagemURL} fill className="object-contain" />
-                        </div>
-                    }
+
+                    <div className="relative w-fit mx-auto">
+                        {usuario && (
+                            <div className="w-[180px] h-[180px] rounded-full overflow-hidden relative mx-auto -mt-2">
+                                <Image
+                                    alt="Imagem do Usuário"
+                                    src={imagemPreview || usuario?.imagemURL}
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                        )}
+
+                        {/* Botão customizado */}
+                        <button
+                            type="button"
+                            className="bg-laranja text-white p-2 rounded-full absolute bottom-0 -right-4 flex items-center gap-1"
+                            onClick={() => document.getElementById("imagens")?.click()}
+                        >
+                            <FiPlus />
+                        </button>
+                    </div>
+
+                    <fieldset>
+                        {/* Input escondido */}
+                        <input
+                            className="hidden"
+                            type="file"
+                            id="imagens"
+                            accept="image/*"
+                            onChange={async (e) => {
+                                // processa a imagem e pega o Base64
+                                const base64 = await handleImagemChange(e, setErroImagemTamanho, setImagemBase64, setImagemPreview);
+                                console.log(base64)
+                                // só atualiza no Firebase se base64 existir
+                                if (base64 && usuario?.uid) {
+                                    await updateDoc(doc(db, "users", usuario.uid), {
+                                        imagemURL: base64
+                                    });
+                                }
+                            }}
+                        />
+                    </fieldset>
+
                 </div>
+
                 {/* Menu Mobile */}
                 <div className="grid grid-cols-4 gap-2 text-white md:hidden">
                     <button
@@ -347,6 +395,7 @@ export default function Page() {
                         <IoLogOutSharp />
                     </button>
                 </div>
+
                 <div className="col-start-2 col-end-4">
                     {
                         renderizarConteudo()

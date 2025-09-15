@@ -32,18 +32,21 @@ export default function MVV() {
                             <IoIosInformationCircle />
                         </button>
                         <div className="bg-zinc-300 w-[200px] h-[80px] absolute top-0 left-[50%] clip-path-triangle" style={{ transform: 'translate(-50%)' }}></div>
-                        <p
-                            style={{
-                                display: '-webkit-box',
-                                WebkitLineClamp: 9,
-                                WebkitBoxOrient: 'vertical',
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis',
-                            }}
-                            className="absolute top-[85px] left-1/2 -translate-x-1/2 w-[90%] text-center text-xl leading-[22px] font-bold sm:text-2xl sm:leading-6 sm:top-[95px]"
-                        >
-                            Oferecer artigos esportivos de qualidade, acessíveis e inspiradores, que aproximem torcedores e amantes do esporte de suas paixões, proporcionando praticidade e confiança em cada compra online.
-                        </p>
+                        <div className="absolute top-[85px] left-1/2 -translate-x-1/2 w-[90%]">
+                            <h3 className="text-center uppercase font-black text-2xl">Missão</h3>
+                            <p
+                                // style={{
+                                //     display: '-webkit-box',
+                                //     WebkitLineClamp: 9,
+                                //     WebkitBoxOrient: 'vertical',
+                                //     overflow: 'hidden',
+                                //     textOverflow: 'ellipsis',
+                                // }}
+                                className="text-center text-xl leading-[22px] font-semibold sm:leading-6"
+                            >
+                                Oferecer artigos esportivos de qualidade, acessíveis e inspiradores, que aproximem torcedores e amantes do esporte de suas paixões, proporcionando praticidade e confiança em cada compra online.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,18 +65,21 @@ export default function MVV() {
                             <IoIosInformationCircle />
                         </button>
                         <div className="bg-zinc-300 w-[200px] h-[80px] absolute top-0 left-[50%] clip-path-triangle" style={{ transform: 'translate(-50%)' }}></div>
-                        <p
-                            style={{
-                                display: '-webkit-box',
-                                WebkitLineClamp: 8,
-                                WebkitBoxOrient: 'vertical',
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis',
-                            }}
-                            className="absolute top-[85px] left-1/2 -translate-x-1/2 w-[90%] text-center text-xl leading-[22px] font-bold sm:text-2xl sm:leading-6 sm:top-[95px]"
-                        >
-                           Valorizamos a paixão pelo esporte como força de união entre pessoas, oferecendo produtos de qualidade com transparência e confiança. Buscamos sempre a acessibilidade com preços justos, incentivando que todos possam viver essa paixão. Mantemos a inovação como princípio para melhorar constantemente a experiência de compra online e colocamos o cliente no centro de nossas decisões, guiados pelo respeito e dedicação em cada detalhe.
-                        </p>
+                        <div className="absolute top-[85px] left-1/2 -translate-x-1/2 w-[90%]">
+                            <h3 className="text-center uppercase font-black text-2xl">Visão</h3>
+                            <p
+                                // style={{
+                                //     display: '-webkit-box',
+                                //     WebkitLineClamp: 8,
+                                //     WebkitBoxOrient: 'vertical',
+                                //     overflow: 'hidden',
+                                //     textOverflow: 'ellipsis',
+                                // }}
+                                className="text-center text-xl leading-[22px] line-clamp-[8] font-semibold sm:leading-6 lg:line-clamp-[7]"
+                            >
+                                Valorizamos a paixão pelo esporte como força de união entre pessoas, oferecendo produtos de qualidade com transparência e confiança. Buscamos sempre a acessibilidade com preços justos, incentivando que todos possam viver essa paixão. Mantemos a inovação como princípio para melhorar constantemente a experiência de compra online e colocamos o cliente no centro de nossas decisões, guiados pelo respeito e dedicação em cada detalhe.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -92,18 +98,14 @@ export default function MVV() {
                             <IoIosInformationCircle />
                         </button>
                         <div className="bg-zinc-300 w-[200px] h-[80px] absolute top-0 left-[50%] clip-path-triangle" style={{ transform: 'translate(-50%)' }}></div>
-                        <p
-                            style={{
-                                display: '-webkit-box',
-                                WebkitLineClamp: 8,
-                                WebkitBoxOrient: 'vertical',
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis',
-                            }}
-                            className="absolute top-[85px] left-1/2 -translate-x-1/2 w-[90%] text-center text-xl leading-[22px] font-bold sm:text-2xl sm:leading-6 sm:top-[95px]"
-                        >
-                            Ser referência nacional em e-commerce de artigos esportivos, reconhecida pela diversidade de produtos, excelência no atendimento e pela conexão autêntica com a cultura esportiva.
-                        </p>
+                        <div className="absolute top-[85px] left-1/2 -translate-x-1/2 w-[90%]">
+                            <h3 className="text-center uppercase font-black text-2xl">Valores</h3>
+                            <p
+                                className="text-center text-xl leading-[22px] line-clamp-[8] font-semibold sm:leading-6 lg:line-clamp-[7]"
+                            >
+                                Ser referência nacional em e-commerce de artigos esportivos, reconhecida pela diversidade de produtos, excelência no atendimento e pela conexão autêntica com a cultura esportiva.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
