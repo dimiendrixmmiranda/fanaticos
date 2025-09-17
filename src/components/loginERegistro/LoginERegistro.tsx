@@ -55,13 +55,14 @@ export default function LoginERegistro({ mobile }: LoginERegistroProps) {
             <div className={`${mobile ? 'flex justify-center items-center bg-azul-escuro rounded-lg w-20 h-12' : 'justify-center items-center w-20 hidden lg:flex'}`}>
                 <Menu model={itemsUsuarioLogados} popup ref={menu} />
                 <Button onClick={(event) => menu.current?.toggle(event)}>
-                    <Image
-                        alt='Imagem do usuário'
-                        src={usuario.imagemURL}
-                        width={35}
-                        height={35}
-                        className='object-cover'
-                    />
+                    <div className='relative w-9 h-9 rounded-full overflow-hidden'>
+                        <Image
+                            alt='Imagem do usuário'
+                            src={usuario.imagemURL}
+                            fill
+                            className='object-cover'
+                        />
+                    </div>
                 </Button>
             </div>
         ) : (

@@ -187,9 +187,9 @@ export default function Page() {
                                 enderecos && enderecos.length > 0 ? (
                                     enderecos.map((endereco, i) => {
                                         return (
-                                            <li className="bg-white p-4 rounded-lg h-[170px] flex flex-col" key={i}>
+                                            <li className="bg-white p-4 rounded-lg h-[170px] flex flex-col xl:h-[160px]" key={i}>
                                                 <h2 className="font-bold text-xl leading-5">{endereco.rua}, {endereco.numero}</h2>
-                                                <span className="flex leading-5">{endereco.bairro} - {endereco.cep} - {endereco.cidade}</span>
+                                                <span className="flex leading-5">{endereco.bairro} - {endereco.cep} - {endereco.cidade} - {endereco.pontoDeReferencia}</span>
                                                 <p className="flex leading-5">{endereco.nomeEndereco} - {endereco.nome}</p>
                                                 <div className="grid grid-cols-2 gap-2 mt-auto">
                                                     <button
@@ -200,7 +200,7 @@ export default function Page() {
                                                             setVisibleFormularioEndereco(true)
                                                         }}
                                                     >
-                                                        <p className="hidden sm:block md:hidden lg:block">Editar Endereço</p>
+                                                        <p className="hidden sm:block md:hidden lg:block xl:text-lg">Editar Endereço</p>
                                                         <FaEdit />
                                                     </button>
                                                     <button
@@ -211,7 +211,7 @@ export default function Page() {
                                                             setVisibleDialogoExcluir(true)
                                                         }}
                                                     >
-                                                        <p className="hidden sm:block md:hidden lg:block">Excluir Endereço</p>
+                                                        <p className="hidden sm:block md:hidden lg:block xl:text-lg">Excluir Endereço</p>
                                                         <FaTrashAlt />
                                                     </button>
                                                 </div>
